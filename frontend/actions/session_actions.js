@@ -4,10 +4,10 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const SESSION_ERRORS = 'SESSION_ERRORS';
 
-export const receiveUser = (user) => {
+export const receiveUser = (currentUser) => {
   return {
     type: RECEIVE_USER,
-    user
+    currentUser
   };
 };
 
