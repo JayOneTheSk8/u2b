@@ -36,12 +36,12 @@ class User < ApplicationRecord
     self.session_token
   end
 
-  private
 
   def is_password?(passed_word)
-    BCrypt::Password.new(self.password).is_password?(passed_word)
+    BCrypt::Password.new(self.password_digest).is_password?(passed_word)
   end
 
+  private
   def ensure_session_token!
     self.session_token ||= SecureRandom::urlsafe_base64
   end
