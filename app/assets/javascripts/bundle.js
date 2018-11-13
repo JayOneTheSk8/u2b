@@ -406,6 +406,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -414,6 +416,12 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById('root');
   var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["login"]; //TEST
+
+  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["signup"]; //TEST
+
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["logout"]; //TEST
+
   window.getState = store.getState; //TEST
 
   window.dispatch = store.dispatch; //TEST
