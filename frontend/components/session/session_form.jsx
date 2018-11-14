@@ -24,7 +24,6 @@ class SessionForm extends React.Component {
     } else {
       const user = merge({}, { username: this.state.username, password: this.state.password });
       this.props.action(user);
-      this.setState(this.props.defaultState);
     }
   }
 
