@@ -43,10 +43,18 @@ class SessionForm extends React.Component {
   passwordVerifyField() {
     if (this.props.formType === "Sign Up") {
       return (
-        <label>
-          Verify Password:
-          <input type='password' onChange={this.update('passVerify')} value={this.state.passVerify}/>
-        </label>
+        <>
+          <label htmlFor='verification' className="login-input-label"></label>
+          <input id="verification" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} placeholder="Verify Password"/>
+        </>
+      );
+    }
+  }
+
+  passwordErrorRender(){
+    if (this.state.passwordError !== "") {
+      return (
+        <p>{this.state.passwordError}</p>
       );
     }
   }
@@ -58,32 +66,34 @@ class SessionForm extends React.Component {
       );
     }
     return (
-      <>
-        <h2>{this.props.formType}</h2>
+      <div className='form-page'>
+        <div className='form-box'>
+          <h2>{this.props.formType}</h2>
 
-        { this.renderErrors() }
-        <p>{this.state.passwordError}</p>
+          { this.renderErrors() }
+          { this.passwordErrorRender() }
+          <form onSubmit={this.handleSubmit} className="user-form">
+            <section className='user-info'>
 
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username:
-            <input type='text' onChange={this.update('username')} value={this.state.username}/>
-          </label>
+                <label htmlFor="username" className="login-input-label"></label>
+                <input id="username" type='text' onChange={this.update('username')} value={this.state.username} placeholder="Username"/>
 
-          <label>
-            Password:
-            <input type='password' onChange={this.update('password')} value={this.state.password}/>
-          </label>
+                <label htmlFor='password' className="login-input-label"></label>
+                <input id="password" type='password' onChange={this.update('password')} value={this.state.password} placeholder="Password"/>
 
-          { this.passwordVerifyField() }
+              { this.passwordVerifyField() }
+            </section>
 
-          <input type="submit" value={this.props.formType}/>
+            <footer className="login-links">
+              <Link to={this.props.formType === 'Sign Up' ? '/login' : '/signup'} className="switch-register">
+                {this.props.formType === 'Sign Up' ? "Log In" : "Sign Up"}
+              </Link>
 
-          <Link to={this.props.formType === 'Sign Up' ? '/login' : '/signup'}>
-            {this.props.formType === 'Sign Up' ? "Log In" : "Sign Up"}
-          </Link>
-        </form>
-      </>
+              <input className="submit-button" type="submit" value={this.props.formType}/>
+            </footer>
+          </form>
+        </div>
+      </div>
     );
   }
 }

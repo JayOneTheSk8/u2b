@@ -372,11 +372,23 @@ function (_React$Component) {
     key: "passwordVerifyField",
     value: function passwordVerifyField() {
       if (this.props.formType === "Sign Up") {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Verify Password:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "verification",
+          className: "login-input-label"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          id: "verification",
           type: "password",
           onChange: this.update('passVerify'),
-          value: this.state.passVerify
+          value: this.state.passVerify,
+          placeholder: "Verify Password"
         }));
+      }
+    }
+  }, {
+    key: "passwordErrorRender",
+    value: function passwordErrorRender() {
+      if (this.state.passwordError !== "") {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.passwordError);
       }
     }
   }, {
@@ -388,22 +400,43 @@ function (_React$Component) {
         });
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.passwordError), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), this.renderErrors(), this.passwordErrorRender(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "user-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "user-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "username",
+        className: "login-input-label"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "username",
         type: "text",
         onChange: this.update('username'),
-        value: this.state.username
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: this.state.username,
+        placeholder: "Username"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "password",
+        className: "login-input-label"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "password",
         type: "password",
         onChange: this.update('password'),
-        value: this.state.password
-      })), this.passwordVerifyField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: this.state.password,
+        placeholder: "Password"
+      }), this.passwordVerifyField()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+        className: "login-links"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: this.props.formType === 'Sign Up' ? '/login' : '/signup',
+        className: "switch-register"
+      }, this.props.formType === 'Sign Up' ? "Log In" : "Sign Up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "submit-button",
         type: "submit",
         value: this.props.formType
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: this.props.formType === 'Sign Up' ? '/login' : '/signup'
-      }, this.props.formType === 'Sign Up' ? "Log In" : "Sign Up")));
+      })))));
     }
   }]);
 
