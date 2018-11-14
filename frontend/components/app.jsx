@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import LoginFormContainer from './session/login_container'
+import SigninFormContainer from './session/signup_container'
 // import NavbarContainer from './navbar/navbar_container';
 
 const App = () => {
@@ -9,8 +11,8 @@ const App = () => {
 
       {/*<NavbarContainer />*/}
       {/*<Route exact path="/" component={VideoIndexContainer}/>*/}
-      {/*<Route exact path="/signup" component={SigninFormContainer}/>*/}
-      {/*<Route exact path="/login" component={LoginFormContainer}/>*/}
+      <Route exact path="/signup" component={SigninFormContainer}/>
+      <Route exact path="/login" component={LoginFormContainer}/>
     </>
   );
 };
