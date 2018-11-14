@@ -24,6 +24,7 @@ class SessionForm extends React.Component {
     } else {
       const user = merge({}, { username: this.state.username, password: this.state.password });
       this.props.action(user);
+      this.setState(this.props.defaultState);
     }
   }
 
@@ -68,8 +69,6 @@ class SessionForm extends React.Component {
             Username:
             <input type='text' onChange={this.update('username')} value={this.state.username}/>
           </label>
-
-          {}
 
           <label>
             Password:

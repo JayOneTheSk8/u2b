@@ -1,18 +1,16 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import LoginFormContainer from './session/login_container'
-import SigninFormContainer from './session/signup_container'
+import LoginFormContainer from './session/login_container';
+import SigninFormContainer from './session/signup_container';
 import VideoIndexContainer from './video/video_index_container';
-// import NavbarContainer from './navbar/navbar_container';
+import { AuthRoute } from '../util/route_util';
 
 const App = () => {
   return (
     <>
-
-      {/*<NavbarContainer />*/}
-      <Route exact path="/" component={VideoIndexContainer}/>
-      <Route exact path="/signup" component={SigninFormContainer}/>
-      <Route exact path="/login" component={LoginFormContainer}/>
+      <Route path="/" component={VideoIndexContainer} />
+      <AuthRoute path="/signup" component={SigninFormContainer}/>
+      <AuthRoute path="/login" component={LoginFormContainer}/>
     </>
   );
 };
