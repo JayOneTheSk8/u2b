@@ -45,7 +45,7 @@ class SessionForm extends React.Component {
       return (
         <>
           <label htmlFor='verification' className="login-input-label"></label>
-          <input id="verification" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} placeholder="Verify Password"/>
+          <input id="verification" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} placeholder="Confirm Password"/>
         </>
       );
     }
@@ -92,6 +92,7 @@ class SessionForm extends React.Component {
               <input className="submit-button" type="submit" value={this.props.formType}/>
             </footer>
           </form>
+          <button onClick={this.props.demoLogin} className="demo-login">Demo User Login</button>
         </div>
       </div>
     );
