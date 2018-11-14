@@ -7,7 +7,6 @@ class SessionForm extends React.Component {
     super(props);
     this.state = this.props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
     this.passwordVerifyField = this.passwordVerifyField.bind(this);
   }
 
@@ -19,7 +18,6 @@ class SessionForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    debugger
     if (this.props.formType === 'Sign Up' && this.state.password !== this.state.passVerify) {
       const username = this.state.username;
       this.setState({ username, password: '', passVerify: '', passwordError: "Passwords Do Not Match" });
@@ -53,6 +51,11 @@ class SessionForm extends React.Component {
   }
 
   render(){
+    if (this.props.loggedIn) {
+      return (
+        <Redirect to="/" />
+      );
+    }
     return (
       <>
         <h2>{this.props.formType}</h2>
