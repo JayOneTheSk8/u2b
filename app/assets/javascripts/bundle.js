@@ -90,7 +90,7 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_USER, LOGOUT_USER, SESSION_ERRORS, receiveUser, logoutUser, receiveErrors, signup, login, logout */
+/*! exports provided: RECEIVE_USER, LOGOUT_USER, SESSION_ERRORS, REMOVE_ERRORS, receiveUser, logoutUser, receiveErrors, removeErrors, signup, login, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,9 +98,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_USER", function() { return LOGOUT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SESSION_ERRORS", function() { return SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_ERRORS", function() { return REMOVE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutUser", function() { return logoutUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeErrors", function() { return removeErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
@@ -109,6 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_USER = 'RECEIVE_USER';
 var LOGOUT_USER = 'LOGOUT_USER';
 var SESSION_ERRORS = 'SESSION_ERRORS';
+var REMOVE_ERRORS = 'REMOVE_ERRORS';
 var receiveUser = function receiveUser(currentUser) {
   return {
     type: RECEIVE_USER,
@@ -124,6 +127,11 @@ var receiveErrors = function receiveErrors(errors) {
   return {
     type: SESSION_ERRORS,
     errors: errors
+  };
+};
+var removeErrors = function removeErrors() {
+  return {
+    type: REMOVE_ERRORS
   };
 };
 var signup = function signup(user) {
@@ -267,6 +275,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         username: "Demo User",
         password: "starwars"
       }));
+    },
+    removeErrors: function removeErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["removeErrors"])());
     }
   };
 };
@@ -325,12 +336,20 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SessionForm).call(this, props));
     _this.state = _this.props.user;
+    _this.localErrors = _this.props.errors;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.passwordVerifyField = _this.passwordVerifyField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.passwordVerifyField = _this.passwordVerifyField.bind(_assertThisInitialized(_assertThisInitialized(_this))); // this.focus = this.focus.bind(this);
+    // this.unFocus = this.unFocus.bind(this);
+
     return _this;
   }
 
   _createClass(SessionForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeErrors();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -345,20 +364,13 @@ function (_React$Component) {
       e.preventDefault();
 
       if (this.props.formType === 'Sign Up' && this.state.password !== this.state.passVerify) {
-        var username = this.state.username;
-        this.setState({
-          username: username,
-          password: '',
-          passVerify: '',
-          passwordError: "Passwords Do Not Match"
-        });
+        this.props.passwordMatchError();
       } else {
         var user = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, {
           username: this.state.username,
           password: this.state.password
         });
         this.props.action(user);
-        this.setState(this.props.defaultState);
       }
     }
   }, {
@@ -370,37 +382,101 @@ function (_React$Component) {
 
       var allErrors = this.props.errors.map(function (error, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "login-errors",
           key: idx
         }, error);
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, allErrors);
+      return allErrors;
     }
   }, {
     key: "passwordVerifyField",
-    value: function passwordVerifyField() {
+    value: function passwordVerifyField(errorSet) {
       if (this.props.formType === "Sign Up") {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "verification",
+          htmlFor: "match",
           className: "login-input-label"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "verification",
+          id: "match",
           type: "password",
           onChange: this.update('passVerify'),
           value: this.state.passVerify,
-          placeholder: "Confirm Password"
-        }));
+          placeholder: "Confirm Password",
+          className: errorSet.classNames.match
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "clear-ul"
+        }, errorSet.match));
       }
     }
   }, {
-    key: "passwordErrorRender",
-    value: function passwordErrorRender() {
-      if (this.state.passwordError !== "") {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.passwordError);
+    key: "setErrors",
+    value: function setErrors() {
+      var errors = this.renderErrors();
+      var errorSet = {
+        username: [],
+        password: [],
+        match: [],
+        classNames: {
+          username: 'input-field',
+          password: 'input-field',
+          match: 'input-field'
+        }
+      };
+
+      if (errors === undefined) {
+        return errorSet;
       }
+
+      for (var i = 0; i < errors.length; i++) {
+        var error = errors[i].props.children.toLowerCase();
+
+        if (error.includes('username')) {
+          errorSet.username.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i,
+            className: "login-errors"
+          }, error));
+          errorSet.classNames.username += ' make-red';
+        } else if (error.includes('password') && !error.includes('username') && !error.includes('match')) {
+          errorSet.password.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i,
+            className: "login-errors"
+          }, error));
+          errorSet.classNames.password += ' make-red';
+        } else if (error.includes('match')) {
+          errorSet.match.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i,
+            className: "login-errors"
+          }, error));
+          errorSet.classNames.match += ' make-red';
+        }
+      }
+
+      errorSet = this.setCheck(errorSet);
+      return errorSet;
+    }
+  }, {
+    key: "setCheck",
+    value: function setCheck(errorSet) {
+      var errorCheck = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, errorSet);
+
+      if (errorCheck.username.length === 0) {
+        errorCheck.username = "";
+      }
+
+      if (errorCheck.password.length === 0) {
+        errorCheck.password = "";
+      }
+
+      if (errorCheck.match.length === 0) {
+        errorCheck.match = "";
+      }
+
+      return errorCheck;
     }
   }, {
     key: "render",
     value: function render() {
+      var errorSet = this.setErrors();
+
       if (this.props.loggedIn) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
           to: "/"
@@ -411,7 +487,7 @@ function (_React$Component) {
         className: "form-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), this.renderErrors(), this.passwordErrorRender(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "user-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -424,8 +500,11 @@ function (_React$Component) {
         type: "text",
         onChange: this.update('username'),
         value: this.state.username,
-        placeholder: "Username"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        placeholder: "Username",
+        className: errorSet.classNames.username
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "clear-ul"
+      }, errorSet.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password",
         className: "login-input-label"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -433,8 +512,11 @@ function (_React$Component) {
         type: "password",
         onChange: this.update('password'),
         value: this.state.password,
-        placeholder: "Password"
-      }), this.passwordVerifyField()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+        placeholder: "Password",
+        className: errorSet.classNames.password
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "clear-ul"
+      }, errorSet.password), this.passwordVerifyField(errorSet)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
         className: "login-links"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: this.props.formType === 'Sign Up' ? '/login' : '/signup',
@@ -453,7 +535,65 @@ function (_React$Component) {
   return SessionForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (SessionForm);
+/* harmony default export */ __webpack_exports__["default"] = (SessionForm); // pinErrors(field, otherFields = []){
+//   const errors = this.renderErrors();
+//   const pickedErrors = [];
+//   const idxToRemove = []
+//   for (let i = 0; i < errors.length; i++) {
+//     let error = errors[i].props.children.toLowerCase();
+//     if (error.includes(field)) {
+//       for (let j = 0; j < otherFields.length; j++) {
+//         if (error.includes(otherFields[j])) { return; }
+//       }
+//       pickedErrors.push(errors[i]);
+//       idxToRemove.push(i);
+//     }
+//   }
+//   if (pickedErrors.length === 0) {
+//     return (
+//       <ul className="clear-ul">
+//         <li className="login-errors"> </li>
+//       </ul>
+//     );
+//   } else {
+//     this.reddenLine(field);
+//     return (
+//       <ul className="clear-ul">
+//         {pickedErrors}
+//       </ul>
+//     );
+//   }
+// }
+//
+// reddenLine(field) {
+//   const inputField = document.getElementById(field);
+//   inputField.className += (' make-red');
+// }
+//
+// removeRed() {
+//   const allInputs = document.getElementsByClassName('input-field');
+//   for (let i = 0; i < allInputs.length; i++) {
+//     if (allInputs[i].className.includes('make-red')) {
+//       allInputs.className = 'input-field';
+//     }
+//   }
+// }
+// focus(e) {
+//   this.unFocus(e);
+//   // if (e.currentTarget.value !== "") { return; }
+//   e.currentTarget.previousSibling.className += " small-letters"
+// }
+//
+// unFocus(e) {
+//   // debugger
+//   if (e.currentTarget.value !== "") { return; }
+//   const allSiblings = e.currentTarget.parentElement.children;
+//   for (let i = 0; i < allSiblings.length; i += 2) {
+//     if (allSiblings[i].className === "login-input-label small-letters") {
+//       allSiblings[i].className = "login-input-label"
+//     }
+//   }
+// }
 
 /***/ }),
 
@@ -478,14 +618,12 @@ var mapStateToProps = function mapStateToProps(state) {
     defaultState: {
       username: '',
       password: '',
-      passVerify: '',
-      passwordError: ""
+      passVerify: ''
     },
     user: {
       username: '',
       password: '',
-      passVerify: '',
-      passwordError: ""
+      passVerify: ''
     },
     formType: 'Sign Up',
     errors: state.errors.session,
@@ -503,6 +641,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         username: "Demo User",
         password: "starwars"
       }));
+    },
+    removeErrors: function removeErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["removeErrors"])());
+    },
+    passwordMatchError: function passwordMatchError() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["receiveErrors"])(["Those passwords didn't match. Try again."]));
     }
   };
 };
@@ -704,6 +848,7 @@ __webpack_require__.r(__webpack_exports__);
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ERRORS"]:
       return [];
 
     default:
