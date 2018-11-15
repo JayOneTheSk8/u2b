@@ -487,7 +487,9 @@ function (_React$Component) {
         className: "form-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "session-header"
+      }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "user-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -535,50 +537,7 @@ function (_React$Component) {
   return SessionForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (SessionForm); // pinErrors(field, otherFields = []){
-//   const errors = this.renderErrors();
-//   const pickedErrors = [];
-//   const idxToRemove = []
-//   for (let i = 0; i < errors.length; i++) {
-//     let error = errors[i].props.children.toLowerCase();
-//     if (error.includes(field)) {
-//       for (let j = 0; j < otherFields.length; j++) {
-//         if (error.includes(otherFields[j])) { return; }
-//       }
-//       pickedErrors.push(errors[i]);
-//       idxToRemove.push(i);
-//     }
-//   }
-//   if (pickedErrors.length === 0) {
-//     return (
-//       <ul className="clear-ul">
-//         <li className="login-errors"> </li>
-//       </ul>
-//     );
-//   } else {
-//     this.reddenLine(field);
-//     return (
-//       <ul className="clear-ul">
-//         {pickedErrors}
-//       </ul>
-//     );
-//   }
-// }
-//
-// reddenLine(field) {
-//   const inputField = document.getElementById(field);
-//   inputField.className += (' make-red');
-// }
-//
-// removeRed() {
-//   const allInputs = document.getElementsByClassName('input-field');
-//   for (let i = 0; i < allInputs.length; i++) {
-//     if (allInputs[i].className.includes('make-red')) {
-//       allInputs.className = 'input-field';
-//     }
-//   }
-// }
-// focus(e) {
+/* harmony default export */ __webpack_exports__["default"] = (SessionForm); // focus(e) {
 //   this.unFocus(e);
 //   // if (e.currentTarget.value !== "") { return; }
 //   e.currentTarget.previousSibling.className += " small-letters"

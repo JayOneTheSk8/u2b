@@ -98,7 +98,7 @@ class SessionForm extends React.Component {
     return (
       <div className='form-page'>
         <div className='form-box'>
-          <h2>{this.props.formType}</h2>
+          <h2 className='session-header'>{this.props.formType}</h2>
           <form onSubmit={this.handleSubmit} className="user-form">
             <section className='user-info'>
 
@@ -129,51 +129,6 @@ class SessionForm extends React.Component {
 }
 
 export default SessionForm;
-
-// pinErrors(field, otherFields = []){
-//   const errors = this.renderErrors();
-//   const pickedErrors = [];
-//   const idxToRemove = []
-//   for (let i = 0; i < errors.length; i++) {
-//     let error = errors[i].props.children.toLowerCase();
-//     if (error.includes(field)) {
-//       for (let j = 0; j < otherFields.length; j++) {
-//         if (error.includes(otherFields[j])) { return; }
-//       }
-//       pickedErrors.push(errors[i]);
-//       idxToRemove.push(i);
-//     }
-//   }
-//   if (pickedErrors.length === 0) {
-//     return (
-//       <ul className="clear-ul">
-//         <li className="login-errors"> </li>
-//       </ul>
-//     );
-//   } else {
-//     this.reddenLine(field);
-//     return (
-//       <ul className="clear-ul">
-//         {pickedErrors}
-//       </ul>
-//     );
-//   }
-// }
-//
-// reddenLine(field) {
-//   const inputField = document.getElementById(field);
-//   inputField.className += (' make-red');
-// }
-//
-// removeRed() {
-//   const allInputs = document.getElementsByClassName('input-field');
-//   for (let i = 0; i < allInputs.length; i++) {
-//     if (allInputs[i].className.includes('make-red')) {
-//       allInputs.className = 'input-field';
-//     }
-//   }
-// }
-
 
 // focus(e) {
 //   this.unFocus(e);
