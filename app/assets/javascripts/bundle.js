@@ -411,6 +411,7 @@ function (_React$Component) {
     key: "setErrors",
     value: function setErrors() {
       var errors = this.renderErrors();
+      debugger;
       var errorSet = {
         username: [],
         password: [],
@@ -427,21 +428,21 @@ function (_React$Component) {
       }
 
       for (var i = 0; i < errors.length; i++) {
-        var error = errors[i].props.children.toLowerCase();
+        var error = errors[i].props.children;
 
-        if (error.includes('username')) {
+        if (error.toLowerCase().includes('username')) {
           errorSet.username.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "login-errors"
           }, error));
           errorSet.classNames.username += ' make-red';
-        } else if (error.includes('password') && !error.includes('username') && !error.includes('match')) {
+        } else if (error.toLowerCase().includes('password') && !error.toLowerCase().includes('username') && !error.toLowerCase().includes('match')) {
           errorSet.password.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "login-errors"
           }, error));
           errorSet.classNames.password += ' make-red';
-        } else if (error.includes('match')) {
+        } else if (error.toLowerCase().includes('match')) {
           errorSet.match.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "login-errors"

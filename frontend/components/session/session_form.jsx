@@ -55,17 +55,18 @@ class SessionForm extends React.Component {
 
   setErrors() {
     const errors = this.renderErrors();
+    debugger
     let errorSet = { username: [], password: [], match: [], classNames: { username: 'input-field', password: 'input-field', match: 'input-field' } };
     if (errors === undefined) { return errorSet; }
     for (let i = 0; i < errors.length; i++) {
-      const error = errors[i].props.children.toLowerCase()
-      if (error.includes('username')) {
+      const error = errors[i].props.children
+      if (error.toLowerCase().includes('username')) {
         errorSet.username.push(<li key={i} className="login-errors">{error}</li>);
         errorSet.classNames.username += ' make-red';
-      } else if (error.includes('password') && !error.includes('username') && !error.includes('match')) {
+      } else if (error.toLowerCase().includes('password') && !error.toLowerCase().includes('username') && !error.toLowerCase().includes('match')) {
         errorSet.password.push(<li key={i} className="login-errors">{error}</li>);
         errorSet.classNames.password += ' make-red';
-      } else if (error.includes('match')) {
+      } else if (error.toLowerCase().includes('match')) {
         errorSet.match.push(<li key={i} className="login-errors">{error}</li>);
         errorSet.classNames.match += ' make-red';
       }
