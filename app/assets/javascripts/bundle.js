@@ -335,12 +335,17 @@ function (_React$Component) {
     _classCallCheck(this, SessionForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SessionForm).call(this, props));
-    _this.state = _this.props.user;
-    _this.localErrors = _this.props.errors;
+    _this.state = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, _this.props.user, {
+      usernameLabel: 'login-input-label'
+    }, {
+      passwordLabel: 'login-input-label'
+    }, {
+      matchLabel: 'login-input-label'
+    });
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.passwordVerifyField = _this.passwordVerifyField.bind(_assertThisInitialized(_assertThisInitialized(_this))); // this.focus = this.focus.bind(this);
-    // this.unFocus = this.unFocus.bind(this);
-
+    _this.passwordVerifyField = _this.passwordVerifyField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.shrinkLabel = _this.shrinkLabel.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.expandLabel = _this.expandLabel.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -394,8 +399,10 @@ function (_React$Component) {
       if (this.props.formType === "Sign Up") {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "match",
-          className: "login-input-label"
+          className: this.state.matchLabel
         }, "Confirm Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onFocus: this.shrinkLabel,
+          onBlur: this.expandLabel,
           id: "match",
           type: "password",
           onChange: this.update('passVerify'),
@@ -472,8 +479,40 @@ function (_React$Component) {
       return errorCheck;
     }
   }, {
+    key: "shrinkLabel",
+    value: function shrinkLabel(e) {
+      debugger;
+      e.preventDefault();
+      var labelTarget = e.target.previousSibling.htmlFor;
+      this.setState(_defineProperty({}, labelTarget + "Label", 'small-letters'));
+    }
+  }, {
+    key: "expandLabel",
+    value: function expandLabel(e) {
+      if (e.target.value !== "") {
+        return;
+      }
+
+      var labelTarget = e.target.previousSibling.htmlFor;
+      this.setState(_defineProperty({}, labelTarget + "Label", 'login-input-label'));
+    } // getOtherEls(labelTarget) {
+    //   if (labelTarget === 'username') {
+    //     return ['password', 'match'];
+    //   } else if (labelTarget === 'password') {
+    //     return ['username', 'match'];
+    //   } else if (labelTarget === 'match') {
+    //     return ['username', 'password'];
+    //   }
+    // }
+
+  }, {
     key: "render",
     value: function render() {
+      // use object to manually set class of labels to small-letters or login-input-label in these cases:
+      // when the input field is in focus
+      // when text is in the input field
+      // when you click anywhere else after having it on
+      // add onFocus and onBlur event handlers
       var errorSet = this.setErrors();
 
       if (this.props.loggedIn) {
@@ -493,12 +532,12 @@ function (_React$Component) {
         className: "user-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "login-input-label"
-      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "username",
-        className: "hidden-label"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: this.state.usernameLabel
+      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onFocus: this.shrinkLabel,
+        onBlur: this.expandLabel,
         id: "username",
         type: "text",
         onChange: this.update('username'),
@@ -508,8 +547,10 @@ function (_React$Component) {
         className: "clear-ul"
       }, errorSet.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password",
-        className: "login-input-label"
+        className: this.state.passwordLabel
       }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onFocus: this.shrinkLabel,
+        onBlur: this.expandLabel,
         id: "password",
         type: "password",
         onChange: this.update('password'),

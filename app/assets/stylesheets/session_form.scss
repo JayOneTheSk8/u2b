@@ -36,18 +36,22 @@
 }
 
 .login-input-label {
-  // transition: font-size 0.2s, position 0.2s,  bottom 0.2s, color 0.2s;
+  transition: font-size 0.4s, top 0.4s, color 0.4s;
   color: #7a7a7a;
   margin: -11px 0px;
   position: relative;
+  line-height: 22px;
   top: 9px;
 }
 
 .small-letters {
+  transition: font-size 0.4s, top 0.4s, color 0.4s;
+  margin: -11px 0px;
   color: #1A73E8;
-  position: relative;
-  bottom: 26px;
   font-size: 10px;
+  position: relative;
+  line-height: 22px;
+  top: -16px;
 }
 
 .login-links {
@@ -56,7 +60,7 @@
   width: 280px;
   position: fixed;
   justify-content: space-between;
-  bottom: 270px;
+  bottom: 300px;
 }
 
 .input-field {
