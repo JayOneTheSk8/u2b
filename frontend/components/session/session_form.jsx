@@ -88,7 +88,6 @@ class SessionForm extends React.Component {
   }
 
   shrinkLabel(e) {
-    debugger
     e.preventDefault();
     const labelTarget = e.target.previousSibling.htmlFor;
     this.setState( { [labelTarget + "Label"]: 'small-letters' } );
