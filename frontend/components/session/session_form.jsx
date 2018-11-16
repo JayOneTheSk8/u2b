@@ -5,12 +5,11 @@ import { merge } from 'lodash';
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.user;
-    this.localErrors = this.props.errors;
+    this.state = merge({}, this.props.user, { usernameLabel: 'login-input-label' }, { passwordLabel: 'login-input-label' }, { matchLabel: 'login-input-label' },);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.passwordVerifyField = this.passwordVerifyField.bind(this);
-    // this.focus = this.focus.bind(this);
-    // this.unFocus = this.unFocus.bind(this);
+    this.shrinkLabel = this.shrinkLabel.bind(this);
+    this.expandLabel = this.expandLabel.bind(this);
   }
 
   componentWillUnmount() {
@@ -45,8 +44,8 @@ class SessionForm extends React.Component {
     if (this.props.formType === "Sign Up") {
       return (
         <>
-          <label htmlFor='match' className="login-input-label"></label>
-          <input id="match" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} placeholder="Confirm Password" className={errorSet.classNames.match}/>
+          <label htmlFor='match' className={this.state.matchLabel}>Confirm Password</label>
+          <input onFocus={this.shrinkLabel} onBlur={this.expandLabel} id="match" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} className={errorSet.classNames.match}/>
           <ul className="clear-ul">{errorSet.match}</ul>
         </>
       );
@@ -89,8 +88,38 @@ class SessionForm extends React.Component {
     return errorCheck;
   }
 
+  shrinkLabel(e) {
+    debugger
+    e.preventDefault();
+    const labelTarget = e.target.previousSibling.htmlFor;
+    this.setState( { [labelTarget + "Label"]: 'small-letters' } );
+  }
+
+  expandLabel(e) {
+    if (e.target.value !== "") { return; }
+    const labelTarget = e.target.previousSibling.htmlFor;
+    this.setState( { [labelTarget + "Label"]: 'login-input-label' } );
+  }
+
+  // getOtherEls(labelTarget) {
+  //   if (labelTarget === 'username') {
+  //     return ['password', 'match'];
+  //   } else if (labelTarget === 'password') {
+  //     return ['username', 'match'];
+  //   } else if (labelTarget === 'match') {
+  //     return ['username', 'password'];
+  //   }
+  // }
+
   render(){
+    // use object to manually set class of labels to small-letters or login-input-label in these cases:
+    // when the input field is in focus
+    // when text is in the input field
+    // when you click anywhere else after having it on
+
+    // add onFocus and onBlur event handlers
     const errorSet = this.setErrors();
+
     if (this.props.loggedIn) {
       return (
         <Redirect to="/" />
@@ -103,12 +132,12 @@ class SessionForm extends React.Component {
           <form onSubmit={this.handleSubmit} className="user-form">
             <section className='user-info'>
 
-              <label htmlFor="username" className="login-input-label"></label>
-              <input id="username" type='text' onChange={this.update('username')} value={this.state.username} placeholder="Username" className={errorSet.classNames.username}/>
+              <label htmlFor="username" className={this.state.usernameLabel}>Username</label>
+              <input onFocus={this.shrinkLabel} onBlur={this.expandLabel} id="username" type='text' onChange={this.update('username')} value={this.state.username} className={errorSet.classNames.username}/>
               <ul className="clear-ul">{errorSet.username}</ul>
 
-              <label htmlFor='password' className="login-input-label"></label>
-              <input id="password" type='password' onChange={this.update('password')} value={this.state.password} placeholder="Password" className={errorSet.classNames.password}/>
+              <label htmlFor='password' className={this.state.passwordLabel}>Password</label>
+              <input onFocus={this.shrinkLabel} onBlur={this.expandLabel} id="password" type='password' onChange={this.update('password')} value={this.state.password} className={errorSet.classNames.password}/>
               <ul className="clear-ul">{errorSet.password}</ul>
 
               { this.passwordVerifyField(errorSet) }
