@@ -54,7 +54,6 @@ class SessionForm extends React.Component {
 
   setErrors() {
     const errors = this.renderErrors();
-    debugger
     let errorSet = { username: [], password: [], match: [], classNames: { username: 'input-field', password: 'input-field', match: 'input-field' } };
     if (errors === undefined) { return errorSet; }
     for (let i = 0; i < errors.length; i++) {
