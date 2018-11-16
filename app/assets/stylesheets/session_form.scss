@@ -54,13 +54,24 @@
   top: -16px;
 }
 
-.login-links {
+.login-bottom-buttons {
   display: flex;
   flex-direction: row;
   width: 280px;
-  position: fixed;
+  position: relative;
   justify-content: space-between;
-  bottom: 300px;
+  top: 134px;
+  margin: -56px 7px 0px;
+}
+
+.signup-bottom-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 280px;
+  position: relative;
+  justify-content: space-between;
+  top: 40px;
+  margin: -56px 7px 0px;
 }
 
 .input-field {
@@ -112,19 +123,15 @@
 }
 
 .demo-login {
-  background: none;
   background-color: #E6EFF9;
   padding: 7px;
-  text-decoration: none;
   color: #1A73E8;
   border: 1px solid white;
   width: 160px;
-  text-align: center;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
-  float: right;
-  position: fixed;
-  bottom: 150px;
+  position: absolute;
+  bottom: -85px;
   font-size: 17px;
 }
 

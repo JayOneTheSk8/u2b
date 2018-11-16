@@ -101,6 +101,7 @@ class SessionForm extends React.Component {
 
   render(){
     const errorSet = this.setErrors();
+    const buttonClass = (this.props.formType === "Sign Up" ? "signup-bottom-buttons" : "login-bottom-buttons")
 
     if (this.props.loggedIn) {
       return (
@@ -125,7 +126,7 @@ class SessionForm extends React.Component {
               { this.passwordVerifyField(errorSet) }
             </section>
 
-            <footer className="login-links">
+            <footer className={buttonClass}>
               <Link to={this.props.formType === 'Sign Up' ? '/login' : '/signup'} className="switch-register">
                 {this.props.formType === 'Sign Up' ? "Log In" : "Sign Up"}
               </Link>
