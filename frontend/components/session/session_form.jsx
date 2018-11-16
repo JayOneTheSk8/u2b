@@ -45,8 +45,8 @@ class SessionForm extends React.Component {
     if (this.props.formType === "Sign Up") {
       return (
         <>
-          <label htmlFor='match' className="login-input-label"></label>
-          <input id="match" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} placeholder="Confirm Password" className={errorSet.classNames.match}/>
+          <label htmlFor='match' className="login-input-label">Confirm Password</label>
+          <input id="match" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} className={errorSet.classNames.match}/>
           <ul className="clear-ul">{errorSet.match}</ul>
         </>
       );
@@ -58,14 +58,14 @@ class SessionForm extends React.Component {
     let errorSet = { username: [], password: [], match: [], classNames: { username: 'input-field', password: 'input-field', match: 'input-field' } };
     if (errors === undefined) { return errorSet; }
     for (let i = 0; i < errors.length; i++) {
-      const error = errors[i].props.children.toLowerCase()
-      if (error.includes('username')) {
+      const error = errors[i].props.children
+      if (error.toLowerCase().includes('username')) {
         errorSet.username.push(<li key={i} className="login-errors">{error}</li>);
         errorSet.classNames.username += ' make-red';
-      } else if (error.includes('password') && !error.includes('username') && !error.includes('match')) {
+      } else if (error.toLowerCase().includes('password') && !error.toLowerCase().includes('username') && !error.toLowerCase().includes('match')) {
         errorSet.password.push(<li key={i} className="login-errors">{error}</li>);
         errorSet.classNames.password += ' make-red';
-      } else if (error.includes('match')) {
+      } else if (error.toLowerCase().includes('match')) {
         errorSet.match.push(<li key={i} className="login-errors">{error}</li>);
         errorSet.classNames.match += ' make-red';
       }
@@ -102,12 +102,13 @@ class SessionForm extends React.Component {
           <form onSubmit={this.handleSubmit} className="user-form">
             <section className='user-info'>
 
-              <label htmlFor="username" className="login-input-label"></label>
-              <input id="username" type='text' onChange={this.update('username')} value={this.state.username} placeholder="Username" className={errorSet.classNames.username}/>
+              <p className="login-input-label">Username</p>
+              <label htmlFor="username" className="hidden-label"></label>
+              <input id="username" type='text' onChange={this.update('username')} value={this.state.username} className={errorSet.classNames.username}/>
               <ul className="clear-ul">{errorSet.username}</ul>
 
-              <label htmlFor='password' className="login-input-label"></label>
-              <input id="password" type='password' onChange={this.update('password')} value={this.state.password} placeholder="Password" className={errorSet.classNames.password}/>
+              <label htmlFor='password' className="login-input-label">Password</label>
+              <input id="password" type='password' onChange={this.update('password')} value={this.state.password} className={errorSet.classNames.password}/>
               <ul className="clear-ul">{errorSet.password}</ul>
 
               { this.passwordVerifyField(errorSet) }

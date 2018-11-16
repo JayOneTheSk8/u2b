@@ -395,12 +395,11 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "match",
           className: "login-input-label"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }, "Confirm Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "match",
           type: "password",
           onChange: this.update('passVerify'),
           value: this.state.passVerify,
-          placeholder: "Confirm Password",
           className: errorSet.classNames.match
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "clear-ul"
@@ -427,21 +426,21 @@ function (_React$Component) {
       }
 
       for (var i = 0; i < errors.length; i++) {
-        var error = errors[i].props.children.toLowerCase();
+        var error = errors[i].props.children;
 
-        if (error.includes('username')) {
+        if (error.toLowerCase().includes('username')) {
           errorSet.username.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "login-errors"
           }, error));
           errorSet.classNames.username += ' make-red';
-        } else if (error.includes('password') && !error.includes('username') && !error.includes('match')) {
+        } else if (error.toLowerCase().includes('password') && !error.toLowerCase().includes('username') && !error.toLowerCase().includes('match')) {
           errorSet.password.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "login-errors"
           }, error));
           errorSet.classNames.password += ' make-red';
-        } else if (error.includes('match')) {
+        } else if (error.toLowerCase().includes('match')) {
           errorSet.match.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "login-errors"
@@ -494,27 +493,27 @@ function (_React$Component) {
         className: "user-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "username",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "login-input-label"
+      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "username",
+        className: "hidden-label"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "username",
         type: "text",
         onChange: this.update('username'),
         value: this.state.username,
-        placeholder: "Username",
         className: errorSet.classNames.username
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "clear-ul"
       }, errorSet.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password",
         className: "login-input-label"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "password",
         type: "password",
         onChange: this.update('password'),
         value: this.state.password,
-        placeholder: "Password",
         className: errorSet.classNames.password
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "clear-ul"
