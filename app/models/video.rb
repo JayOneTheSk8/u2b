@@ -14,6 +14,8 @@ class Video < ApplicationRecord
   validates :title, :description, :uploader_id, presence: true
   include ActionView::Helpers::DateHelper
 
+  has_one_attached :video
+
   belongs_to :uploader,
     primary_key: :id,
     foreign_key: :uploader_id,
