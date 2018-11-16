@@ -54,7 +54,6 @@ class SessionForm extends React.Component {
 
   setErrors() {
     const errors = this.renderErrors();
-    debugger
     let errorSet = { username: [], password: [], match: [], classNames: { username: 'input-field', password: 'input-field', match: 'input-field' } };
     if (errors === undefined) { return errorSet; }
     for (let i = 0; i < errors.length; i++) {
@@ -89,7 +88,6 @@ class SessionForm extends React.Component {
   }
 
   shrinkLabel(e) {
-    debugger
     e.preventDefault();
     const labelTarget = e.target.previousSibling.htmlFor;
     this.setState( { [labelTarget + "Label"]: 'small-letters' } );
@@ -101,23 +99,7 @@ class SessionForm extends React.Component {
     this.setState( { [labelTarget + "Label"]: 'login-input-label' } );
   }
 
-  // getOtherEls(labelTarget) {
-  //   if (labelTarget === 'username') {
-  //     return ['password', 'match'];
-  //   } else if (labelTarget === 'password') {
-  //     return ['username', 'match'];
-  //   } else if (labelTarget === 'match') {
-  //     return ['username', 'password'];
-  //   }
-  // }
-
   render(){
-    // use object to manually set class of labels to small-letters or login-input-label in these cases:
-    // when the input field is in focus
-    // when text is in the input field
-    // when you click anywhere else after having it on
-
-    // add onFocus and onBlur event handlers
     const errorSet = this.setErrors();
 
     if (this.props.loggedIn) {
@@ -159,20 +141,3 @@ class SessionForm extends React.Component {
 }
 
 export default SessionForm;
-
-// focus(e) {
-//   this.unFocus(e);
-//   // if (e.currentTarget.value !== "") { return; }
-//   e.currentTarget.previousSibling.className += " small-letters"
-// }
-//
-// unFocus(e) {
-  //   // debugger
-  //   if (e.currentTarget.value !== "") { return; }
-  //   const allSiblings = e.currentTarget.parentElement.children;
-  //   for (let i = 0; i < allSiblings.length; i += 2) {
-    //     if (allSiblings[i].className === "login-input-label small-letters") {
-      //       allSiblings[i].className = "login-input-label"
-      //     }
-      //   }
-      // }
