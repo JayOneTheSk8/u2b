@@ -4,12 +4,18 @@
   position: fixed;
   top: 0px;
   width: 100%;
-  right: 0px;
   box-shadow: 0px 2px 3px #efefef;
   background-color: white;
-  padding: 0 16px;
+  justify-content: space-between;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 0px 16px;
 }
 
 #content {
   margin-top: 75px;
+}
+
+.user-menu {
+  color: gray;
 }

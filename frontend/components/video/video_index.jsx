@@ -6,11 +6,11 @@ class VideoIndex extends React.Component {
   sessionButton(){
     if (this.props.loggedIn) {
       return(
-        <button onClick={this.props.logout}>Logout</button>
+        <button className="session-change" onClick={this.props.logout}>Logout</button>
       );
     } else {
       return(
-        <Link to='/signup'>Sign Up</Link>
+        <Link className="session-change" to='/signup'>Sign Up</Link>
       );
     }
   }
@@ -18,7 +18,7 @@ class VideoIndex extends React.Component {
   render() {
     return (
       <>
-        <h1>Welcome to U2B! {this.props.currentUser.username}</h1>
+        <h1 className="greeting">Welcome to U2B! {this.props.currentUser.username}</h1>
         { this.sessionButton() }
       </>
     );

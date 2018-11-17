@@ -46,7 +46,7 @@ class SessionForm extends React.Component {
         <>
           <label htmlFor='match' className={this.state.matchLabel}>Confirm Password</label>
           <input onFocus={this.shrinkLabel} onBlur={this.expandLabel} id="match" type='password' onChange={this.update('passVerify')} value={this.state.passVerify} className={errorSet.classNames.match}/>
-          <ul className="clear-ul">{errorSet.match}</ul>
+          <ul>{errorSet.match}</ul>
         </>
       );
     }
@@ -117,11 +117,11 @@ class SessionForm extends React.Component {
 
               <label htmlFor="username" className={this.state.usernameLabel}>Username</label>
               <input onFocus={this.shrinkLabel} onBlur={this.expandLabel} id="username" type='text' onChange={this.update('username')} value={this.state.username} className={errorSet.classNames.username}/>
-              <ul className="clear-ul">{errorSet.username}</ul>
+              <ul>{errorSet.username}</ul>
 
               <label htmlFor='password' className={this.state.passwordLabel}>Password</label>
               <input onFocus={this.shrinkLabel} onBlur={this.expandLabel} id="password" type='password' onChange={this.update('password')} value={this.state.password} className={errorSet.classNames.password}/>
-              <ul className="clear-ul">{errorSet.password}</ul>
+              <ul>{errorSet.password}</ul>
 
               { this.passwordVerifyField(errorSet) }
             </section>

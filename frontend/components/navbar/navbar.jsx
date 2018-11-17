@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SearchBarContainer from './search/search_bar_container';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -7,11 +8,12 @@ class NavBar extends React.Component {
   }
 
   render() {
+    if (this.props.location.pathname === "/signup" || this.props.location.pathname === "/login") { return null; }
     return (
       <nav id='navbar'>
-        <button>
-
-        </button>
+        <DropdownMenuContainer />
+        <SearchBarContainer />
+        <button className="user-menu">{this.props.currentUser.username}</button>
       </nav>
     );
   }
