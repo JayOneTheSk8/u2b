@@ -4,9 +4,9 @@ import * as SessionActions from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
-  const currentUserId = state.session.currentUserId
+  const currentUser = state.entities.users[state.session.currentUserId];
   return {
-    currentUser: state.entities.users[currentUserId] || {}
+    currentUser: currentUser || {}
   };
 };
 

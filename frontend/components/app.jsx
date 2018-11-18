@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <NavBar />
-      <div id="content">
+      <div id="main-content">
         <Route exact path="/" component={VideoIndexContainer} />
         <AuthRoute path="/signup" component={SigninFormContainer}/>
         <AuthRoute path="/login" component={LoginFormContainer}/>

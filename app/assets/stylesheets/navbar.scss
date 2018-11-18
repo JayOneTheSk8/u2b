@@ -9,13 +9,15 @@
   justify-content: space-between;
   margin: auto;
   box-sizing: border-box;
-  padding: 0px 16px;
+  padding: 0px 25px;
 }
 
-#content {
-  margin-top: 75px;
+.main-hambuger-logo {
+  display: flex;
+  align-items: center;
+  margin: initial;
 }
 
-.user-menu {
-  color: gray;
+.menu-switch {
+    display: flex;
 }
