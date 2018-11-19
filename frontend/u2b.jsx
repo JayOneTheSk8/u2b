@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
-  window.fetchVideo = VideoActions.fetchVideo
+  window.fetchVideos = VideoActions.fetchVideos
   window.logout = SessionActions.logout; //TEST
   window.getState = store.getState; //TEST
   window.dispatch = store.dispatch; //TEST
