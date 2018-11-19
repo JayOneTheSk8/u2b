@@ -1,5 +1,5 @@
 json.video do
-  json.extract! @video, :id, :title, :description, :uploader_id, :age
+  json.extract! @video, :id, :title, :description, :uploader_id, :age, :created_at, :upload_date
   json.videoUrl url_for(@video.video)
 end
 

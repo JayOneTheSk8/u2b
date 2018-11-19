@@ -31,4 +31,8 @@ class Video < ApplicationRecord
     format_upload_time = Time.new(*upload_time.to_a[0..5].reverse)
     time_ago_in_words(format_upload_time) + " ago"
   end
+
+  def upload_date
+    self.created_at.to_date.strftime('%b %d %Y')
+  end
 end

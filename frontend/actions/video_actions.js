@@ -13,3 +13,7 @@ const receiveVideo = ({video, uploader}) => {
 export const fetchVideo = (id) => dispatch => {
   return VideoApiUtil.fetchVideo(id).then(payload => dispatch(receiveVideo(payload)));
 };
+
+export const postVideo = (video) => dispatch => {
+  return VideoApiUtil.postVideo(video).then(payload => dispatch(receiveVideo(payload)))
+};
