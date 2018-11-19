@@ -1,15 +1,37 @@
 .search-bar {
   width: 400px;
+  display: flex;
+  height: 28px;
+  align-self: center;
 }
 
 .search-input {
   border: 2px solid grey;
-  position: relative;
-  top: 14px;
-  width: 95%;
+  width: 93%;
 }
 
 .search-submit {
+  border: 2px solid #7f7f7f;
+  height: 28px;
+  width: 25px;
+  background-color: lightgray;
+}
+
+.glass {
+  border: 2px solid #7F7F7F;
+  border-radius: 8px;
+  height: 14px;
+  width: 14px;
   position: relative;
-  top: 13px;
+  top: -2px;
+  left: 2px;
+}
+
+.handle {
+  border: 1px solid #7F7F7F;
+  width: 7px;
+  transform: rotate(45deg);
+  position: relative;
+  left: 12px;
+  top: -2px;
 }
