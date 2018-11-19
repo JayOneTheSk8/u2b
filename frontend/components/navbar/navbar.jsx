@@ -3,35 +3,93 @@ import { Link } from 'react-router-dom';
 import DropdownMenuContainer from './dropdown_menu/dropdown_menu_container';
 import SearchBarContainer from './search/search_bar_container';
 import HamburgerIcon from './hamburger_icon';
+import UserDropdown from './user_dropdown';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      onStatus: "closed"
+      onStatus: "closed",
+      burgerColor: "original",
+      drawer: "closed"
     }
     this.changeStatus = this.changeStatus.bind(this);
+    this.darkenColor = this.darkenColor.bind(this);
+    this.lightenColor = this.lightenColor.bind(this);
+    this.toggleUserDrawer = this.toggleUserDrawer.bind(this);
+    this.userDropdown = this.userDropdown.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
   changeStatus(e) {
-    const result = this.state.onStatus == "closed" ? "open" : "closed";
-    this.setState({ onStatus: result });
+    e.preventDefault();
+    const newStatus = this.state.onStatus === "closed" ? "open" : "closed";
+    this.setState({ onStatus: newStatus });
   }
 
+  darkenColor(e) {
+    this.setState({ burgerColor: "darkened" });
+  }
+
+  lightenColor(e) {
+    this.setState({ burgerColor: "original" });
+  }
+
+  toggleUserDrawer(e) {
+    const newState = this.state.drawer === "closed" ? "opened" : "closed";
+    this.setState({ drawer: newState });
+  }
+
+  userDropdown() {
+    if (this.state.drawer === "opened") {
+      return (
+        <div className="user-menu">
+          <figure onClick={this.toggleUserDrawer} className="user-button">
+            {this.props.currentUser.username}
+          </figure>
+          <UserDropdown logout={this.props.logout}/>
+        </div>
+      );
+    } else {
+      return (
+        <div className="user-menu">
+          <figure onClick={this.toggleUserDrawer} className="user-button">
+            {this.props.currentUser.username}
+          </figure>
+        </div>
+      );
+    }
+  }
+
+  signIn() {
+    return (
+      <div className="register">
+        <Link to="/signup">SIGN IN</Link>
+      </div>
+    );
+  }
+
+  userButton() {
+    if (this.props.currentUser.id) {
+      return this.userDropdown();
+    } else {
+      return this.signIn();
+    }
+  }
 
   render() {
     if (this.props.location.pathname === "/signup" || this.props.location.pathname === "/login") { return null; }
     return (
       <nav id='navbar'>
-        <figure className="main-hambuger-logo">
-            <button onClick={this.changeStatus}>
-              <HamburgerIcon />
-            </button>
+        <div className="main-hambuger-logo">
+            <figure onMouseEnter={this.darkenColor} onMouseLeave={this.lightenColor} className="clickable-area" onClick={this.changeStatus}>
+              <HamburgerIcon color={this.state.burgerColor} />
+            </figure>
             <DropdownMenuContainer onStatus={this.state.onStatus}/>
           <p>LOGO HERE</p>
-        </figure>
+        </div>
         <SearchBarContainer />
-        <button className="user-menu">{this.props.currentUser.username}</button>
+        { this.userButton() }
       </nav>
     );
   }

@@ -10,4 +10,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(NavBar));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: (e) => dispatch(SessionActions.logout())
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));
