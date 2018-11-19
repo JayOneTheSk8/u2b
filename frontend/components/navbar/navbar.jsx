@@ -92,7 +92,7 @@ class NavBar extends React.Component {
               <HamburgerIcon color={this.state.burgerColor} />
             </figure>
             <DropdownMenuContainer sideDrawer={this.state.sideDrawerStatus}/>
-          <p>LOGO HERE</p>
+          <Link to="/">LOGO HERE</Link>
         </div>
         <SearchBarContainer />
         { this.userButton() }

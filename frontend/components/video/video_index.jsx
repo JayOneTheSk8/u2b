@@ -9,7 +9,6 @@ class VideoIndex extends React.Component {
 
   render() {
     const videos = this.props.videos.map((video) => {
-      // debugger
       return (
         <li key={video.id}>{JSON.stringify(video)}</li>
       );
