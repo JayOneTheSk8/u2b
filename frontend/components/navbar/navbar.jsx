@@ -45,6 +45,7 @@ class NavBar extends React.Component {
     if (this.state.drawer === "opened") {
       return (
         <div className="user-menu">
+          {/* create an optional video icon that is disabled */}
           <VideoUploadIcon />
           <figure onClick={this.toggleUserDrawer} className="user-button">
             {this.props.currentUser.username}
