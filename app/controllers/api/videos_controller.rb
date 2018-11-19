@@ -13,7 +13,7 @@ class Api::VideosController < ApplicationController
   end
 
   def show
-    @video = Video.find(params[:id])
+    @video = Video.includes(:uploader).find(params[:id])
     render :show
   end
 

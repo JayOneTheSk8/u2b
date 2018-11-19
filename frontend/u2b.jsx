@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import RootReducer from './reducers/root_reducer';
 import configureStore from './store/store';
 import Root from './components/root';
-import * as SessionActions from './actions/session_actions';
+import * as SessionActions from './actions/session_actions'; //TEST
+import * as VideoActions from './actions/video_actions'; //TEST
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
@@ -20,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
-  window.logout = SessionActions.logout;
+  window.fetchVideo = VideoActions.fetchVideo
+  window.logout = SessionActions.logout; //TEST
   window.getState = store.getState; //TEST
   window.dispatch = store.dispatch; //TEST
   ReactDOM.render(<Root store={store}/>, root);

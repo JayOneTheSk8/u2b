@@ -3,7 +3,7 @@ import HamburgerIcon from '../hamburger_icon';
 
 const DropdownMenu = (props) => {
   return (
-    <aside className={("dropdown-menu-" + props.onStatus)}>
+    <aside className={("dropdown-menu-" + props.sideDrawer)}>
       <ul>
         <li>Trending</li>
         <li>Subscriptions</li>

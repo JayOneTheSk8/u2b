@@ -10,9 +10,9 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      onStatus: "closed",
+      sideDrawerStatus: "closed",
       burgerColor: "original",
-      drawer: "closed"
+      userDrawerStatus: "closed"
     }
     this.changeStatus = this.changeStatus.bind(this);
     this.darkenColor = this.darkenColor.bind(this);
@@ -22,10 +22,12 @@ class NavBar extends React.Component {
     this.signIn = this.signIn.bind(this);
   }
 
+  // make a function that closes drawer after page changes
+
   changeStatus(e) {
     e.preventDefault();
-    const newStatus = this.state.onStatus === "closed" ? "open" : "closed";
-    this.setState({ onStatus: newStatus });
+    const newStatus = this.state.sideDrawerStatus === "closed" ? "open" : "closed";
+    this.setState({ sideDrawerStatus: newStatus });
   }
 
   darkenColor(e) {
@@ -37,12 +39,12 @@ class NavBar extends React.Component {
   }
 
   toggleUserDrawer(e) {
-    const newState = this.state.drawer === "closed" ? "opened" : "closed";
-    this.setState({ drawer: newState });
+    const newState = this.state.userDrawerStatus === "closed" ? "opened" : "closed";
+    this.setState({ userDrawerStatus: newState });
   }
 
   userDropdown() {
-    if (this.state.drawer === "opened") {
+    if (this.state.userDrawerStatus === "opened") {
       return (
         <div className="user-menu">
           {/* create an optional video icon that is disabled */}
@@ -89,7 +91,7 @@ class NavBar extends React.Component {
             <figure onMouseEnter={this.darkenColor} onMouseLeave={this.lightenColor} className="clickable-area" onClick={this.changeStatus}>
               <HamburgerIcon color={this.state.burgerColor} />
             </figure>
-            <DropdownMenuContainer onStatus={this.state.onStatus}/>
+            <DropdownMenuContainer sideDrawer={this.state.sideDrawerStatus}/>
           <p>LOGO HERE</p>
         </div>
         <SearchBarContainer />
