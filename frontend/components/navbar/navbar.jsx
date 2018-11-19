@@ -4,6 +4,7 @@ import DropdownMenuContainer from './dropdown_menu/dropdown_menu_container';
 import SearchBarContainer from './search/search_bar_container';
 import HamburgerIcon from './hamburger_icon';
 import UserDropdown from './user_dropdown';
+import VideoUploadIcon from './video_upload_icon';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class NavBar extends React.Component {
     if (this.state.drawer === "opened") {
       return (
         <div className="user-menu">
+          <VideoUploadIcon />
           <figure onClick={this.toggleUserDrawer} className="user-button">
             {this.props.currentUser.username}
           </figure>
@@ -53,6 +55,7 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="user-menu">
+          <VideoUploadIcon />
           <figure onClick={this.toggleUserDrawer} className="user-button">
             {this.props.currentUser.username}
           </figure>

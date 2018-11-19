@@ -1,0 +1,30 @@
+.camera-body {
+  border: 1px solid #7F7F7F;
+  font-weight: 900;
+  background: #7f7f7f;
+  color: white;
+  height: 13px;
+  width: 16px;
+}
+
+.whole-camera {
+  display: flex;
+  align-items: center;
+}
+
+.lens {
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 10px solid #7F7F7F;
+  position: relative;
+  left: -3px;
+}
+
+.plus {
+  position: relative;
+  left: -22px;
+  color: white;
+  font-weight: 700;
+}
