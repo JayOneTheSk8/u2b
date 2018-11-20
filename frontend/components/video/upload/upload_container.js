@@ -1,16 +1,18 @@
 import { connect } from 'react-redux';
 import Upload from './upload';
-import { postVideo } from '../../../actions/video_actions';
+import { postVideo, removeVideoErrors } from '../../../actions/video_actions';
 
 const mapStateToProps = state => {
   return {
-    video: { title: '', description: '', videoFile: null }
+    video: { title: '', description: '', videoFile: null },
+    errors: state.errors.videos
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    postVideo: (video) => dispatch(postVideo(video))
+    postVideo: (video) => dispatch(postVideo(video)),
+    removeVideoErrors: () => dispatch(removeVideoErrors())
   };
 };
 

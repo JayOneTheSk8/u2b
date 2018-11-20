@@ -88,10 +88,10 @@ class NavBar extends React.Component {
     return (
       <nav id='navbar'>
         <div className="main-hambuger-logo">
-            <figure onMouseEnter={this.darkenColor} onMouseLeave={this.lightenColor} className="clickable-area" onClick={this.changeStatus}>
-              <HamburgerIcon color={this.state.burgerColor} />
-            </figure>
-            <DropdownMenuContainer sideDrawer={this.state.sideDrawerStatus}/>
+          <figure onMouseEnter={this.darkenColor} onMouseLeave={this.lightenColor} className="clickable-area" onClick={this.changeStatus}>
+            <HamburgerIcon color={this.state.burgerColor} />
+          </figure>
+          <DropdownMenuContainer sideDrawer={this.state.sideDrawerStatus}/>
           <Link to="/">LOGO HERE</Link>
         </div>
         <SearchBarContainer />

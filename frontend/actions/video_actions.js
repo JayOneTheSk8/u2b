@@ -2,6 +2,8 @@ import * as VideoApiUtil from '../util/video_api_util';
 
 export const RECEIVE_VIDEO = "RECEIVE_VIDEO";
 export const RECEIVE_VIDEOS = "RECEIVE_VIDEOS";
+export const RECEIVE_VIDEO_ERRORS = "RECEIVE_VIDEO_ERRORS";
+export const REMOVE_VIDEO_ERRORS = "REMOVE_VIDEO_ERRORS";
 
 const receiveVideo = ({video, uploader}) => {
   return {
@@ -17,7 +19,21 @@ const receiveVideos = ({videos, uploaders}) => {
     videos,
     uploaders
   };
-}
+};
+
+export const receiveVideoErrors = (errors) => {
+  return {
+    type: RECEIVE_VIDEO_ERRORS,
+    errors
+  };
+};
+
+export const removeVideoErrors = () => {
+  return {
+    type: REMOVE_VIDEO_ERRORS
+  };
+};
+
 
 export const fetchVideos = () => dispatch => {
   return VideoApiUtil.fetchVideos().then(payload => dispatch(receiveVideos(payload)));
@@ -28,5 +44,8 @@ export const fetchVideo = (id) => dispatch => {
 };
 
 export const postVideo = (video) => dispatch => {
-  return VideoApiUtil.postVideo(video).then(payload => dispatch(receiveVideo(payload)))
+  return VideoApiUtil.postVideo(video).then(
+    payload => dispatch(receiveVideo(payload)),
+    errors => dispatch(receiveVideoErrors(errors.responseJSON))
+  );
 };

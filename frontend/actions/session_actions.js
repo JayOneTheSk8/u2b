@@ -28,7 +28,7 @@ export const receiveErrors = (errors) => {
 export const removeErrors = () => {
   return {
     type: REMOVE_ERRORS
-  }
+  };
 };
 
 export const signup = (user) => dispatch => {

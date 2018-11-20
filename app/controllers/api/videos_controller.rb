@@ -4,6 +4,9 @@ class Api::VideosController < ApplicationController
   end
 
   def create
+    if video_params['video'] == 'null'
+      render json: ['You must upload something...'], status: 422
+    end
     @video = Video.new(video_params)
     @video.uploader_id = current_user.id
     if @video.save
