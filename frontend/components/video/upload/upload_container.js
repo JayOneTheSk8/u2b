@@ -4,7 +4,7 @@ import { postVideo, removeVideoErrors } from '../../../actions/video_actions';
 
 const mapStateToProps = state => {
   return {
-    video: { title: '', description: '', videoFile: null },
+    video: { title: '', description: '', videoFile: null, videoUrl: null },
     errors: state.errors.videos
   };
 };

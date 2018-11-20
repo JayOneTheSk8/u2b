@@ -22,6 +22,9 @@ class UploadArea extends React.Component {
         <div className="pointer"></div>
         <div className="arrow-body"></div>
         <div className={"border-"+ this.state.status}></div>
+        <div className="upload-message">
+          <p>Click to Upload Videos</p>
+        </div>
       </label>
     );
   }

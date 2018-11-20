@@ -8,9 +8,16 @@ class VideoIndex extends React.Component {
   }
 
   render() {
+
     const videos = this.props.videos.map((video) => {
       return (
-        <li key={video.id}>{JSON.stringify(video)}</li>
+        <li key={video.id}>
+          <Link to={`/videos/${video.id}`}>
+            <video width='100'>
+              <source src={video.videoUrl}/>
+            </video>
+          </Link>
+        </li>
       );
     });
     return (

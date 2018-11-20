@@ -1,12 +1,14 @@
 .upload-area {
   cursor: pointer;
-  border: 1px solid lightgray;
+  box-shadow: 0px 0px 16px 2px lightgrey;
   padding: 13% 22%;
-  position: absolute;
-  top: 15%;
-  left: 25%;
+  position: relative;
   display: flex;
   flex-direction: column;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+  background-color: white;
 }
 
 .hidden-upload {
@@ -19,12 +21,11 @@
 }
 
 .pointer {
-  border-bottom: 58px solid white;
-  border-left: 45px solid transparent;
-  border-right: 45px solid transparent;
-  position: relative;
-  margin-left: 41px;
-  margin-right: 41px;
+  border-bottom: 59px solid white;
+  border-left: 55px solid transparent;
+  border-right: 55px solid transparent;
+  align-self: center;
+  z-index: 2;
 }
 
 .arrow-body {
@@ -34,6 +35,8 @@
   width: 40px;
   align-self: center;
   background: white;
+  top: -5px;
+  z-index: 2;
 }
 
 .border-unhovered {
@@ -44,7 +47,6 @@
   align-self: center;
   bottom: 140px;
   border-radius: 47px;
-  z-index: -1;
 }
 
 .border-hovered {
@@ -55,5 +57,46 @@
   align-self: center;
   bottom: 140px;
   border-radius: 47px;
-  z-index: -1;
+}
+
+.upload-message {
+  width: 300%;
+  text-align: center;
+  align-self: center;
+  font-size: 24px;
+  line-height: 1px;
+}
+
+.full-video-form {
+  box-shadow: 0px 0px 16px 2px lightgrey;
+  display: flex;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+  background-color: white;
+  height: 700px;
+}
+
+.video-and-form {
+  width: 100%;
+  display: flex;
+}
+
+.video-form {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+
+.video-image {
+  margin-top: 4%;
+}
+
+.title-input {
+  border: 1px solid #7F7F7F;
+}
+
+.description-input {
+  border: 1px solid #7F7F7F;
 }
