@@ -1,13 +1,16 @@
 import React from 'react';
 import HamburgerIcon from '../hamburger_icon';
+import { Link } from 'react-router-dom';
 
 const DropdownMenu = (props) => {
   return (
     <aside className={("dropdown-menu-" + props.sideDrawer)}>
       <ul>
-        <li>Trending</li>
-        <li>Subscriptions</li>
-        <li>{"Watch History"}</li>
+        <li className="dropdown-li">
+          <Link to="/upload">
+            Upload
+          </Link>
+        </li>
       </ul>
     </aside>
   );

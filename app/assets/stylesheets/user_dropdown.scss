@@ -24,13 +24,13 @@
 .logout-text {
   font-weight: 600;
   display: flex;
+  width: 100%;
 }
 
-.logout-li-hovered {
+.logout-li:hover {
   background: lightgrey;
-  padding: 5px;
 }
 
-.logout-li-unhovered {
+.logout-li {
   padding: 5px;
 }

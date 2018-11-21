@@ -28,10 +28,8 @@ class UserDropdown extends React.Component {
   render() {
     return (
       <ul className="user-dropdown">
-        <li>Account Details</li>
-        <li>Manage Subscriptions</li>
-        <li className={`logout-li-${this.state.status}`}>
-          <button onMouseEnter={this.hover} onMouseLeave={this.unhover} className={`logout-text`} onClick={this.props.logout}>
+        <li className={`logout-li`}>
+          <button className={`logout-text`} onClick={this.props.logout}>
             <SignoutIcon />
             Log Out
           </button>
@@ -40,6 +38,6 @@ class UserDropdown extends React.Component {
     );
   }
 }
-
+{/* onMouseEnter={this.hover} onMouseLeave={this.unhover}*/}
 
 export default connect(null, mapDispatchToProps)(UserDropdown);
