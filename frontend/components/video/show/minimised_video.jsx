@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const MinimisedVideo = (props) => {
   const video = props.video
-  // debugger
   return (
     <li className="minimised-video">
       <Link to={`/videos/${video.id}`}>
