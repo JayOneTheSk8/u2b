@@ -75,7 +75,7 @@
   margin-top: 5%;
   background-color: white;
   height: 215px;
-  min-width: 800px;
+  width: 960px;
 }
 
 .video-and-form {
@@ -97,7 +97,7 @@
 .title-input {
   border: 1px solid #7F7F7F;
   width: 450px;
-  margin-bottom: 16px;
+  margin-bottom: 21px;
 }
 
 .description-input {
@@ -122,6 +122,26 @@
   text-align: center;
   font-weight: 600;
   margin-right: 30px;
+}
+
+.submit-video:disabled {
+  background-color: grey;
+}
+
+.title-error {
+  position: relative;
+  font-size: 13px;
+  line-height: 0;
+  bottom: 10px;
+  color: #ac0f0f;
+}
+
+.description-error {
+  position: relative;
+  font-size: 13px;
+  line-height: 0;
+  bottom: 10px;
+  color: #ac0f0f;
 }
 
 // .submit-video:hover {

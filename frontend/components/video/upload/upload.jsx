@@ -33,7 +33,7 @@ class Upload extends React.Component {
     const video = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({videoFile: video, videoUrl: fileReader.result, disabled: false});
+      this.setState({videoFile: video, videoUrl: fileReader.result, title: video.name, disabled: false});
     };
     if (video) {
       fileReader.readAsDataURL(video);
@@ -50,13 +50,8 @@ class Upload extends React.Component {
     this.props.postVideo(formData);
   }
 
-  errors() {
-    const errors = this.props.errors.map((error, idx) => {
-      return (
-        <li key={idx}>{error}</li>
-      );
-    });
-    return errors;
+  inputError(field) {
+    return this.props.errors.filter(error => error.toLowerCase().includes(field))
   }
 
   disableButton(e) {
@@ -75,7 +70,6 @@ class Upload extends React.Component {
         </>
       );
     }
-    // Also if offline, how to load the google font or make deterministic CSS for when offline
     return (
       <div className="full-video-form">
         <figure className="video-image">
@@ -85,14 +79,17 @@ class Upload extends React.Component {
         </figure>
         <form className="video-form" onSubmit={this.handleSubmit}>
           <div className="input-fields">
-            <input className='title-input' type="text" onChange={this.update('title')} value={this.state.title}/>
+            <ul className='title-error'>{this.inputError('title')}</ul>
+            <label htmlFor="title"></label>
+            <input id="title" className='title-input' type="text" onChange={this.update('title')} value={this.state.title}/>
+
+            <ul className='description-error'>{this.inputError('description')}</ul>
+            <label htmlFor="description"></label>
             <textarea className='description-input' onChange={this.update('description')} value={this.state.description}/>
           </div>
+            {/*need to disable on click without disrupting original action*/}
             <input disabled={this.state.disabled} className='submit-video' type="submit" value="Post Video"/>
         </form>
-        <ul className="upload-errors">
-          {this.errors()}
-        </ul>
       </div>
     );
   }
