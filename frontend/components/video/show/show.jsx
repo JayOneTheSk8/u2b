@@ -14,8 +14,11 @@ class Show extends React.Component {
         </video>
         <div className="video-info">
           <p className="title">{this.props.video.title}</p>
-          <p className="uploader">{this.props.uploader.username}</p>
-          <p className="description">{this.props.video.description}</p>
+          <div className="divider">
+            <p className="uploader">{this.props.uploader.username}</p>
+            <p className="date">Published on: {this.props.video.upload_date}</p>
+            <p className="description">{this.props.video.description}</p>
+          </div>
         </div>
       </div>
     );
