@@ -28,6 +28,11 @@ class NavBar extends React.Component {
     e.preventDefault();
     const newStatus = this.state.sideDrawerStatus === "closed" ? "open" : "closed";
     this.setState({ sideDrawerStatus: newStatus });
+    if (this.props.modalStatus === "hide" ) {
+      this.props.openModalDropdownMenu();
+    } else {
+      this.props.clearScreen();
+    }
   }
 
   darkenColor(e) {

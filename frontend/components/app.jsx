@@ -6,6 +6,7 @@ import VideoIndexContainer from './video/video_index_container';
 import VideoUploadContainer from './video/upload/upload_container';
 import VideoShowContainer from './video/show/show_container';
 import NavBar from './navbar/navbar_container';
+import Modal from './modal/modal_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
     <>
       <NavBar />
       <div id="main-content">
+        <Modal />
         <Route exact path="/" component={VideoIndexContainer} />
         <Route path='/videos/:videoId' component={VideoShowContainer}/>
         <ProtectedRoute path="/upload" component={VideoUploadContainer} />
@@ -23,4 +25,5 @@ const App = () => {
   );
 };
 
+// make modal a component here either it has a non display or it has a block display. COnditional logic
 export default App;

@@ -1,12 +1,21 @@
-export const OPEN_DROPDOWN_MENU = 'OPEN_DRAWER';
+export const DROPDOWN_WITH_MODAL = 'DROPDOWN_WITH_MODAL';
+export const DROPDOWN_WITHOUT_MODAL = 'DROPDOWN_WITHOUT_MODAL';
 export const OPEN_USER_DRAWER = 'OPEN_USER_DRAWER';
+export const CLEAR_SCREEN = 'CLEAR_SCREEN';
 
-const openDropdownMenu = () => {
-  return {
-    type: OPEN_DROPDOWN_MENU
-  };
+
+export const openModalDropdownMenu = () => dispatch => {
+  return dispatch({ type: DROPDOWN_WITH_MODAL });
 };
 
-export const openDropdownMenu = () => dispatch => {
-  return dispatch({ type:  });
+export const openOnlyDropdownMenu = () => dispatch => {
+  return dispatch({ type: DROPDOWN_WITHOUT_MODAL });
+};
+
+export const openUserDrawer = () => dispatch => {
+  return dispatch({ type: OPEN_USER_DRAWER });
+};
+
+export const clearScreen = () => dispatch => {
+  return dispatch({ type: CLEAR_SCREEN });
 };
