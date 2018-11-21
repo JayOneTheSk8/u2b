@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import MinimisedVideo from './show/minimised_video';
 
 class VideoIndex extends React.Component {
 
@@ -11,19 +11,13 @@ class VideoIndex extends React.Component {
 
     const videos = this.props.videos.map((video) => {
       return (
-        <li key={video.id}>
-          <Link to={`/videos/${video.id}`}>
-            <video width='100'>
-              <source src={video.videoUrl}/>
-            </video>
-          </Link>
-        </li>
+        <MinimisedVideo key={video.id} video={video}/>
       );
     });
     return (
       <>
         <h1 className="greeting">Welcome to U2B! {this.props.currentUser.username}</h1>
-        <ul>
+        <ul className="video-list">
           {videos}
         </ul>
       </>

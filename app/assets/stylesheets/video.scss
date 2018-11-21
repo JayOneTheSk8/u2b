@@ -1,10 +1,36 @@
-.session-change {
-  padding: 6px 10px;
-  border: 2px solid black;
-  background-color: lightgray;
-}
-
 .greeting {
   font-weight: 600;
   font-size: 60px;
+}
+
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mini-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 150px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.minimised-video {
+  margin: 0px 18px;
+}
+
+.mini-uploader {
+  font-size: 14px;
+  color: #757575;
+}
+
+.mini-uploader:hover {
+  color: #545454;
+}
+
+.mini-age {
+  font-size: 14px;
+  color: #757575;
 }

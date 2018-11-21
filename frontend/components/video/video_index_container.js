@@ -5,9 +5,13 @@ import { fetchVideos } from '../../actions/video_actions';
 
 const mapStateToProps = state => {
   const currentUser = state.entities.users[state.session.currentUserId] || { username: "" };
+  const videos = Object.keys(state.entities.videos).map((id) => state.entities.videos[id]);
+  for (let i = 0; i < videos.length; i++) {
+    videos[i].uploader_name = state.entities.users[videos[i].uploader_id].username;
+  }
   return {
     currentUser,
-    videos: Object.keys(state.entities.videos).map((id) => state.entities.videos[id]),
+    videos,
     loggedIn: Boolean(state.session.currentUserId)
   };
 };

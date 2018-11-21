@@ -3,6 +3,7 @@
   width: 20px;
   height: 20px;
   margin-right: 11px;
+  border-radius: 3px;
 }
 
 .arrow-left {
@@ -28,4 +29,22 @@
   top: 7px;
   left: 6px;
   transform: rotate(-45deg);
+}
+
+.top-whiteout {
+  border: 1px solid white;
+  position: relative;
+  width: 2px;
+  left: -2px;
+  top: -1px;
+}
+
+
+
+.bottom-whiteout {
+  border: 1px solid white;
+  position: relative;
+  width: 2px;
+  left: -2px;
+  top: 1px;
 }
