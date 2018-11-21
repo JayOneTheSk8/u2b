@@ -1,0 +1,31 @@
+.outer-box {
+  border: 2px solid gray;
+  width: 20px;
+  height: 20px;
+  margin-right: 11px;
+}
+
+.arrow-left {
+  border: 1px solid grey;
+  width: 7px;
+  position: relative;
+  top: 5px;
+  left: 6px;
+  transform: rotate(45deg);
+}
+
+.arrow-from-border {
+  border: 1px solid grey;
+  position: relative;
+  top: 3px;
+  width: 12px;
+}
+
+.arrow-right {
+  border: 1px solid grey;
+  width: 7px;
+  position: relative;
+  top: 7px;
+  left: 6px;
+  transform: rotate(-45deg);
+}

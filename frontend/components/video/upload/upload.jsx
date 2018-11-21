@@ -75,7 +75,6 @@ class Upload extends React.Component {
         </>
       );
     }
-    // Ask how best to make the inputs no leave container when window shrinks
     // Also if offline, how to load the google font or make deterministic CSS for when offline
     return (
       <div className="full-video-form">
@@ -85,13 +84,15 @@ class Upload extends React.Component {
           </video>
         </figure>
         <form className="video-form" onSubmit={this.handleSubmit}>
-            <ul className="upload-errors">
-              {this.errors()}
-            </ul>
+          <div className="input-fields">
             <input className='title-input' type="text" onChange={this.update('title')} value={this.state.title}/>
             <textarea className='description-input' onChange={this.update('description')} value={this.state.description}/>
+          </div>
             <input disabled={this.state.disabled} className='submit-video' type="submit" value="Post Video"/>
         </form>
+        <ul className="upload-errors">
+          {this.errors()}
+        </ul>
       </div>
     );
   }
