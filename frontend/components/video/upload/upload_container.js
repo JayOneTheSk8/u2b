@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Upload from './upload';
-import { postVideo, removeVideoErrors } from '../../../actions/video_actions';
+import { postVideo, removeVideoErrors, receiveVideoErrors } from '../../../actions/video_actions';
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     postVideo: (video) => dispatch(postVideo(video)),
-    removeVideoErrors: () => dispatch(removeVideoErrors())
+    removeVideoErrors: () => dispatch(removeVideoErrors()),
+    receiveVideoErrors: (errors) => dispatch(receiveVideoErrors(errors))
   };
 };
 

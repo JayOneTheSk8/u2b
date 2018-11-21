@@ -9,11 +9,12 @@ class Show extends React.Component {
     if (!this.props.video.videoUrl) { return null; }
     return (
       <div className="video">
-        <video className="playing-video" controls width="500">
+        <video className="playing-video" controls>
           <source src={this.props.video.videoUrl}/>
         </video>
         <div className="video-info">
           <p className="title">{this.props.video.title}</p>
+          <p className="uploader">{this.props.uploader.username}</p>
           <p className="description">{this.props.video.description}</p>
         </div>
       </div>

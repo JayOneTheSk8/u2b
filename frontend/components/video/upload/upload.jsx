@@ -8,15 +8,6 @@ class Upload extends React.Component {
     this.state = merge({}, this.props.video, { disabled: true });
     this.handleVideo = this.handleVideo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.disableButton = this.disableButton.bind(this);
-  }
-
-  componentDidUpdate() {
-    if (this.state.videoFile && this.state.disabled === true) {
-      this.setState({ disabled: false });
-    } else if (!this.state.videoFile && this.state.disabled === false) {
-      this.setState({ disabled: true });
-    }
   }
 
   componentWillUnmount() {
@@ -31,6 +22,11 @@ class Upload extends React.Component {
 
   handleVideo(e) {
     const video = e.currentTarget.files[0];
+    if (!video.type.toLowerCase().includes('video')) {
+      this.props.receiveVideoErrors(['File must be a video']);
+      return;
+    }
+    this.props.removeVideoErrors();
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({videoFile: video, videoUrl: fileReader.result, title: video.name, disabled: false});
@@ -42,22 +38,20 @@ class Upload extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.disableButton(e);
+    const that = this;
+    this.setState({ disabled: true }); //Async so the rest will follow
     const formData = new FormData();
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
     formData.append('video[video]', this.state.videoFile);
-    this.props.postVideo(formData);
+    this.props.postVideo(formData).then(
+      (action) => (that.props.history.push(`/videos/${action.video.id}`)),
+      (error) => (that.setState({ disabled: false }))
+    );
   }
 
   inputError(field) {
     return this.props.errors.filter(error => error.toLowerCase().includes(field))
-  }
-
-  disableButton(e) {
-    if (this.state.title && this.state.description && this.state.videoFile) {
-      e.target.lastElementChild.disabled = true
-    }
   }
 
   render() {
@@ -66,7 +60,8 @@ class Upload extends React.Component {
       return (
         <>
           <UploadArea />
-          <input id="video-upload" className='hidden-upload' type="file" onChange={this.handleVideo}/>
+          <input id="video-upload" className='hidden-upload' type="file" accept="video/*" onChange={this.handleVideo}/>
+          <ul className="upload-error">{this.inputError('video')}</ul>
         </>
       );
     }
@@ -81,13 +76,12 @@ class Upload extends React.Component {
           <div className="input-fields">
             <ul className='title-error'>{this.inputError('title')}</ul>
             <label htmlFor="title"></label>
-            <input id="title" className='title-input' type="text" onChange={this.update('title')} value={this.state.title}/>
+            <input id="title" className='title-input' type="text" onChange={this.update('title')} placeholder="Title" value={this.state.title}/>
 
             <ul className='description-error'>{this.inputError('description')}</ul>
             <label htmlFor="description"></label>
-            <textarea className='description-input' onChange={this.update('description')} value={this.state.description}/>
+            <textarea className='description-input' onChange={this.update('description')} placeholder="Description" value={this.state.description}/>
           </div>
-            {/*need to disable on click without disrupting original action*/}
             <input disabled={this.state.disabled} className='submit-video' type="submit" value="Post Video"/>
         </form>
       </div>

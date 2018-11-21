@@ -2,7 +2,6 @@ import React from 'react';
 import SignoutIcon from './signout_icon';
 import { connect } from 'react-redux';
 import * as SessionActions from '../../actions/session_actions';
-import { Redirect } from 'react-router-dom';
 
 const mapDispatchToProps = (dispatch) => {
   return {
