@@ -10,9 +10,8 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideDrawerStatus: "closed",
       burgerColor: "original",
-      userDrawerStatus: "closed"
+      lastPage: null
     }
     this.changeStatus = this.changeStatus.bind(this);
     this.darkenColor = this.darkenColor.bind(this);
@@ -22,13 +21,17 @@ class NavBar extends React.Component {
     this.signIn = this.signIn.bind(this);
   }
 
-  // make a function that closes drawer after page changes
+  componentDidUpdate() {
+    if (this.state.lastPage !== this.props.location.pathname) {
+      this.setState({ lastPage: this.props.location.pathname })
+      this.props.clearScreen();
+    }
+  }
+
 
   changeStatus(e) {
     e.preventDefault();
-    const newStatus = this.state.sideDrawerStatus === "closed" ? "open" : "closed";
-    this.setState({ sideDrawerStatus: newStatus });
-    if (this.props.modalStatus === "hide" ) {
+    if (this.props.dropdownStatus === "closed") {
       this.props.openModalDropdownMenu();
     } else {
       this.props.clearScreen();
@@ -44,31 +47,24 @@ class NavBar extends React.Component {
   }
 
   toggleUserDrawer(e) {
-    const newState = this.state.userDrawerStatus === "closed" ? "opened" : "closed";
-    this.setState({ userDrawerStatus: newState });
+    e.preventDefault();
+    if (this.props.userMenuStatus === "hide") {
+      this.props.openUserDrawer();
+    } else {
+      this.props.clearScreen();
+    }
   }
 
   userDropdown() {
-    if (this.state.userDrawerStatus === "opened") {
-      return (
-        <div className="user-menu">
-          <VideoUploadIcon />
-          <figure onClick={this.toggleUserDrawer} className="user-button">
-            {this.props.currentUser.username}
-          </figure>
-          <UserDropdown />
-        </div>
-      );
-    } else {
-      return (
-        <div className="user-menu">
-          <VideoUploadIcon />
-          <figure onClick={this.toggleUserDrawer} className="user-button">
-            {this.props.currentUser.username}
-          </figure>
-        </div>
-      );
-    }
+    return (
+      <div className="user-menu">
+        <VideoUploadIcon />
+        <figure onClick={this.toggleUserDrawer} className="user-button">
+          {this.props.currentUser.username}
+        </figure>
+        <UserDropdown />
+      </div>
+    );
   }
 
   signIn() {
@@ -95,7 +91,7 @@ class NavBar extends React.Component {
           <figure onMouseEnter={this.darkenColor} onMouseLeave={this.lightenColor} className="clickable-area" onClick={this.changeStatus}>
             <HamburgerIcon color={this.state.burgerColor} />
           </figure>
-          <DropdownMenuContainer sideDrawer={this.state.sideDrawerStatus}/>
+          <DropdownMenuContainer sideDrawer={this.props.dropdownStatus}/>
           <Link to="/">LOGO HERE</Link>
         </div>
         <SearchBarContainer />

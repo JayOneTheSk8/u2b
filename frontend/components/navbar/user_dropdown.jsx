@@ -3,6 +3,12 @@ import SignoutIcon from './signout_icon';
 import { connect } from 'react-redux';
 import * as SessionActions from '../../actions/session_actions';
 
+const mapStateToProps = state => {
+  return {
+    status: state.ui.userMenu
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: (e) => dispatch(SessionActions.logout())
@@ -27,7 +33,7 @@ class UserDropdown extends React.Component {
 
   render() {
     return (
-      <ul className="user-dropdown">
+      <ul className={`user-dropdown-` + this.props.status}>
         <li className={`logout-li`}>
           <button className={`logout-text`} onClick={this.props.logout}>
             <SignoutIcon />
@@ -38,6 +44,5 @@ class UserDropdown extends React.Component {
     );
   }
 }
-{/* onMouseEnter={this.hover} onMouseLeave={this.unhover}*/}
 
-export default connect(null, mapDispatchToProps)(UserDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(UserDropdown);
