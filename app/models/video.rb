@@ -12,7 +12,6 @@
 
 class Video < ApplicationRecord
   validates :title, :description, :uploader_id, presence: true
-  # validate :ensure_video
   include ActionView::Helpers::DateHelper
 
   has_one_attached :video
@@ -22,9 +21,10 @@ class Video < ApplicationRecord
     foreign_key: :uploader_id,
     class_name: :User
 
-  # def ensure_video
-  #   video.attached?
-  # end
+  has_many :comments,
+    primary_key: :id,
+    foreign_key: :video_id,
+    class_name: :Comment
 
   def age
     upload_time = self.created_at
