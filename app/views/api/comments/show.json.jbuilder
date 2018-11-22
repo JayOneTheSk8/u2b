@@ -1,3 +1,3 @@
 json.set! @comment.id do
-  json.extract! @comment, :id, :author_id, :video_id, :body,
+  json.partial! 'api/comments/comment', comment: @comment
 end

@@ -9,13 +9,13 @@ end
 @video.comments.each do |comment|
   json.comments do
     json.set! comment.id do
-      json.extract! comment, :id, :author_id, :video_id, :body
+      json.partial! 'api/comments/comment', comment: comment
     end
   end
 
   json.authors do
     json.set! comment.author_id do
-      json.extract! comment.author, :id, :username
+      json.partial! 'api/users/user', user: comment.author
     end
   end
 end
