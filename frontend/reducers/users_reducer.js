@@ -8,7 +8,7 @@ export default (state = {}, action) => {
     case RECEIVE_USER:
       return merge({}, state, { [action.currentUser.id]: action.currentUser });
     case RECEIVE_VIDEO:
-      return merge({}, state, { [action.uploader.id]: action.uploader });
+      return merge({}, state, { [action.uploader.id]: action.uploader }, action.authors);
     case RECEIVE_VIDEOS:
       return merge({}, state, action.uploaders);
     default:

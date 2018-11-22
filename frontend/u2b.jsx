@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import RootReducer from './reducers/root_reducer';
 import configureStore from './store/store';
 import Root from './components/root';
-import * as UIActions from './actions/ui_actions';
+import * as VideoAPIUtil from './util/video_api_util';
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
@@ -20,9 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
-  window.openModalDropdownMenu = UIActions.openModalDropdownMenu;
-  window.openOnlyDropdownMenu = UIActions.openOnlyDropdownMenu;
-  window.openUserDrawer = UIActions.openUserDrawer;
+  window.fetchVideo = VideoAPIUtil.fetchVideo;
   window.getState = store.getState; //TEST
   window.dispatch = store.dispatch; //TEST
   ReactDOM.render(<Root store={store}/>, root);

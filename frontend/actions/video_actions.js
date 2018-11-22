@@ -5,11 +5,13 @@ export const RECEIVE_VIDEOS = "RECEIVE_VIDEOS";
 export const RECEIVE_VIDEO_ERRORS = "RECEIVE_VIDEO_ERRORS";
 export const REMOVE_VIDEO_ERRORS = "REMOVE_VIDEO_ERRORS";
 
-const receiveVideo = ({video, uploader}) => {
+const receiveVideo = ({video, uploader, comments, authors}) => {
   return {
     type: RECEIVE_VIDEO,
     video,
-    uploader
+    uploader,
+    comments,
+    authors
   };
 };
 
@@ -40,7 +42,9 @@ export const fetchVideos = () => dispatch => {
 };
 
 export const fetchVideo = (id) => dispatch => {
-  return VideoApiUtil.fetchVideo(id).then(payload => dispatch(receiveVideo(payload)));
+  return VideoApiUtil.fetchVideo(id).then(payload => {
+    return dispatch(receiveVideo(payload));
+  });
 };
 
 export const postVideo = (video) => dispatch => {
