@@ -6,7 +6,8 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_VIDEO:
-      return action.comments;
+      const comments = (action.comments || {});
+      return comments
     case RECEIVE_COMMENT:
       let comment = { [action.comment.id]: action.comment };
       return merge({}, state, comment);

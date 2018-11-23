@@ -13,6 +13,8 @@
 
 class Comment < ApplicationRecord
   validates :body, presence: true
+  include ActionView::Helpers::DateHelper
+
 
   belongs_to :video,
     primary_key: :id,
@@ -34,4 +36,11 @@ class Comment < ApplicationRecord
     foreign_key: :parent_comment_id,
     class_name: :Comment,
     optional: true
+
+  def age
+    upload_time = self.created_at
+    format_upload_time = Time.new(*upload_time.to_a[0..5].reverse)
+    time_ago_in_words(format_upload_time) + " ago"
+  end
+
 end

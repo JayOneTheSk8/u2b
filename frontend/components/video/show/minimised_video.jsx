@@ -10,7 +10,7 @@ const MinimisedVideo = (props) => {
           <source src={video.videoUrl}/>
         </video>
         <p className="mini-title">{video.title}</p>
-        <p className="mini-uploader">{video.uploader_name}</p>
+        <p className="mini-uploader">{video.uploaderName}</p>
         <p className="mini-age">{video.age}</p>
       </Link>
     </li>

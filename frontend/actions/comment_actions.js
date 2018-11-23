@@ -34,15 +34,15 @@ export const removeCommentErrors = () => {
 
 export const postComment = (videoId, comment) => dispatch => {
   return CommentAPIUtil.postComment(videoId, comment).then(
-    comment => dispatch(receiveComment(comment)),
-    errors => dispatch(receiveCommentErrors(errors))
+    (comment) => dispatch(receiveComment(comment)),
+    (errors) => dispatch(receiveCommentErrors(errors.responseJSON))
   );
 };
 
 export const editComment = (videoId, comment) => (dispatch) => {
   return CommentAPIUtil.editComment(videoId, comment).then(
-    comment => dispatch(receiveComment(comment)),
-    errors => dispatch(receiveCommentErrors(errors))
+    (comment) => dispatch(receiveComment(comment)),
+    (errors) => dispatch(receiveCommentErrors(errors.responseJSON))
   );
 };
 

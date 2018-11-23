@@ -1,8 +1,19 @@
 import React from 'react';
+import Comment from './comments/comment';
+import CreateCommentForm from './comments/create_comment_form';
 
 class Show extends React.Component {
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId);
+  }
+
+  commentList(){
+    const comments = this.props.comments.map(comment => {
+      return (
+        <Comment key={comment.id} comment={comment}/>
+      );
+    });
+    return comments.reverse();
   }
 
   render() {
@@ -20,6 +31,10 @@ class Show extends React.Component {
             <p className="description">{this.props.video.description}</p>
           </div>
         </div>
+        <CreateCommentForm />
+        <ul className="comment-list">
+          { this.commentList() }
+        </ul>
       </div>
     );
   }

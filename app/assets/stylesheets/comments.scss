@@ -1,3 +1,70 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-form {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  margin: 15px 0px;
+}
+
+.comment-input {
+  display: flex;
+  align-self: flex-start;
+  border-bottom: 0.5px solid lightgray;
+  width: 100%;
+  margin: 20px 0px;
+  transition: border-bottom 0.5s;
+}
+
+.comment-input:focus {
+  border-bottom: 1px solid black;
+  transition: border-bottom 0.5s;
+}
+
+.submit-comment {
+  display: flex;
+  align-self: flex-end;
+  background-color: #1A73E8;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.comment-list {
+  width: 70%;
+}
+
+.comment {
+  margin: 15px 0px;
+}
+
+.author-age {
+  display: flex;
+}
+
+.comment-author {
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.comment-age {
+  color: #747474;
+}
+
+.edit-comment {
+  font-size: 13px;
+  border: 1px solid black;
+  padding: 1px;
+  border-radius: 6px;
+  margin: 5px 0px;
+}
+
+.cancel-comment {
+  font-size: 13px;
+  border: 1px solid black;
+  padding: 1px;
+  border-radius: 6px;
+  margin: 5px 0px;
+}
