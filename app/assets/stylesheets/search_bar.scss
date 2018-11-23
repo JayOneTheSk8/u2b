@@ -8,12 +8,14 @@
 .search-input {
   border: 2px solid grey;
   width: 93%;
+  box-shadow: inset 0px 0px 10px 2px lightgrey;
+  padding: 13px;
 }
 
 .search-submit {
   border: 2px solid #7f7f7f;
-  height: 28px;
-  width: 25px;
+  height: 30px;
+  width: 32px;
   background-color: lightgray;
 }
 
@@ -23,8 +25,8 @@
   height: 14px;
   width: 14px;
   position: relative;
-  top: -2px;
-  left: 2px;
+  top: -1px;
+  left: 6px;
 }
 
 .handle {
@@ -32,6 +34,6 @@
   width: 7px;
   transform: rotate(45deg);
   position: relative;
-  left: 12px;
-  top: -2px;
+  left: 16px;
+  top: -1px;
 }
