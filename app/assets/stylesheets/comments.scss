@@ -59,6 +59,7 @@
   margin: 5px 0px;
   transition: background-color 0.5s;
 }
+
 .edit-comment:hover {
   background-color: #7F7F7F;
   transition: background-color 0.5s;
@@ -73,6 +74,13 @@
   border-radius: 12px;
   font-weight: 600;
   transition: color 0.5s, background-color 0.5s;
+}
+
+.submit-comment:disabled,
+ .submit-comment:disabled:hover {
+  cursor: not-allowed;
+  background-color: #1a73e86b;
+  color: white;
 }
 
 .submit-comment:hover {
