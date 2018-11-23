@@ -28,11 +28,9 @@ class CommentForm extends React.Component {
     }
   }
 
-  // passCommentFilter(commentBody) {
-  //   const wordCheck = {};
-  //   const words = commentBody.split(' ');
-  //   const filterLetters = [
-  // }
+  componentWillUnmount() {
+    this.props.removeCommentErrors();
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -40,10 +38,6 @@ class CommentForm extends React.Component {
       this.props.receiveCommentErrors([`Body can't be blank`]);
       return;
     }
-    // else if (!this.passCommentFilter(this.state.body)) {
-    //   this.props.removeCommentErrors([`Please refrain from using innapropriate language!`]);
-    //   return;
-    // }
     const videoId = this.props.match.params.videoId;
     this.props.submitAction(videoId, { id: this.props.editableComment, body: this.state.body });
     this.props.clearEdits();
