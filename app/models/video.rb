@@ -26,6 +26,15 @@ class Video < ApplicationRecord
     foreign_key: :video_id,
     class_name: :Comment
 
+  has_many :likes,
+    primary_key: :id,
+    foreign_key: :video_id,
+    class_name: :Like
+
+  has_many :likers,
+    through: :likes,
+    source: :user
+
   def age
     upload_time = self.created_at
     format_upload_time = Time.new(*upload_time.to_a[0..5].reverse)
@@ -34,5 +43,9 @@ class Video < ApplicationRecord
 
   def upload_date
     self.created_at.to_date.strftime('%b %d %Y')
+  end
+
+  def like_count
+    self.likers.length
   end
 end
