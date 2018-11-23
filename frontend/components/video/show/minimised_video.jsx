@@ -6,7 +6,7 @@ const MinimisedVideo = (props) => {
   return (
     <li className="minimised-video">
       <Link to={`/videos/${video.id}`}>
-        <video width='150'>
+        <video height='84' width='150'>
           <source src={video.videoUrl}/>
         </video>
         <p className="mini-title">{video.title}</p>

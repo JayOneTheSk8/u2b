@@ -1,7 +1,11 @@
 class Api::LikesController < ApplicationController
   def show
-    @like = Like.find(id: params[:id])
+    @like = Like.find(params[:id])
     render :show
+  end
+
+  def index
+
   end
 
   def create
@@ -15,7 +19,7 @@ class Api::LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find(id: params[:id])
+    @like = Like.find(params[:id])
     @like.destroy
     render json: {}
   end
