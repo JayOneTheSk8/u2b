@@ -17,19 +17,18 @@
   transition: border-bottom 0.5s;
 }
 
-.comment-input:focus {
-  border-bottom: 1px solid black;
+.comment-input-red {
+  display: flex;
+  align-self: flex-start;
+  border-bottom: 0.5px solid red;
+  width: 100%;
+  margin: 20px 0px;
   transition: border-bottom 0.5s;
 }
 
-.submit-comment {
-  display: flex;
-  align-self: flex-end;
-  background-color: #1A73E8;
-  color: white;
-  padding: 10px;
-  border-radius: 12px;
-  font-weight: 600;
+.comment-input:focus {
+  border-bottom: 1px solid black;
+  transition: border-bottom 0.5s;
 }
 
 .comment-list {
@@ -55,16 +54,53 @@
 
 .edit-comment {
   font-size: 13px;
-  border: 1px solid black;
-  padding: 1px;
+  padding: 2px 6px;
   border-radius: 6px;
   margin: 5px 0px;
+  transition: background-color 0.5s;
+}
+.edit-comment:hover {
+  background-color: #7F7F7F;
+  transition: background-color 0.5s;
+}
+
+.submit-comment {
+  display: flex;
+  align-self: flex-end;
+  background-color: #1A73E8;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.submit-comment:hover {
+  color: skyblue;
+  background-color: #1063d1;
+  transition: color 0.5s, background-color 0.5s;
 }
 
 .cancel-comment {
-  font-size: 13px;
-  border: 1px solid black;
-  padding: 1px;
-  border-radius: 6px;
-  margin: 5px 0px;
+  display: flex;
+  align-self: flex-end;
+  background-color: #e5e5e5;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: background-color 0.5s;
+}
+
+.cancel-comment:hover {
+  background-color: #7F7F7F;
+  transition: background-color 0.5s;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-error {
+  color: red;
 }
