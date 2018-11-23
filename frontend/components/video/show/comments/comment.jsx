@@ -1,24 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EditCommentForm from './edit_comment_form';
+import { createEditComment, clearEdits } from '../../../../actions/comment_ui_actions';
 
 const mapStateToProps = state => {
   return {
-    currentUserId: state.session.currentUserId
+    currentUserId: state.session.currentUserId,
+    editableComment: state.commentUI.editableComment
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createEditComment: (commentId) => dispatch(createEditComment(commentId))
   };
 };
 
 class Comment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { status: "read-only", comment: this.props.comment };
     this.editComment = this.editComment.bind(this);
     this.revertForm = this.revertForm.bind(this);
   }
 
   editComment(e) {
     e.preventDefault();
-    this.setState({ status: "edit" });
+    this.props.createEditComment(this.props.comment.id);
   }
 
   revertForm(e) {
@@ -27,7 +34,7 @@ class Comment extends React.Component {
   }
 
   renderEditButton() {
-    if (this.state.comment.author_id === this.props.currentUserId) {
+    if (this.props.comment.author_id === this.props.currentUserId) {
       return (
         <>
           <button className="edit-comment" onClick={this.editComment}>EDIT</button>
@@ -39,17 +46,14 @@ class Comment extends React.Component {
   }
 
   render() {
-    const comment = this.state.comment;
-
-    if (this.state.status === "edit") {
+    if (this.props.editableComment === this.props.comment.id) {
       return (
         <>
           <EditCommentForm comment={comment}/>
-          <button className="cancel-comment" onClick={this.revertForm}>CANCEL</button>
         </>
       );
     }
-
+    const comment = this.props.comment;
     return (
       <li className="comment">
         <div className="author-age">
@@ -64,4 +68,4 @@ class Comment extends React.Component {
 
 }
 
-export default connect(mapStateToProps, null)(Comment);
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);

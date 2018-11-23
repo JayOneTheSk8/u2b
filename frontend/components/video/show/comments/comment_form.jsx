@@ -16,8 +16,9 @@ class CommentForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const videoId = this.props.match.params.videoId;
-    this.props.submitAction(videoId, this.state);
-    this.setState({ body: '' })
+    this.props.submitAction(videoId, { id: this.props.editableComment, body: this.state.body });
+    this.props.clearEdits();
+    this.setState({ body: "" })
   }
 
   checkLoggedIn(e) {
@@ -27,14 +28,11 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    if (this.props.buttonText === "SAVE") {
-      <input type='text' className="comment-input" value={this.state.body} onChange={this.update} placeholder="Add a public comment..." />
-    }
     return (
       <>
         <form className="comment-form" onSubmit={this.handleSubmit}>
           <input onFocus={this.checkLoggedIn} className="comment-input" type='text' value={this.state.body} onChange={this.update} placeholder="Add a public comment..." />
-          {/*put cancel button here*/}
+          <button onClick={this.props.clearEdits}>CANCEL</button>
           <input className="submit-comment" type='submit' value={this.props.buttonText}/>
         </form>
       </>

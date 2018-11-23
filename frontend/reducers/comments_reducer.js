@@ -2,8 +2,11 @@ import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_VIDEO } from '../actions/video_actions';
 import { merge } from 'lodash';
 
-export default (state = {}, action) => {
+const defaultState = {}
+
+export default (state = defaultState, action) => {
   Object.freeze(state);
+
   switch (action.type) {
     case RECEIVE_VIDEO:
       const comments = (action.comments || {});
