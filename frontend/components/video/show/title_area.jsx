@@ -32,7 +32,4 @@ class TitleArea extends React.Component {
   }
 }
 
-// const TitleArea = (props) => {
-// };
-
 export default TitleArea;

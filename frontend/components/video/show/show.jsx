@@ -1,7 +1,7 @@
 import React from 'react';
 import Comment from './comments/comment';
 import CreateCommentForm from './comments/create_comment_form';
-import TitleArea from './title_area';
+import TitleArea from './title_area_container';
 
 class Show extends React.Component {
   componentDidMount() {

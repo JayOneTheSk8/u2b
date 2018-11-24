@@ -2,9 +2,6 @@ import { connect } from 'react-redux';
 import Modal from './modal';
 import { clearScreen } from '../../actions/ui_actions'; 
 
-// mapStateToProps
-// mapDispatchToProps
-
 const mapStateToProps = state => {
   return {
     status: state.ui.modal
