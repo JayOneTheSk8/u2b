@@ -5,9 +5,9 @@ export const addLike = (videoId) => {
   });
 };
 
-export const removeLike = (videoId) => {
+export const removeLike = (videoId, like) => {
   return $.ajax({
     method: 'DELETE',
-    url: `/api/videos/${videoId}/likes/`
+    url: `/api/videos/${videoId}/likes/${like.id}`
   });
 };

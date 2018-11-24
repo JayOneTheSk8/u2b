@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
+import { ADD_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 import { RECEIVE_VIDEO } from '../actions/video_actions';
 import { merge } from 'lodash';
 
@@ -6,14 +6,14 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_VIDEO:
-      return action.comments;
-    case RECEIVE_COMMENT:
-      return merge({}, state, { [action.comment.id]: action.comment });
-    case REMOVE_COMMENT:
+      return action.likes;
+    case ADD_LIKE:
+      return merge({}, state, { [action.like.id]: action.like });
+    case REMOVE_LIKE:
       let newState = merge({}, state);
-      delete newState[action.commentId];
+      delete newState[likeId];
       return newState;
     default:
       return state;
-  };
+  }
 };
