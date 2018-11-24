@@ -25,7 +25,7 @@ class Show extends React.Component {
           <source src={this.props.video.videoUrl}/>
         </video>
         <div className="video-info">
-          <TitleArea title={this.props.video.title} likes={this.props.video.like_count} dislikes={this.props.video.dislike_count} />
+          <TitleArea videoId={this.props.video.id} title={this.props.video.title} likes={this.props.video.like_count} dislikes={this.props.video.dislike_count} />
           <div className="divider">
             <p className="uploader">{this.props.uploader.username}</p>
             <p className="date">Published on: {this.props.video.upload_date}</p>

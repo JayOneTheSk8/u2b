@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import EditCommentForm from './edit_comment_form';
 import { createEditComment, clearEdits } from '../../../../actions/comment_ui_actions';
+import { deleteComment } from '../../../../actions/comment_actions';
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +13,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createEditComment: (commentId) => dispatch(createEditComment(commentId))
+    createEditComment: (commentId) => dispatch(createEditComment(commentId)),
+    deleteComment: (videoId, comment) => dispatch(deleteComment(videoId, comment))
   };
 };
 
@@ -21,6 +23,7 @@ class Comment extends React.Component {
     super(props);
     this.editComment = this.editComment.bind(this);
     this.revertForm = this.revertForm.bind(this);
+    this.removeComment = this.removeComment.bind(this);
   }
 
   editComment(e) {
@@ -33,11 +36,22 @@ class Comment extends React.Component {
     this.setState({ status: "read-only" });
   }
 
+  removeComment(e) {
+    e.preventDefault();
+    const confirmDelete = prompt("Are you sure you want to delete your comment? (Y/N)");
+    if (confirmDelete.toUpperCase() === 'Y') {
+      this.props.deleteComment(this.props.comment.video_id, this.props.comment);
+    } else {
+      return null;
+    }
+  }
+
   renderEditButton() {
     if (this.props.comment.author_id === this.props.currentUserId) {
       return (
         <>
           <button className="edit-comment" onClick={this.editComment}>EDIT</button>
+          <button className="delete-comment" onClick={this.removeComment}>DELETE</button>
         </>
       );
     } else {

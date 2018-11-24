@@ -16,7 +16,7 @@ export default (state = defaultState, action) => {
       return merge({}, state, comment);
     case REMOVE_COMMENT:
       let newState = merge({}, state);
-      delete newState[commentId];
+      delete newState[action.commentId];
       return newState;
     default:
       return state;
