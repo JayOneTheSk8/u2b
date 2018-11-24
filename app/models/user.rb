@@ -31,8 +31,17 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Like
 
+  has_many :dislikes,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Dislike
+
   has_many :liked_videos,
     through: :likes,
+    source: :video
+
+  has_many :disliked_videos,
+    through: :dislikes,
     source: :video
 
   after_initialize :ensure_session_token!
@@ -58,6 +67,14 @@ class User < ApplicationRecord
 
   def is_password?(passed_word)
     BCrypt::Password.new(self.password_digest).is_password?(passed_word)
+  end
+
+  def favorites
+    all_favorites = []
+    self.likes.each do |like|
+      all_favorites << like.video_id
+    end
+    all_favorites
   end
 
   private

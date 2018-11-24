@@ -35,6 +35,15 @@ class Video < ApplicationRecord
     through: :likes,
     source: :user
 
+  has_many :dislikes,
+    primary_key: :id,
+    foreign_key: :video_id,
+    class_name: :Dislike
+
+  has_many :dislikers,
+    through: :dislikes,
+    source: :user
+
   def age
     upload_time = self.created_at
     format_upload_time = Time.new(*upload_time.to_a[0..5].reverse)
@@ -46,6 +55,10 @@ class Video < ApplicationRecord
   end
 
   def like_count
-    self.likers.length
+    self.likes.length
+  end
+
+  def dislike_count
+    self.dislikes.length
   end
 end

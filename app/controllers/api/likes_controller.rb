@@ -4,10 +4,6 @@ class Api::LikesController < ApplicationController
     render :show
   end
 
-  def index
-
-  end
-
   def create
     @like = Like.new(video_id: params[:video_id])
     @like.user_id = current_user.id
