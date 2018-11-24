@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './comments/comment';
 import CreateCommentForm from './comments/create_comment_form';
+import TitleArea from './title_area';
 
 class Show extends React.Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class Show extends React.Component {
           <source src={this.props.video.videoUrl}/>
         </video>
         <div className="video-info">
-          <p className="title">{this.props.video.title}</p>
+          <TitleArea title={this.props.video.title} likes={this.props.video.like_count} dislikes={this.props.video.dislike_count} />
           <div className="divider">
             <p className="uploader">{this.props.uploader.username}</p>
             <p className="date">Published on: {this.props.video.upload_date}</p>
