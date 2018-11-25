@@ -10,6 +10,7 @@
 #
 
 class Dislike < ApplicationRecord
+  validates :user_id, uniqueness: { scope: :video_id }
 
   belongs_to :user,
     primary_key: :id,
