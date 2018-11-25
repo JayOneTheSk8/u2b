@@ -1,4 +1,10 @@
 class Api::LikesController < ApplicationController
+  def index
+    video = Video.find(params[:video_id])
+    @likes = video.likes
+    render :index
+  end
+
   def show
     @like = Like.find(params[:id])
     render :show

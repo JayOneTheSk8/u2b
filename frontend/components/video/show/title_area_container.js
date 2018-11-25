@@ -1,20 +1,15 @@
 import { connect } from 'react-redux';
 import TitleArea from './title_area';
 import * as LikeActions from '../../../actions/like_actions';
+import { withRouter } from 'react-router-dom';
+import { intersection } from 'underscore';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.currentUserId];
-  const likes = Object.keys(state.entities.likes).map((id) => state.entities.likes[id]);
-  let currentLike = null;
-  for (let i = 0; i < likes.length; i++) {
-    if (likes[i].user_id === currentUser.id) {
-      currentLike = likes[i];
-      break;
-    }
-  }
   return {
-    currentLike,
-    loggedIn: Boolean(state.session.currentUserId)
+    currentUser,
+    loggedIn: Boolean(state.session.currentUserId),
+    likeCount: Object.keys(state.entities.likes).length
   };
 };
 
@@ -22,7 +17,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addLike: (videoId) => dispatch(LikeActions.addLike(videoId)),
     removeLike: (videoId, like) => dispatch(LikeActions.removeLike(videoId, like)),
+    fetchLikes: (videoId) => dispatch(LikeActions.fetchLikes(videoId))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TitleArea);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TitleArea));

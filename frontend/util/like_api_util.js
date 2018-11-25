@@ -11,3 +11,10 @@ export const removeLike = (videoId, like) => {
     url: `/api/videos/${videoId}/likes/${like.id}`
   });
 };
+
+export const fetchLikes = (videoId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/videos/${videoId}/likes`
+  });
+};

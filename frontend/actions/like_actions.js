@@ -2,6 +2,7 @@ import * as LikeAPIUtil from '../util/like_api_util';
 
 export const ADD_LIKE = 'ADD_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
+export const RECEIVE_LIKES = 'RECEIVE_LIKES';
 
 export const addLike = (videoId) => dispatch => {
   return LikeAPIUtil.addLike(videoId).then(
@@ -9,8 +10,14 @@ export const addLike = (videoId) => dispatch => {
   );
 };
 
-export const removeLike = (videoId, like) => dispatch => {
-  return LikeAPIUtil.removeLike(videoId, like).then(
-    (like) => dispatch({ type: REMOVE_LIKE, likeId: like.id })
+export const removeLike = (videoId, likeId) => dispatch => {
+  return LikeAPIUtil.removeLike(videoId, likeId).then(
+    (like) => dispatch({ type: REMOVE_LIKE, userId: like.user_id })
+  );
+};
+
+export const fetchLikes = (videoId) => dispatch => {
+  return LikeAPIUtil.fetchLikes(videoId).then(
+    (likes) => dispatch({ type: RECEIVE_LIKES, likes })
   );
 };
