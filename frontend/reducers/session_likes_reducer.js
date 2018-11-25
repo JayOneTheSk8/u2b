@@ -16,7 +16,6 @@ export default (state = {}, action) => {
     case RECEIVE_VIDEO:
       return {};
     default:
-      console.log(state);
       return state;
   }
 }

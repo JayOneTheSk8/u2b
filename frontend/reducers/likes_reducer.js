@@ -11,12 +11,7 @@ export default (state = {}, action) => {
       if (!action.likes) {
         return {};
       }
-      const likes = Object.keys(action.likes).map(id => action.likes[id]);
-      const mappedLikes = {};
-      for (let i = 0; i < likes.length; i++) {
-        mappedLikes[likes[i].user_id] = likes[i];
-      }
-      return mappedLikes;
+      return merge({}, state, action.likes);
     case ADD_LIKE:
       return merge({}, state, { [action.like.user_id]: action.like });
     case REMOVE_LIKE:
