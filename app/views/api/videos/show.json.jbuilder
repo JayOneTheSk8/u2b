@@ -6,16 +6,6 @@ json.uploader do
   json.partial! 'api/videos/uploader', video: @video
 end
 
-#REMOVE =====================
-@video.likes.each do |like|
-  json.likes do
-    json.set! like.user_id do
-      json.partial! 'api/likes/like', like: like
-    end
-  end
-end
-#REMOVE =====================
-
 @video.ratings.each do |rating|
   json.ratings do
     json.set! rating.user_id do

@@ -17,7 +17,7 @@ class Api::VideosController < ApplicationController
   end
 
   def show
-    @video = Video.includes(:uploader, :likes, :ratings, comments: [:author]).find(params[:id])
+    @video = Video.includes(:uploader, :ratings, comments: [:author]).find(params[:id])
     render :show
   end
 

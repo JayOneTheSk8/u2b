@@ -9,8 +9,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser,
     loggedIn: Boolean(state.session.currentUserId),
-    likeCount: state.entities.likes.likeCount,
-    dislikeCount: state.entities.likes.dislikeCount
+    likeCount: state.entities.ratingsCount.likeCount,
+    dislikeCount: state.entities.ratingsCount.dislikeCount
   };
 };
 
