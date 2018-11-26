@@ -5,14 +5,15 @@ export const RECEIVE_VIDEOS = "RECEIVE_VIDEOS";
 export const RECEIVE_VIDEO_ERRORS = "RECEIVE_VIDEO_ERRORS";
 export const REMOVE_VIDEO_ERRORS = "REMOVE_VIDEO_ERRORS";
 
-const receiveVideo = ({video, uploader, comments, authors, likes}) => {
+const receiveVideo = ({video, uploader, comments, authors, likes, ratings}) => {
   return {
     type: RECEIVE_VIDEO,
     video,
     uploader,
     comments,
     authors,
-    likes
+    likes,
+    ratings
   };
 };
 

@@ -1,1 +1,1 @@
-json.extract! like, :id, :name, :user_id, :video_id
+json.extract! rating, :id, :name, :user_id, :video_id
