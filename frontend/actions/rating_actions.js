@@ -1,6 +1,7 @@
 import * as RatingAPIUtil from '../util/rating_api_util';
 
 export const ADD_RATING = 'ADD_RATING';
+export const UPDATE_RATING = 'UPDATE_RATING';
 export const REMOVE_RATING = 'REMOVE_RATING';
 export const RECEIVE_RATINGS = 'RECEIVE_RATINGS';
 
@@ -18,12 +19,12 @@ export const addRating = (videoId, rating) => dispatch => {
 
 export const updateRating = (videoId, rating) => dispatch => {
   return RatingAPIUtil.updateRating(videoId, rating).then(
-    (rating) => dispatch({ type: ADD_RATING, rating })
+    (rating) => dispatch({ type: UPDATE_RATING, rating })
   );
 };
 
 export const removeRating = (videoId, rating) => dispatch => {
   return RatingAPIUtil.removeRating(videoId, rating).then(
-    (rating) => dispatch({ type: REMOVE_RATING, userId: rating.user_id })
+    (rating) => dispatch({ type: REMOVE_RATING, userId: rating.user_id, name: rating.name })
   );
 };

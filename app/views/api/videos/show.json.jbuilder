@@ -22,6 +22,12 @@ end
       json.partial! 'api/ratings/rating', rating: rating
     end
   end
+
+  json.set! (rating.name + 's') do
+    json.set! rating.id do
+      json.extract! rating, :name
+    end
+  end
 end
 
 @video.comments.each do |comment|

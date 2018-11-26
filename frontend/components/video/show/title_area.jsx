@@ -10,7 +10,6 @@ class TitleArea extends React.Component {
       dislikeStatus: "grey",
       currentRating: null
     }
-    // this.rate = this.rate.bind(this);
   }
 
   componentDidUpdate() {
