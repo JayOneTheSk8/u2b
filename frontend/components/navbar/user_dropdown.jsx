@@ -2,6 +2,7 @@ import React from 'react';
 import SignoutIcon from './signout_icon';
 import { connect } from 'react-redux';
 import * as SessionActions from '../../actions/session_actions';
+import AccountIcon from './account_icon';
 
 const mapStateToProps = state => {
   return {
@@ -34,8 +35,14 @@ class UserDropdown extends React.Component {
   render() {
     return (
       <ul className={`user-dropdown-` + this.props.status}>
-        <li className={`logout-li`}>
-          <button className={`logout-text`} onClick={this.props.logout}>
+        <li className={`user-dropdown-li`}>
+          <button className={`user-dropdown-text`}>
+            <AccountIcon />
+            Your Videos
+          </button>
+        </li>
+        <li className={`user-dropdown-li`}>
+          <button className={`user-dropdown-text`} onClick={this.props.logout}>
             <SignoutIcon />
             Log Out
           </button>
