@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CommentForm from './comment_form';
 import { withRouter } from 'react-router-dom';
-import { editComment, removeCommentErrors, receiveCommentErrors } from '../../../../actions/comment_actions';
+import { editComment, removeCommentErrors } from '../../../../actions/comment_actions';
 import { clearEdits } from '../../../../actions/comment_ui_actions';
 
 const defaultState = { body: '' }
@@ -23,7 +23,6 @@ const mapDispatchToProps = dispatch => {
   return {
     submitAction: (videoId, comment) => dispatch(editComment(videoId, comment)),
     removeCommentErrors: () => dispatch(removeCommentErrors()),
-    receiveCommentErrors: (errors) => dispatch(receiveCommentErrors(errors)),
     clearEdits: () => dispatch(clearEdits())
   };
 };

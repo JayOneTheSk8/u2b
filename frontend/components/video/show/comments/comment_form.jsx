@@ -57,15 +57,6 @@ class CommentForm extends React.Component {
     }
   }
 
-  // errorMessages() {
-  //   const errorList = this.props.errors.map((error, idx) => {
-  //     return (
-  //       <li className="comment-error" key={idx}>{error}</li>
-  //     );
-  //   });
-  //   console.log(errorList);
-  //   return errorList;
-  // }
   clearEdits(e) {
     e.preventDefault();
     this.props.clearEdits();
@@ -73,12 +64,6 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    // let redden = "-red";
-    // let displayErrors = this.errorMessages();
-    // if (this.props.errors.length === 0) {
-    //   redden = "";
-    //   displayErrors = "";
-    // }
     return (
       <>
         <form className="comment-form" onSubmit={this.handleSubmit}>
