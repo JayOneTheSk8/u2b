@@ -4,10 +4,19 @@ import { merge } from 'lodash';
 class CommentForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = merge({}, this.props.comment, { errorDisplay: 'show', disableSubmit: false });
+    this.state = merge({}, this.props.comment, { redden: "", bodyError: null, errorDisplay: 'show', disableSubmit: false });
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
+    this.clearEdits = this.clearEdits.bind(this);
+  }
+
+  bodyError() {
+    return (
+      <>
+        <p className="comment-error">Body cannot be blank</p>
+      </>
+    );
   }
 
   update(e) {
@@ -21,9 +30,7 @@ class CommentForm extends React.Component {
   componentDidMount() {
     if (this.state.body) {
       if (this.state.body === this.props.originalComment) {
-        this.setState({ errorDisplay: "hide", disableSubmit: true });
-      } else {
-        this.setState({ errorDisplay: "hide" });
+        this.setState({ disableSubmit: true });
       }
     }
   }
@@ -35,13 +42,13 @@ class CommentForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (!this.state.body) {
-      this.props.receiveCommentErrors([`Body can't be blank`]);
+      this.setState({ bodyError: this.bodyError(), redden: '-red' });
       return;
     }
     const videoId = this.props.match.params.videoId;
     this.props.submitAction(videoId, { id: this.props.editableComment, body: this.state.body });
     this.props.clearEdits();
-    this.setState({ body: "" })
+    this.setState({ body: "", bodyError: null, redden: '' })
   }
 
   checkLoggedIn(e) {
@@ -50,32 +57,36 @@ class CommentForm extends React.Component {
     }
   }
 
-  errorMessages() {
-    const errorList = this.props.errors.map((error, idx) => {
-      return (
-        <li className="comment-error" key={idx}>{error}</li>
-      );
-    });
-    return errorList;
+  // errorMessages() {
+  //   const errorList = this.props.errors.map((error, idx) => {
+  //     return (
+  //       <li className="comment-error" key={idx}>{error}</li>
+  //     );
+  //   });
+  //   console.log(errorList);
+  //   return errorList;
+  // }
+  clearEdits(e) {
+    e.preventDefault();
+    this.props.clearEdits();
+    this.setState({ bodyError: null, redden: "", body: "" })
   }
 
   render() {
-    let redden = "-red";
-    let displayErrors = this.errorMessages();
-    if (this.props.errors.length === 0 || this.state.errorDisplay === 'hide') {
-      redden = "";
-      displayErrors = "";
-    }
+    // let redden = "-red";
+    // let displayErrors = this.errorMessages();
+    // if (this.props.errors.length === 0) {
+    //   redden = "";
+    //   displayErrors = "";
+    // }
     return (
       <>
         <form className="comment-form" onSubmit={this.handleSubmit}>
-          <input onFocus={this.checkLoggedIn} className={`comment-input${redden}`} type='text' value={this.state.body} onChange={this.update} placeholder="Add a public comment..." />
+          <input onFocus={this.checkLoggedIn} className={`comment-input${this.state.redden}`} type='text' value={this.state.body} onChange={this.update} placeholder="Add a public comment..." />
           <div className="control-buttons">
-            <button className="cancel-comment" onClick={this.props.clearEdits}>CANCEL</button>
-            <ul>
-              { displayErrors }
-            </ul>
             <input disabled={this.state.disableSubmit} className="submit-comment" type='submit' value={this.props.buttonText}/>
+            { this.state.bodyError }
+            <button className="cancel-comment" onClick={this.clearEdits}>CANCEL</button>
           </div>
         </form>
       </>

@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     submitAction: (videoId, comment) => dispatch(editComment(videoId, comment)),
     removeCommentErrors: () => dispatch(removeCommentErrors()),
     receiveCommentErrors: (errors) => dispatch(receiveCommentErrors(errors)),
-    clearEdits: (e) => dispatch(clearEdits())
+    clearEdits: () => dispatch(clearEdits())
   };
 };
 

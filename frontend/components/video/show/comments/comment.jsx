@@ -39,7 +39,7 @@ class Comment extends React.Component {
   removeComment(e) {
     e.preventDefault();
     const confirmDelete = prompt("Are you sure you want to delete your comment? (Y/N)");
-    if (confirmDelete.toUpperCase() === 'Y') {
+    if (confirmDelete.toUpperCase() === 'Y' || confirmDelete.toUpperCase() === 'YES') {
       this.props.deleteComment(this.props.comment.video_id, this.props.comment);
     } else {
       return null;
