@@ -70,7 +70,7 @@ class NavBar extends React.Component {
   signIn() {
     return (
       <div className="register">
-        <Link to="/signup">SIGN IN</Link>
+        <Link to="/login">SIGN IN</Link>
       </div>
     );
   }
