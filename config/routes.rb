@@ -9,8 +9,6 @@ Rails.application.routes.draw do
     resources :videos, except: [:new, :edit]  do
       resources :comments, only: [:show, :create, :update, :destroy]
       resources :ratings, only: [:index, :show, :update, :create, :destroy]
-      resources :likes, only: [:index, :show, :create, :destroy]
-      resources :dislikes, only: [:index, :show, :create, :destroy]
     end
   end
 end

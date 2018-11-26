@@ -1,23 +1,25 @@
 import { connect } from 'react-redux';
 import TitleArea from './title_area';
-import * as LikeActions from '../../../actions/like_actions';
+import * as RatingActions from '../../../actions/rating_actions';
 import { withRouter } from 'react-router-dom';
-import { intersection } from 'underscore';
 
 const mapStateToProps = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.currentUserId];
+  const currentVideo = state.entities.videos[ownProps.videoId];
   return {
     currentUser,
     loggedIn: Boolean(state.session.currentUserId),
-    likeCount: Object.keys(state.entities.likes).length
+    likeCount: currentVideo.amount_of_likes,
+    dislikeCount: currentVideo.amount_of_dislikes
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addLike: (videoId) => dispatch(LikeActions.addLike(videoId)),
-    removeLike: (videoId, like) => dispatch(LikeActions.removeLike(videoId, like)),
-    fetchLikes: (videoId) => dispatch(LikeActions.fetchLikes(videoId))
+    fetchRatings: (videoId) => dispatch(RatingActions.fetchRatings(videoId)),
+    addRating: (videoId, rating) => dispatch(RatingActions.addRating(videoId, rating)),
+    updateRating: (videoId, rating) => dispatch(RatingActions.updateRating(videoId, rating)),
+    removeRating: (videoId, rating) => dispatch(RatingActions.removeRating(videoId, rating))
   };
 };
 

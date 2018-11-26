@@ -1,54 +1,70 @@
 import React from 'react';
 import LikeIcon from './icons/like';
 import DislikeIcon from './icons/dislike';
-import { intersection } from 'underscore';
 
 class TitleArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       likeStatus: "grey",
-      currentLike: this.props.currentLike
+      dislikeStatus: "grey",
+      currentRating: null
     }
-    this.rate = this.rate.bind(this);
+    // this.rate = this.rate.bind(this);
   }
 
   componentDidUpdate() {
-    if (!this.props.currentUser && this.state.likeStatus === 'blue') {
-      this.setState({ likeStatus: "grey" })
+    if (!this.props.currentUser) {
+      if (this.state.likeStatus === 'blue') {
+        this.setState({ likeStatus: "grey" })
+      } else if (this.state.dislikeStatus === 'blue') {
+        this.setState({ dislikeStatus: "grey" })
+      }
     }
   }
 
   componentDidMount() {
     if (!this.props.currentUser) { return null; }
     const that = this;
-    this.props.fetchLikes(this.props.videoId).then(
+    this.props.fetchRatings(this.props.videoId).then(
       (action) => {
-        if (action.likes[that.props.currentUser.id]) {
-          that.setState({ currentLike: action.likes[that.props.currentUser.id], likeStatus: "blue" })
+        if (action.ratings[that.props.currentUser.id]) {
+          const currentRating = action.ratings[that.props.currentUser.id];
+          const name = currentRating.name;
+          that.setState({ currentRating, [name + "Status"]: "blue" });
         }
       }
     );
   }
 
-  rate(e) {
-    e.preventDefault();
-    if (!this.props.loggedIn) {
-      this.props.history.push(`/login`);
-      return;
-    }
-    const videoId = this.props.videoId;
-    if (this.state.likeStatus === "blue") {
-      this.props.removeLike(videoId, this.state.currentLike);
-      this.setState({ currentLike: null, likeStatus: "grey"});
-    } else {
-      this.props.addLike(videoId).then(
-        (action) => {
-          this.setState({ currentLike: action.like, likeStatus: "blue" });
+  rate(rating) {
+    const that = this;
+    return (e) => {
+      if (!that.props.loggedIn) {
+        that.props.history.push(`/login`);
+        return;
+      }
+      const videoId = that.props.videoId;
+      const otherRating = (rating === 'like' ? 'dislike' : 'like');
+      if (that.state.currentRating) {
+        let currentRating = that.state.currentRating;
+        if (currentRating.name === rating) {
+          that.props.removeRating(videoId, currentRating);
+          that.setState({ currentRating: null, [rating + "Status"]: 'grey', [otherRating + 'Status']: 'grey' });
+        } else {
+          currentRating.name = rating;
+          that.props.updateRating(videoId, currentRating);
+          that.setState({ currentRating, [rating + "Status"]: 'blue', [otherRating + 'Status']: 'grey' });
         }
-      );
-    }
-  }
+      } else {
+        that.props.addRating(videoId, { name: rating }).then(
+          (action) => {
+            that.setState({ currentRating: action.rating, [action.rating.name + 'Status']: 'blue', [otherRating + 'Status']: 'grey'});
+          }
+        );
+      }
+    };
+  };
 
   render() {
     return (
@@ -58,14 +74,14 @@ class TitleArea extends React.Component {
         </div>
         <div className="likes-and-views">
           <div className='like-area'>
-            <figure className="add-like" onClick={this.rate}>
+            <figure className="add-like" onClick={this.rate('like')}>
               <LikeIcon color={this.state.likeStatus}/>
             </figure>
             <p className="like-count">{this.props.likeCount}</p>
           </div>
           <div className='dislike-area'>
-            <figure className="add-dislike">
-              <DislikeIcon color="grey"/>
+            <figure className="add-dislike" onClick={this.rate('dislike')}>
+              <DislikeIcon color={this.state.dislikeStatus}/>
             </figure>
             <p className="dislike-count">{this.props.dislikeCount}</p>
           </div>

@@ -22,6 +22,5 @@ class Rating < ApplicationRecord
   belongs_to :video,
     primary_key: :id,
     foreign_key: :video_id,
-    class_name: :Video,
-    counter_cache: true
+    class_name: :Video
 end

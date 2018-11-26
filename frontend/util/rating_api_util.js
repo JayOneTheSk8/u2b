@@ -16,7 +16,7 @@ export const removeRating = (videoId, rating) => {
 export const updateRating = (videoId, rating) => {
   return $.ajax({
     method: 'PATCH',
-    url: `/api/video/${videoId}/ratings/${rating.id}`,
+    url: `/api/videos/${videoId}/ratings/${rating.id}`,
     data: { rating }
   });
 };

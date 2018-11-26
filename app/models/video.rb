@@ -65,11 +65,11 @@ class Video < ApplicationRecord
     self.created_at.to_date.strftime('%b %d %Y')
   end
 
-  def like_count_2
+  def amount_of_likes
     Rating.where(name: 'like', video_id: self.id).size
   end
 
-  def dislike_count
+  def amount_of_dislikes
     Rating.where(name: 'dislike', video_id: self.id).size
   end
 end

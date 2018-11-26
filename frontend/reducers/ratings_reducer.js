@@ -1,6 +1,7 @@
 import { ADD_RATING, REMOVE_RATING, RECEIVE_RATINGS } from '../actions/rating_actions';
 import { RECEIVE_VIDEO } from '../actions/video_actions';
 import { merge } from 'lodash';
+import { combineReducers } from 'redux';
 
 export default (state = {}, action) => {
   Object.freeze(state);

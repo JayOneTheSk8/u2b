@@ -6,7 +6,7 @@ export const RECEIVE_RATINGS = 'RECEIVE_RATINGS';
 
 export const fetchRatings = (videoId) => dispatch => {
   return RatingAPIUtil.fetchRatings(videoId).then(
-    (rating) => dispatch({ type: RECEIVE_RATINGS, ratings })
+    (ratings) => dispatch({ type: RECEIVE_RATINGS, ratings })
   );
 };
 
