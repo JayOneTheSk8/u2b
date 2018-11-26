@@ -26,6 +26,7 @@ class Video < ApplicationRecord
     foreign_key: :video_id,
     class_name: :Comment
 
+  # REMOVE=================================
   has_many :likes,
     primary_key: :id,
     foreign_key: :video_id,
@@ -43,6 +44,16 @@ class Video < ApplicationRecord
   has_many :dislikers,
     through: :dislikes,
     source: :user
+  # REMOVE=================================
+
+  has_many :ratings,
+    primary_key: :id,
+    foreign_key: :video_id,
+    class_name: :Rating
+
+  has_many :raters,
+    through: :ratings,
+    source: :user
 
   def age
     upload_time = self.created_at
@@ -54,11 +65,36 @@ class Video < ApplicationRecord
     self.created_at.to_date.strftime('%b %d %Y')
   end
 
-  def like_count
-    self.likes.length
+  # def like_count
+  #   Rating.where(name: 'like', video_id: self.id).count
+  # end
+  #
+  # def like_count_2
+  #   Rating.where(name: 'like', video_id: self.id).size
+  # end
+
+
+  def query_test
+    test1 = proc { |name| name.like_count }
+    test2 = proc { |name| name.like_count_2 }
+    tests = [test2, test1]
+    races = Hash.new { |hash, key| hash[key] = [] }
+    50.times do
+      tests.each_with_index do |test, idx|
+        start = Time.now
+        100.times do
+          test.call(self)
+        end
+        fin = Time.now
+        test_time = (fin - start) * 1000
+        races[idx] << test_time
+      end
+    end
+    puts "Average time for Test 2: #{(races[0].reduce(:+) / 10).to_f}"
+    puts "Average time for Test 1: #{(races[1].reduce(:+) / 10).to_f}"
   end
 
   def dislike_count
-    self.dislikes.length
+    Rating.where(name: 'dislike', video_id: self.id).count
   end
 end

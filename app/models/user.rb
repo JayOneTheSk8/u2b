@@ -26,6 +26,7 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Comment
 
+  # REMOVE=================================
   has_many :likes,
     primary_key: :id,
     foreign_key: :user_id,
@@ -42,6 +43,16 @@ class User < ApplicationRecord
 
   has_many :disliked_videos,
     through: :dislikes,
+    source: :video
+  # REMOVE=================================
+
+  has_many :ratings,
+    primary_key: :id,
+    foreign_key: :video_id,
+    class_name: :Rating
+
+  has_many :rated_videos,
+    through: :ratings,
     source: :video
 
   after_initialize :ensure_session_token!
