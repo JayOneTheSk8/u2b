@@ -6,7 +6,6 @@ import { fetchVideos, clearVideos } from '../../actions/video_actions';
 const mapStateToProps = state => {
   const currentUser = state.entities.users[state.session.currentUserId] || { username: "" };
   const videos = Object.keys(state.entities.videos).map((id) => state.entities.videos[id]);
-  debugger
   for (let i = 0; i < videos.length; i++) {
     videos[i].uploaderName = state.entities.users[videos[i].uploader_id].username;
   }

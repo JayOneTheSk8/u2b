@@ -41,7 +41,8 @@ class Api::VideosController < ApplicationController
 
   def user_videos
     @videos = Video.where(uploader_id: params[:user_id])
-    render '/api/videos/video_list'
+    @user = User.find(params[:user_id])
+    render 'api/videos/video_list'
   end
 
   private
