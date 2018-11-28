@@ -27,7 +27,6 @@ class TitleArea extends React.Component {
     const that = this;
     this.props.fetchRatings(this.props.videoId).then(
       (action) => {
-        console.log(that, this);
         if (action.ratings[that.props.currentUser.id]) {
           const currentRating = action.ratings[that.props.currentUser.id];
           const name = currentRating.name;

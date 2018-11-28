@@ -35,6 +35,10 @@ class Api::VideosController < ApplicationController
     @video.destroy
     render :show
   end
+  # 
+  # def user_videos
+  #   Video.where
+  # end
 
   private
 
