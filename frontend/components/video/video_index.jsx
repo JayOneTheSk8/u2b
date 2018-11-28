@@ -2,13 +2,15 @@ import React from 'react';
 import MinimisedVideo from './show/minimised_video';
 
 class VideoIndex extends React.Component {
-
   componentDidMount() {
     this.props.fetchVideos();
   }
 
-  render() {
+  componentWillUnmount() {
+    this.props.clearVideos();
+  }
 
+  render() {
     const videos = this.props.videos.map((video) => {
       return (
         <MinimisedVideo key={video.id} video={video}/>

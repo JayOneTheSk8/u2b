@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import VideoIndex from './video_index';
 import { logout } from '../../actions/session_actions';
-import { fetchVideos } from '../../actions/video_actions';
+import { fetchVideos, clearVideos } from '../../actions/video_actions';
 
 const mapStateToProps = state => {
   const currentUser = state.entities.users[state.session.currentUserId] || { username: "" };
   const videos = Object.keys(state.entities.videos).map((id) => state.entities.videos[id]);
+  debugger
   for (let i = 0; i < videos.length; i++) {
     videos[i].uploaderName = state.entities.users[videos[i].uploader_id].username;
   }
@@ -19,7 +20,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchVideos: () => dispatch(fetchVideos()),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    clearVideos: () => dispatch(clearVideos())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(VideoIndex);

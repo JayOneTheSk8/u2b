@@ -36,3 +36,10 @@ export const deleteVideo = (id) => {
     url: `/api/videos/${id}`
   });
 };
+
+export const fetchUserVideos = (userId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/users/${userId}/videos`
+  });
+};

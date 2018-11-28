@@ -18,7 +18,7 @@ const App = () => {
         <Modal />
         <Route exact path="/" component={VideoIndexContainer} />
         <Route path='/videos/:videoId' component={VideoShowContainer}/>
-        <Route path='/users/:userId/videos' component={UserVideoIndexContainer}/>
+        <Route path='/users/:userId/videos' component={UserVideoIndexContainer} />
         <ProtectedRoute path="/upload" component={VideoUploadContainer} />
         <AuthRoute path="/signup" component={SigninFormContainer}/>
         <AuthRoute path="/login" component={LoginFormContainer}/>
@@ -27,5 +27,4 @@ const App = () => {
   );
 };
 
-// make modal a component here either it has a non display or it has a block display. COnditional logic
 export default App;
