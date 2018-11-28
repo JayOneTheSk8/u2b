@@ -20,4 +20,19 @@ export const postVideo = (video) => {
     contentType: false,
     processData: false
   });
-}
+};
+
+export const updateVideo = (video) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/videos/${video.id}`,
+    data: { video }
+  });
+};
+
+export const deleteVideo = (id) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/videos/${id}`
+  });
+};

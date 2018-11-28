@@ -22,11 +22,18 @@ class Api::VideosController < ApplicationController
   end
 
   def update
-
+    @video = Video.find(params[:id])
+    if @video.update(video_params)
+      render :show
+    else
+      render json: @video.errors.full_messages, status: 422
+    end
   end
 
   def destroy
-
+    @video = Video.find(params[:id])
+    @video.destroy
+    render :show
   end
 
   private

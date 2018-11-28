@@ -44,12 +44,5 @@ class Video < ApplicationRecord
   def upload_date
     self.created_at.to_date.strftime('%b %d %Y')
   end
-  # 
-  # def amount_of_likes
-  #   Rating.where(name: 'like', video_id: self.id).size
-  # end
-  #
-  # def amount_of_dislikes
-  #   Rating.where(name: 'dislike', video_id: self.id).size
-  # end
+
 end

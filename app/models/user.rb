@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   has_many :ratings,
     primary_key: :id,
-    foreign_key: :video_id,
+    foreign_key: :user_id,
     class_name: :Rating
 
   has_many :rated_videos,

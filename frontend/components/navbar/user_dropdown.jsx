@@ -3,9 +3,11 @@ import SignoutIcon from './signout_icon';
 import { connect } from 'react-redux';
 import * as SessionActions from '../../actions/session_actions';
 import AccountIcon from './account_icon';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.session.currentUserId,
     status: state.ui.userMenu
   };
 };
@@ -22,6 +24,7 @@ class UserDropdown extends React.Component {
     this.state = { status: "unhovered" };
     this.hover = this.hover.bind(this);
     this.unhover = this.unhover.bind(this);
+    this.toUserVideos = this.toUserVideos.bind(this);
   }
 
   hover(e) {
@@ -32,11 +35,15 @@ class UserDropdown extends React.Component {
     this.setState({ status: "unhovered" });
   }
 
+  toUserVideos(e) {
+    this.props.history.push(`/users/${this.props.currentUserId}/videos`);
+  }
+
   render() {
     return (
       <ul className={`user-dropdown-` + this.props.status}>
         <li className={`user-dropdown-li`}>
-          <button className={`user-dropdown-text`}>
+          <button className={`user-dropdown-text`} onClick={this.toUserVideos}>
             <AccountIcon />
             Your Videos
           </button>
@@ -52,4 +59,4 @@ class UserDropdown extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDropdown);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDropdown));

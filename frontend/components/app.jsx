@@ -5,6 +5,7 @@ import SigninFormContainer from './session/signup_container';
 import VideoIndexContainer from './video/video_index_container';
 import VideoUploadContainer from './video/upload/upload_container';
 import VideoShowContainer from './video/show/show_container';
+import UserVideoIndexContainer from './video/user_videos/user_video_index_container';
 import NavBar from './navbar/navbar_container';
 import Modal from './modal/modal_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -17,6 +18,7 @@ const App = () => {
         <Modal />
         <Route exact path="/" component={VideoIndexContainer} />
         <Route path='/videos/:videoId' component={VideoShowContainer}/>
+        <Route path='/users/:userId/videos' component={UserVideoIndexContainer}/>
         <ProtectedRoute path="/upload" component={VideoUploadContainer} />
         <AuthRoute path="/signup" component={SigninFormContainer}/>
         <AuthRoute path="/login" component={LoginFormContainer}/>
