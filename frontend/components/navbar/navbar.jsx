@@ -5,6 +5,7 @@ import SearchBarContainer from './search/search_bar_container';
 import HamburgerIcon from './hamburger_icon';
 import UserDropdown from './user_dropdown';
 import VideoUploadIcon from './video_upload_icon';
+import DefaultUserThumbnail from '../session/default_user_thumbnail';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class NavBar extends React.Component {
       <div className="user-menu">
         <VideoUploadIcon />
         <figure onClick={this.toggleUserDrawer} className="user-button">
-          {this.props.currentUser.username}
+          <DefaultUserThumbnail username={this.props.currentUser.username} />
         </figure>
         <UserDropdown />
       </div>
