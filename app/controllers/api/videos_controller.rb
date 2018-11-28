@@ -1,6 +1,7 @@
 class Api::VideosController < ApplicationController
   def index
     @videos = Video.all
+    render :index
   end
 
   def create
@@ -32,13 +33,16 @@ class Api::VideosController < ApplicationController
 
   def destroy
     @video = Video.find(params[:id])
+    @comments = Video.comments
     @video.destroy
+    @comments.each { |comment| comment.destroy  }
     render :show
   end
-  # 
-  # def user_videos
-  #   Video.where
-  # end
+
+  def user_videos
+    @videos = Video.where(uploader_id: params[:user_id])
+    render '/api/videos/video_list'
+  end
 
   private
 
