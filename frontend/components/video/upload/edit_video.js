@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     accessAllowed,
     videoId: parseInt(ownProps.match.params.videoId),
     editForm: true,
-    buttonText: 'Update Video',
+    buttonText: 'Update',
     errors: state.errors.videos
   };
 };

@@ -128,6 +128,9 @@
 .submit-video:disabled {
   background-color: grey;
   cursor: not-allowed;
+  background-image: image-url('loading.gif');
+  background-size: cover;
+  background-position-y: center;
 }
 
 .title-error {
@@ -153,7 +156,3 @@
   font-size: 25px;
   font-weight: 700;
 }
-
-// .submit-video:hover {
-//
-// }
