@@ -27,6 +27,20 @@ class MinimisedVideo extends React.Component {
     );
   }
 
+  toProfileButton() {
+    const pathArray = this.props.location.pathname.split('/').slice(1);
+    if (pathArray.length === 3) {
+      if (pathArray[0] === 'users' && pathArray[2] === 'videos') {
+        return null;
+      }
+    }
+    return (
+      <button className="video-to-profile" onClick={this.directToProfile(this.video.uploader_id)}>
+        <p className="mini-uploader">{this.video.uploaderName}</p>
+      </button>
+    );
+  }
+
   render() {
     const updateVideoButtons = (this.props.editable === true ? this.editButtons() : "");
     return (
@@ -37,9 +51,7 @@ class MinimisedVideo extends React.Component {
           </video>
           <p className="mini-title">{this.video.title}</p>
         </Link>
-          <button className="video-to-profile" onClick={this.directToProfile(this.video.uploader_id)}>
-            <p className="mini-uploader">{this.video.uploaderName}</p>
-          </button>
+          { this.toProfileButton() }
         <Link to={`/videos/${this.video.id}`}>
           <p className="mini-age">{this.video.age}</p>
         </Link>
