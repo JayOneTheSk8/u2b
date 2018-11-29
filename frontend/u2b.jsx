@@ -5,6 +5,8 @@ import configureStore from './store/store';
 import Root from './components/root';
 import * as VideoAPIUtil from './util/video_api_util';
 
+const obj = { x: 1 };
+
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   let store;
