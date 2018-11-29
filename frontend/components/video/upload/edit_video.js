@@ -6,10 +6,12 @@ import { updateVideo, fetchVideo, removeVideoErrors, receiveVideoErrors, clearVi
 const mapStateToProps = (state, ownProps) => {
   const video = state.entities.videos[ownProps.match.params.videoId];
   const videoUrl = (video.videoUrl || null);
+  const accessAllowed = video.uploader_id === state.session.currentUserId;
   video.videoFile = true;
   return {
     video,
     videoUrl,
+    accessAllowed,
     videoId: parseInt(ownProps.match.params.videoId),
     editForm: true,
     buttonText: 'Update Video',

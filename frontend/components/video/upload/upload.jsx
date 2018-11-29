@@ -16,6 +16,9 @@ class Upload extends React.Component {
 
   componentDidMount() {
     if (this.props.editForm) {
+      if (!this.props.accessAllowed) {
+        this.props.history.push(`/videos/${this.props.videoId}`);
+      }
       this.props.fetchVideo(this.props.videoId);
       this.setState({ disabled: false })
     }
