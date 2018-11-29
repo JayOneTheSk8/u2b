@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show] do
       get 'videos', to: 'videos#user_videos'
     end
+    get 'latest', to: 'videos#latest'
     resource :session, only: [:create, :destroy]
     resources :videos, except: [:new, :edit]  do
       resources :comments, only: [:show, :create, :update, :destroy]

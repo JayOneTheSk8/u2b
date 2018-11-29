@@ -45,6 +45,11 @@ class Api::VideosController < ApplicationController
     render 'api/videos/video_list'
   end
 
+  def latest
+    @videos = Video.order(created_at: :desc).limit(10)
+    render :index
+  end
+
   private
 
   def video_params
