@@ -8,31 +8,31 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = state => {
   return {
     currentUserId: state.session.currentUserId,
-    status: state.ui.userMenu
+    status: state.ui.userMenu,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    logout: (e) => dispatch(SessionActions.logout())
+    logout: e => dispatch(SessionActions.logout()),
   };
 };
 
 class UserDropdown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { status: "unhovered" };
+    this.state = { status: 'unhovered' };
     this.hover = this.hover.bind(this);
     this.unhover = this.unhover.bind(this);
     this.toUserVideos = this.toUserVideos.bind(this);
   }
 
   hover(e) {
-    this.setState({ status: "hovered" });
+    this.setState({ status: 'hovered' });
   }
 
   unhover(e) {
-    this.setState({ status: "unhovered" });
+    this.setState({ status: 'unhovered' });
   }
 
   toUserVideos(e) {
@@ -59,4 +59,9 @@ class UserDropdown extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDropdown));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(UserDropdown)
+);

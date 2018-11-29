@@ -4,7 +4,6 @@ export const OPEN_USER_DRAWER = 'OPEN_USER_DRAWER';
 export const CLEAR_SCREEN = 'CLEAR_SCREEN';
 export const MODAL_ONLY = 'MODAL_ONLY';
 
-
 export const openModalDropdownMenu = () => dispatch => {
   return dispatch({ type: DROPDOWN_WITH_MODAL });
 };
@@ -22,5 +21,5 @@ export const clearScreen = () => dispatch => {
 };
 
 export const modalOnly = () => dispatch => {
-  return dispatch({ type: MODAL_ONLY })
+  return dispatch({ type: MODAL_ONLY });
 };

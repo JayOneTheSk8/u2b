@@ -1,4 +1,7 @@
-import { CREATE_EDIT_COMMENT, CLEAR_EDITS } from '../actions/comment_ui_actions';
+import {
+  CREATE_EDIT_COMMENT,
+  CLEAR_EDITS,
+} from '../actions/comment_ui_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -9,5 +12,5 @@ export default (state = {}, action) => {
       return { editableComment: null };
     default:
       return state;
-  };
+  }
 };

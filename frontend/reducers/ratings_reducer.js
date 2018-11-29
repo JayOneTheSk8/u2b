@@ -1,4 +1,9 @@
-import { ADD_RATING, REMOVE_RATING, RECEIVE_RATINGS, UPDATE_RATING } from '../actions/rating_actions';
+import {
+  ADD_RATING,
+  REMOVE_RATING,
+  RECEIVE_RATINGS,
+  UPDATE_RATING,
+} from '../actions/rating_actions';
 import { RECEIVE_VIDEO } from '../actions/video_actions';
 import { merge } from 'lodash';
 import { combineReducers } from 'redux';
@@ -7,9 +12,11 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_RATINGS:
-      return (action.ratings || {});
+      return action.ratings || {};
     case RECEIVE_VIDEO:
-      if (!action.ratings) { return {}; }
+      if (!action.ratings) {
+        return {};
+      }
       return merge({}, state, action.ratings);
     case UPDATE_RATING:
     case ADD_RATING:

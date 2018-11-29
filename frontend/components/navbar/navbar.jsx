@@ -11,9 +11,9 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      burgerColor: "original",
-      lastPage: null
-    }
+      burgerColor: 'original',
+      lastPage: null,
+    };
     this.changeStatus = this.changeStatus.bind(this);
     this.darkenColor = this.darkenColor.bind(this);
     this.lightenColor = this.lightenColor.bind(this);
@@ -24,15 +24,14 @@ class NavBar extends React.Component {
 
   componentDidUpdate() {
     if (this.state.lastPage !== this.props.location.pathname) {
-      this.setState({ lastPage: this.props.location.pathname })
+      this.setState({ lastPage: this.props.location.pathname });
       this.props.clearScreen();
     }
   }
 
-
   changeStatus(e) {
     e.preventDefault();
-    if (this.props.dropdownStatus === "closed") {
+    if (this.props.dropdownStatus === 'closed') {
       this.props.openModalDropdownMenu();
     } else {
       this.props.clearScreen();
@@ -40,16 +39,16 @@ class NavBar extends React.Component {
   }
 
   darkenColor(e) {
-    this.setState({ burgerColor: "darkened" });
+    this.setState({ burgerColor: 'darkened' });
   }
 
   lightenColor(e) {
-    this.setState({ burgerColor: "original" });
+    this.setState({ burgerColor: 'original' });
   }
 
   toggleUserDrawer(e) {
     e.preventDefault();
-    if (this.props.userMenuStatus === "hide") {
+    if (this.props.userMenuStatus === 'hide') {
       this.props.openUserDrawer();
     } else {
       this.props.clearScreen();
@@ -85,20 +84,30 @@ class NavBar extends React.Component {
   }
 
   render() {
-    if (this.props.location.pathname === "/signup" || this.props.location.pathname === "/login") { return null; }
+    if (
+      this.props.location.pathname === '/signup' ||
+      this.props.location.pathname === '/login'
+    ) {
+      return null;
+    }
     return (
-      <nav id='navbar'>
+      <nav id="navbar">
         <div className="main-hambuger-logo">
-          <figure onMouseEnter={this.darkenColor} onMouseLeave={this.lightenColor} className="clickable-area" onClick={this.changeStatus}>
+          <figure
+            onMouseEnter={this.darkenColor}
+            onMouseLeave={this.lightenColor}
+            className="clickable-area"
+            onClick={this.changeStatus}
+          >
             <HamburgerIcon color={this.state.burgerColor} />
           </figure>
-          <DropdownMenuContainer sideDrawer={this.props.dropdownStatus}/>
+          <DropdownMenuContainer sideDrawer={this.props.dropdownStatus} />
           <Link to="/">
-            <div className="logo"></div>
+            <div className="logo" />
           </Link>
         </div>
         <SearchBarContainer />
-        { this.userButton() }
+        {this.userButton()}
       </nav>
     );
   }

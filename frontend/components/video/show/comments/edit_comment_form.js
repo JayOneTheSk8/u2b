@@ -1,21 +1,24 @@
 import { connect } from 'react-redux';
 import CommentForm from './comment_form';
 import { withRouter } from 'react-router-dom';
-import { editComment, removeCommentErrors } from '../../../../actions/comment_actions';
+import {
+  editComment,
+  removeCommentErrors,
+} from '../../../../actions/comment_actions';
 import { clearEdits } from '../../../../actions/comment_ui_actions';
 
-const defaultState = { body: '' }
+const defaultState = { body: '' };
 
 const mapStateToProps = (state, ownProps) => {
   const editableComment = state.commentUI.editableComment;
-  const comment = (state.entities.comments[editableComment] || defaultState);
+  const comment = state.entities.comments[editableComment] || defaultState;
   return {
     comment: { body: comment.body },
     errors: state.errors.comments,
-    buttonText: "SAVE",
+    buttonText: 'SAVE',
     loggedIn: Boolean(state.session.currentUserId),
     originalComment: comment.body,
-    editableComment: state.commentUI.editableComment
+    editableComment: state.commentUI.editableComment,
   };
 };
 
@@ -23,8 +26,13 @@ const mapDispatchToProps = dispatch => {
   return {
     submitAction: (videoId, comment) => dispatch(editComment(videoId, comment)),
     removeCommentErrors: () => dispatch(removeCommentErrors()),
-    clearEdits: () => dispatch(clearEdits())
+    clearEdits: () => dispatch(clearEdits()),
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentForm));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CommentForm)
+);

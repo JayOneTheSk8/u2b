@@ -1,20 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EditCommentForm from './edit_comment_form';
-import { createEditComment, clearEdits } from '../../../../actions/comment_ui_actions';
+import {
+  createEditComment,
+  clearEdits,
+} from '../../../../actions/comment_ui_actions';
 import { deleteComment } from '../../../../actions/comment_actions';
 
 const mapStateToProps = state => {
   return {
     currentUserId: state.session.currentUserId,
-    editableComment: state.commentUI.editableComment
+    editableComment: state.commentUI.editableComment,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    createEditComment: (commentId) => dispatch(createEditComment(commentId)),
-    deleteComment: (videoId, comment) => dispatch(deleteComment(videoId, comment))
+    createEditComment: commentId => dispatch(createEditComment(commentId)),
+    deleteComment: (videoId, comment) =>
+      dispatch(deleteComment(videoId, comment)),
   };
 };
 
@@ -33,13 +37,15 @@ class Comment extends React.Component {
 
   revertForm(e) {
     e.preventDefault();
-    this.setState({ status: "read-only" });
+    this.setState({ status: 'read-only' });
   }
 
   removeComment(e) {
     e.preventDefault();
-    const confirmDelete = prompt("Are you sure you want to delete your comment? (Y/N)");
-    if (confirmDelete.toUpperCase() === 'Y' || confirmDelete.toUpperCase() === 'YES') {
+    const confirmDelete = prompt(
+      'Are you sure you want to delete your comment? (Y/N)'
+    );
+    if (confirmDelete.toUpperCase()[0] === 'Y') {
       this.props.deleteComment(this.props.comment.video_id, this.props.comment);
     } else {
       return null;
@@ -50,8 +56,12 @@ class Comment extends React.Component {
     if (this.props.comment.author_id === this.props.currentUserId) {
       return (
         <>
-          <button className="edit-comment" onClick={this.editComment}>EDIT</button>
-          <button className="delete-comment" onClick={this.removeComment}>DELETE</button>
+          <button className="edit-comment" onClick={this.editComment}>
+            EDIT
+          </button>
+          <button className="delete-comment" onClick={this.removeComment}>
+            DELETE
+          </button>
         </>
       );
     } else {
@@ -63,7 +73,7 @@ class Comment extends React.Component {
     if (this.props.editableComment === this.props.comment.id) {
       return (
         <>
-          <EditCommentForm comment={comment}/>
+          <EditCommentForm comment={comment} />
         </>
       );
     }
@@ -75,11 +85,13 @@ class Comment extends React.Component {
           <p className="comment-age">{comment.age}</p>
         </div>
         <p className="comment-body">{comment.body}</p>
-        { this.renderEditButton() }
+        {this.renderEditButton()}
       </li>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comment);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Comment);

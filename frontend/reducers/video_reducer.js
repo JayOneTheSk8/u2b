@@ -1,4 +1,9 @@
-import { RECEIVE_VIDEO, RECEIVE_VIDEOS, REMOVE_VIDEO, CLEAR_VIDEOS } from '../actions/video_actions';
+import {
+  RECEIVE_VIDEO,
+  RECEIVE_VIDEOS,
+  REMOVE_VIDEO,
+  CLEAR_VIDEOS,
+} from '../actions/video_actions';
 import { merge } from 'lodash';
 
 export default (state = {}, action) => {

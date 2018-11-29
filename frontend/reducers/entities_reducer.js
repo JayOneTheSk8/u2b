@@ -10,5 +10,5 @@ export default combineReducers({
   videos: VideoReducer,
   comments: CommentsReducer,
   ratingsCount: RatingsCountReducer,
-  ratings: RatingsReducer
+  ratings: RatingsReducer,
 });

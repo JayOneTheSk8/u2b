@@ -4,7 +4,7 @@ import MinimisedVideo from '../show/minimised_video';
 class UserVideoIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lastPage: null };
+    this.state = { lastPage: null, removedVideo: false, videoCount: 0 };
   }
 
   componentDidMount() {
@@ -21,17 +21,20 @@ class UserVideoIndex extends React.Component {
   }
 
   render() {
-    const videos = this.props.videos.map((video) => {
+    const videos = this.props.videos.map(video => {
       return (
-        <MinimisedVideo editable={this.props.editSession} key={video.id} video={video}/>
+        <MinimisedVideo
+          parent={this}
+          editable={this.props.editSession}
+          key={video.id}
+          video={video}
+        />
       );
     });
     return (
       <>
         <h1>{this.props.videoUploader.username} Uploads</h1>
-        <ul className="video-list">
-          {videos}
-        </ul>
+        <ul className="video-list">{videos}</ul>
       </>
     );
   }

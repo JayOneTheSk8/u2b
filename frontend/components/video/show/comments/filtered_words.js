@@ -1,1 +1,1 @@
-export const FileredWords = ['balderdash', 'humdrum', 'lint-licker',]
+export const FileredWords = ['balderdash', 'humdrum', 'lint-licker'];

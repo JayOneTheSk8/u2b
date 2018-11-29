@@ -8,20 +8,25 @@ class UploadArea extends React.Component {
     this.revertBackground = this.revertBackground.bind(this);
   }
 
-  reddenBackground(e){
+  reddenBackground(e) {
     this.setState({ status: 'hovered' });
   }
 
-  revertBackground(e){
+  revertBackground(e) {
     this.setState({ status: 'unhovered' });
   }
 
   render() {
     return (
-      <label onMouseEnter={this.reddenBackground} onMouseLeave={this.revertBackground} className="upload-area" htmlFor="video-upload">
-        <div className="pointer"></div>
-        <div className="arrow-body"></div>
-        <div className={"border-"+ this.state.status}></div>
+      <label
+        onMouseEnter={this.reddenBackground}
+        onMouseLeave={this.revertBackground}
+        className="upload-area"
+        htmlFor="video-upload"
+      >
+        <div className="pointer" />
+        <div className="arrow-body" />
+        <div className={'border-' + this.state.status} />
         <div className="upload-message">
           <p>Click to Upload Videos</p>
         </div>

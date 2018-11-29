@@ -4,7 +4,12 @@ import { merge } from 'lodash';
 class CommentForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = merge({}, this.props.comment, { redden: "", bodyError: null, errorDisplay: 'show', disableSubmit: false });
+    this.state = merge({}, this.props.comment, {
+      redden: '',
+      bodyError: null,
+      errorDisplay: 'show',
+      disableSubmit: false,
+    });
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
@@ -46,9 +51,12 @@ class CommentForm extends React.Component {
       return;
     }
     const videoId = this.props.match.params.videoId;
-    this.props.submitAction(videoId, { id: this.props.editableComment, body: this.state.body });
+    this.props.submitAction(videoId, {
+      id: this.props.editableComment,
+      body: this.state.body,
+    });
     this.props.clearEdits();
-    this.setState({ body: "", bodyError: null, redden: '' })
+    this.setState({ body: '', bodyError: null, redden: '' });
   }
 
   checkLoggedIn(e) {
@@ -60,18 +68,32 @@ class CommentForm extends React.Component {
   clearEdits(e) {
     e.preventDefault();
     this.props.clearEdits();
-    this.setState({ bodyError: null, redden: "", body: "" })
+    this.setState({ bodyError: null, redden: '', body: '' });
   }
 
   render() {
     return (
       <>
         <form className="comment-form" onSubmit={this.handleSubmit}>
-          <input onFocus={this.checkLoggedIn} className={`comment-input${this.state.redden}`} type='text' value={this.state.body} onChange={this.update} placeholder="Add a public comment..." />
+          <input
+            onFocus={this.checkLoggedIn}
+            className={`comment-input${this.state.redden}`}
+            type="text"
+            value={this.state.body}
+            onChange={this.update}
+            placeholder="Add a public comment..."
+          />
           <div className="control-buttons">
-            <input disabled={this.state.disableSubmit} className="submit-comment" type='submit' value={this.props.buttonText}/>
-            { this.state.bodyError }
-            <button className="cancel-comment" onClick={this.clearEdits}>CANCEL</button>
+            <input
+              disabled={this.state.disableSubmit}
+              className="submit-comment"
+              type="submit"
+              value={this.props.buttonText}
+            />
+            {this.state.bodyError}
+            <button className="cancel-comment" onClick={this.clearEdits}>
+              CANCEL
+            </button>
           </div>
         </form>
       </>

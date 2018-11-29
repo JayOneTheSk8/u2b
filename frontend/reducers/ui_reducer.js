@@ -1,6 +1,12 @@
-import { CLEAR_SCREEN, DROPDOWN_WITH_MODAL, DROPDOWN_WITHOUT_MODAL, OPEN_USER_DRAWER, MODAL_ONLY } from '../actions/ui_actions';
+import {
+  CLEAR_SCREEN,
+  DROPDOWN_WITH_MODAL,
+  DROPDOWN_WITHOUT_MODAL,
+  OPEN_USER_DRAWER,
+  MODAL_ONLY,
+} from '../actions/ui_actions';
 
-const defaultState = { modal: 'hide', dropdown: 'closed', userMenu: 'hide' }
+const defaultState = { modal: 'hide', dropdown: 'closed', userMenu: 'hide' };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
@@ -17,5 +23,5 @@ export default (state = defaultState, action) => {
       return defaultState;
     default:
       return state;
-  };
+  }
 };

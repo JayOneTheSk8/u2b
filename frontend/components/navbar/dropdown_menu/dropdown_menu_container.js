@@ -1,4 +1,7 @@
 import { connect } from 'react-redux';
-import DropdownMenu from './dropdown_menu'
+import DropdownMenu from './dropdown_menu';
 
-export default connect(null, null)(DropdownMenu);
+export default connect(
+  null,
+  null
+)(DropdownMenu);

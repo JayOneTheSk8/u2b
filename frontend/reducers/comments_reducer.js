@@ -7,7 +7,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_VIDEO:
       const comments = action.comments || {};
-      return comments
+      return comments;
     case RECEIVE_COMMENT:
       return merge({}, state, { [action.comment.id]: action.comment });
     case REMOVE_COMMENT:
@@ -16,5 +16,5 @@ export default (state = {}, action) => {
       return newState;
     default:
       return state;
-  };
+  }
 };

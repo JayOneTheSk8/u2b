@@ -4,7 +4,7 @@ import SearchIcon from './search_icon';
 const SearchBar = () => {
   return (
     <form className="search-bar">
-      <input className="search-input" type="text" placeholder="Search U2B..."/>
+      <input className="search-input" type="text" placeholder="Search U2B..." />
       <SearchIcon />
     </form>
   );

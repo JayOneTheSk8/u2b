@@ -33,9 +33,11 @@ class Api::VideosController < ApplicationController
 
   def destroy
     @video = Video.find(params[:id])
-    @comments = Video.comments
+    comments = @video.comments
+    ratings = @video.ratings
+    comments.each { |comment| comment.destroy  }
+    ratings.each { |rating| rating.destroy  }
     @video.destroy
-    @comments.each { |comment| comment.destroy  }
     render :show
   end
 

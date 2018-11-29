@@ -1,7 +1,7 @@
-export const CREATE_EDIT_COMMENT = "CREATE_EDIT_COMMENT";
-export const CLEAR_EDITS = "CLEAR_EDITS";
+export const CREATE_EDIT_COMMENT = 'CREATE_EDIT_COMMENT';
+export const CLEAR_EDITS = 'CLEAR_EDITS';
 
-export const createEditComment = (commentId) => dispatch => {
+export const createEditComment = commentId => dispatch => {
   return dispatch({ type: CREATE_EDIT_COMMENT, commentId });
 };
 

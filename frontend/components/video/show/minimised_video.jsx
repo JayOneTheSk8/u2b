@@ -1,28 +1,55 @@
 import React from 'react';
 import { withRouter, Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteVideo } from '../../../actions/video_actions';
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteVideo: id => dispatch(deleteVideo(id)),
+  };
+};
 
 class MinimisedVideo extends React.Component {
   constructor(props) {
     super(props);
     this.video = this.props.video;
     this.redirectToForm = this.redirectToForm.bind(this);
+    this.removeVideo = this.removeVideo.bind(this);
   }
 
   directToProfile(uploaderId) {
-    return (e) => {
-      this.props.history.push(`/users/${uploaderId}/videos`)
+    return e => {
+      this.props.history.push(`/users/${uploaderId}/videos`);
     };
   }
 
   redirectToForm(e) {
-    this.props.history.push(`/videos/${this.video.id}/edit`)
+    this.props.history.push(`/videos/${this.video.id}/edit`);
+  }
+
+  removeVideo(e) {
+    e.preventDefault();
+    const confirmDelete = prompt(
+      'Are you sure you want to delete your video? (Y/N)'
+    );
+    if (confirmDelete.toUpperCase()[0] === 'Y') {
+      this.props
+        .deleteVideo(this.video.id)
+        .then(action => this.props.history.push('/'));
+    } else {
+      return null;
+    }
   }
 
   editButtons() {
     return (
-      <div className='editButtons'>
-        <button onClick={this.redirectToForm} className="edit-comment">EDIT</button>
-        <button className="delete-comment">DELETE</button>
+      <div className="editButtons">
+        <button onClick={this.redirectToForm} className="edit-comment">
+          EDIT
+        </button>
+        <button onClick={this.removeVideo} className="delete-comment">
+          DELETE
+        </button>
       </div>
     );
   }
@@ -35,30 +62,39 @@ class MinimisedVideo extends React.Component {
       }
     }
     return (
-      <button className="video-to-profile" onClick={this.directToProfile(this.video.uploader_id)}>
+      <button
+        className="video-to-profile"
+        onClick={this.directToProfile(this.video.uploader_id)}
+      >
         <p className="mini-uploader">{this.video.uploaderName}</p>
       </button>
     );
   }
 
   render() {
-    const updateVideoButtons = (this.props.editable === true ? this.editButtons() : "");
+    const updateVideoButtons =
+      this.props.editable === true ? this.editButtons() : '';
     return (
       <li className="minimised-video">
         <Link to={`/videos/${this.video.id}`}>
-          <video height='84' width='150'>
-            <source src={this.video.videoUrl}/>
+          <video height="84" width="150">
+            <source src={this.video.videoUrl} />
           </video>
           <p className="mini-title">{this.video.title}</p>
         </Link>
-          { this.toProfileButton() }
+        {this.toProfileButton()}
         <Link to={`/videos/${this.video.id}`}>
           <p className="mini-age">{this.video.age}</p>
         </Link>
-        { updateVideoButtons }
+        {updateVideoButtons}
       </li>
     );
   }
 }
 
-export default withRouter(MinimisedVideo);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(MinimisedVideo)
+);

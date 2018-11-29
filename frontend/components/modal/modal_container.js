@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
 import Modal from './modal';
-import { clearScreen } from '../../actions/ui_actions'; 
+import { clearScreen } from '../../actions/ui_actions';
 
 const mapStateToProps = state => {
   return {
-    status: state.ui.modal
+    status: state.ui.modal,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearScreen: (e) => dispatch(clearScreen())
+    clearScreen: e => dispatch(clearScreen()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Modal);

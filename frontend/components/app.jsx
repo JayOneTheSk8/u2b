@@ -18,12 +18,18 @@ const App = () => {
       <div id="main-content">
         <Modal />
         <Route exact path="/" component={VideoIndexContainer} />
-        <Route exact path='/videos/:videoId' component={VideoShowContainer}/>
-        <Route path='/users/:userId/videos' component={UserVideoIndexContainer} />
+        <Route exact path="/videos/:videoId" component={VideoShowContainer} />
+        <Route
+          path="/users/:userId/videos"
+          component={UserVideoIndexContainer}
+        />
         <ProtectedRoute path="/upload" component={VideoUploadContainer} />
-        <ProtectedRoute path="/videos/:videoId/edit" component={EditVideoContainer}/>
-        <AuthRoute path="/signup" component={SigninFormContainer}/>
-        <AuthRoute path="/login" component={LoginFormContainer}/>
+        <ProtectedRoute
+          path="/videos/:videoId/edit"
+          component={EditVideoContainer}
+        />
+        <AuthRoute path="/signup" component={SigninFormContainer} />
+        <AuthRoute path="/login" component={LoginFormContainer} />
       </div>
     </>
   );

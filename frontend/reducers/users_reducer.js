@@ -8,8 +8,13 @@ export default (state = {}, action) => {
     case RECEIVE_USER:
       return merge({}, state, { [action.currentUser.id]: action.currentUser });
     case RECEIVE_VIDEO:
-      const authors = (action.authors || {});
-      return merge({}, state, { [action.uploader.id]: action.uploader }, authors);
+      const authors = action.authors || {};
+      return merge(
+        {},
+        state,
+        { [action.uploader.id]: action.uploader },
+        authors
+      );
     case RECEIVE_VIDEOS:
       return merge({}, state, action.uploaders);
     default:
