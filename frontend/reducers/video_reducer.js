@@ -15,6 +15,7 @@ export default (state = {}, action) => {
       delete newState[action.videoId];
       return newState;
     default:
+      debugger
       return state;
   }
 };

@@ -14,6 +14,13 @@ class Upload extends React.Component {
     this.props.removeVideoErrors();
   }
 
+  componentDidMount() {
+    if (this.props.editForm) {
+      this.props.fetchVideo(this.props.videoId);
+      this.setState({ disabled: false })
+    }
+  }
+
   update(field) {
     return (e) => {
       this.setState({ [field]: e.target.value });
@@ -29,7 +36,7 @@ class Upload extends React.Component {
     this.props.removeVideoErrors();
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({videoFile: video, videoUrl: fileReader.result, title: video.name, disabled: false});
+      this.setState({ videoFile: video, videoUrl: fileReader.result, title: video.name, disabled: false });
     };
     if (video) {
       fileReader.readAsDataURL(video);
@@ -38,15 +45,23 @@ class Upload extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const that = this;
-    this.setState({ disabled: true }); //Async so the rest will follow
+    if (this.props.editForm) {
+      this.setState({ disabled: true });
+      const video = { id: this.props.videoId, title: this.state.title, description: this.state.description };
+      this.props.updateVideo(video).then(
+        (action) => (this.props.history.push(`/videos/${action.video.id}`)),
+        (error) => (this.setState({ disabled: false }))
+      );
+      return;
+    }
+    this.setState({ disabled: true });
     const formData = new FormData();
     formData.append('video[title]', this.state.title);
     formData.append('video[description]', this.state.description);
     formData.append('video[video]', this.state.videoFile);
     this.props.postVideo(formData).then(
-      (action) => (that.props.history.push(`/videos/${action.video.id}`)),
-      (error) => (that.setState({ disabled: false }))
+      (action) => (this.props.history.push(`/videos/${action.video.id}`)),
+      (error) => (this.setState({ disabled: false }))
     );
   }
 
@@ -81,7 +96,7 @@ class Upload extends React.Component {
             <label htmlFor="description"></label>
             <textarea className='description-input' onChange={this.update('description')} placeholder="Description" value={this.state.description}/>
           </div>
-            <input disabled={this.state.disabled} className='submit-video' type="submit" value="Post Video"/>
+            <input disabled={this.state.disabled} className='submit-video' type="submit" value={this.props.buttonText}/>
         </form>
       </div>
     );

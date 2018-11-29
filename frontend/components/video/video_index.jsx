@@ -3,11 +3,8 @@ import MinimisedVideo from './show/minimised_video';
 
 class VideoIndex extends React.Component {
   componentDidMount() {
-    this.props.fetchVideos();
-  }
-
-  componentWillUnmount() {
     this.props.clearVideos();
+    this.props.fetchVideos();
   }
 
   render() {

@@ -8,11 +8,8 @@ class UserVideoIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserVideos(this.props.videoUploaderId);
-  }
-
-  componentWillUnmount() {
     this.props.clearVideos();
+    this.props.fetchUserVideos(this.props.videoUploaderId);
   }
 
   componentDidUpdate() {

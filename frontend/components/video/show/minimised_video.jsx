@@ -5,6 +5,7 @@ class MinimisedVideo extends React.Component {
   constructor(props) {
     super(props);
     this.video = this.props.video;
+    this.redirectToForm = this.redirectToForm.bind(this);
   }
 
   directToProfile(uploaderId) {
@@ -13,10 +14,14 @@ class MinimisedVideo extends React.Component {
     };
   }
 
+  redirectToForm(e) {
+    this.props.history.push(`/videos/${this.video.id}/edit`)
+  }
+
   editButtons() {
     return (
       <div className='editButtons'>
-        <button className="edit-comment">EDIT</button>
+        <button onClick={this.redirectToForm} className="edit-comment">EDIT</button>
         <button className="delete-comment">DELETE</button>
       </div>
     );
@@ -43,40 +48,5 @@ class MinimisedVideo extends React.Component {
     );
   }
 }
-
-{/*
-const MinimisedVideo = (props) => {
-  const video = props.video
-  const updateVideoButtons = (props.editable === true ? editButtons() : "");
-  return (
-    <li className="minimised-video">
-      <Link to={`/videos/${video.id}`}>
-        <video height='84' width='150'>
-          <source src={video.videoUrl}/>
-        </video>
-        <p className="mini-title">{video.title}</p>
-      </Link>
-        <button className="video-to-profile" onClick={directToProfile(video.uploader_id)}>
-          <p className="mini-uploader">{video.uploaderName}</p>
-        </button>
-      <Link to={`/videos/${video.id}`}>
-        <p className="mini-age">{video.age}</p>
-      </Link>
-      { updateVideoButtons }
-    </li>
-  );
-};
-
-function directToProfile(uploaderId) {
-  return (e) => {
-    return (
-      <Redirect to={`/users/${uploaderId}/videos`} />
-    );
-  };
-}
-
-function editButtons() {
-}
-*/}
 
 export default withRouter(MinimisedVideo);
