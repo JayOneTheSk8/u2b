@@ -4,6 +4,7 @@ import SessionReducer from './session_reducer';
 import ErrorsReducer from './errors_reducer';
 import UIReducer from './ui_reducer';
 import CommentUIReducer from './comment_ui_reducer';
+import SearchReducer from './search_reducer';
 
 export default combineReducers({
   entities: EntitiesReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   errors: ErrorsReducer,
   ui: UIReducer,
   commentUI: CommentUIReducer,
+  search: SearchReducer,
 });
