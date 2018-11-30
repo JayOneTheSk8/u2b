@@ -60,14 +60,6 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.password_digest).is_password?(passed_word)
   end
 
-  def favorites
-    all_favorites = []
-    self.likes.each do |like|
-      all_favorites << like.video_id
-    end
-    all_favorites
-  end
-
   private
   def ensure_session_token!
     self.session_token ||= SecureRandom::urlsafe_base64

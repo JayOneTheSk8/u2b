@@ -41,7 +41,9 @@ class SearchBar extends React.Component {
     this.setState({ hideResults: false });
   }
 
-  fullSearch(e) {}
+  fullSearch(e) {
+    e.preventDefault();
+  }
 
   render() {
     const results = this.props.queryResults.map(result => {
