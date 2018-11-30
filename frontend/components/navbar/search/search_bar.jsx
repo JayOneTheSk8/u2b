@@ -23,6 +23,7 @@ class SearchBar extends React.Component {
     this.queryText = this.queryText.bind(this);
     this.hideList = this.hideList.bind(this);
     this.showList = this.showList.bind(this);
+    this.fullSearch = this.fullSearch.bind(this);
   }
 
   queryText(e) {
@@ -40,16 +41,35 @@ class SearchBar extends React.Component {
     this.setState({ hideResults: false });
   }
 
+  fullSearch(e) {}
+
   render() {
-    let results = this.props.queryResults.map(result => {
-      return <li key={result.id}>{result.title}</li>;
+    const results = this.props.queryResults.map(result => {
+      return (
+        <li
+          key={result.id}
+          onClick={this.fullSearch}
+          className="result-list-item"
+        >
+          {result.title}
+        </li>
+      );
     });
+    let resultList = () => {
+      return (
+        <>
+          <ul className="result-list">{results}</ul>
+        </>
+      );
+    };
     if (results.length === 0 || this.state.hideResults) {
-      results = null;
+      resultList = () => {
+        return null;
+      };
     }
     return (
       <div className="search-area">
-        <form className="search-bar">
+        <form className="search-bar" onSubmit={this.fullSearch}>
           <input
             className="search-input"
             type="text"
@@ -61,7 +81,7 @@ class SearchBar extends React.Component {
           />
           <SearchIcon />
         </form>
-        <ul>{results}</ul>
+        {resultList()}
       </div>
     );
   }
