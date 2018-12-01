@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import RootReducer from './reducers/root_reducer';
 import configureStore from './store/store';
 import Root from './components/root';
-import * as VideoAPIUtil from './util/video_api_util';
-
-const obj = { x: 1 };
+import * as SearchActions from './actions/search_actions';//TEST
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -22,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-  window.fetchVideo = VideoAPIUtil.fetchVideo;
+  window.fetchFullResults = SearchActions.fetchFullResults; //TEST
   window.getState = store.getState; //TEST
   window.dispatch = store.dispatch; //TEST
   ReactDOM.render(<Root store={store} />, root);

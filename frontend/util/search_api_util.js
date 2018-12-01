@@ -5,3 +5,11 @@ export const fetchResults = search => {
     data: { search },
   });
 };
+
+export const fetchFullResults = search => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/full_search',
+    data: { search }
+  });
+};

@@ -1,4 +1,8 @@
-import { RECEIVE_RESULTS, CLEAR_RESULTS } from '../actions/search_actions';
+import {
+  RECEIVE_RESULTS,
+  CLEAR_RESULTS,
+  RECEIVE_FULL_RESULTS,
+} from '../actions/search_actions';
 
 export default (state = [], action) => {
   switch (action.type) {
@@ -10,6 +14,8 @@ export default (state = [], action) => {
       }
     case CLEAR_RESULTS:
       return [];
+    case RECEIVE_FULL_RESULTS:
+      return action.results;
     default:
       return state;
   }
