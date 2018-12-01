@@ -15,7 +15,7 @@ class Video < ApplicationRecord
   include ActionView::Helpers::DateHelper
 
   has_one_attached :video
-  after_initialize :initial_views
+  after_initialize :initialize_views
 
   belongs_to :uploader,
     primary_key: :id,
@@ -49,7 +49,7 @@ class Video < ApplicationRecord
     date_array.join(' ')
   end
 
-  def initial_views
+  def initialize_views
     @views ||= 0
   end
 end

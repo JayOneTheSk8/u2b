@@ -26,6 +26,7 @@ class NavBar extends React.Component {
     if (this.state.lastPage !== this.props.location.pathname) {
       this.setState({ lastPage: this.props.location.pathname });
       this.props.clearScreen();
+      this.props.clearResults();
     }
   }
 

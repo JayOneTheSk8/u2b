@@ -23,7 +23,7 @@ const App = () => {
           path="/users/:userId/videos"
           component={UserVideoIndexContainer}
         />
-        {/*<Route path="/results?search_query=" />*/}
+        <Route path="/results?search_query=" />
         <ProtectedRoute path="/upload" component={VideoUploadContainer} />
         <ProtectedRoute
           path="/videos/:videoId/edit"

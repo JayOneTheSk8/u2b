@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NavBar from './navbar';
 import { withRouter } from 'react-router-dom';
+import { clearResults } from '../../actions/search_actions';
 import {
   openModalDropdownMenu,
   clearScreen,
@@ -22,6 +23,7 @@ const mapDispatchToProps = dispatch => {
     openModalDropdownMenu: () => dispatch(openModalDropdownMenu()),
     openUserDrawer: () => dispatch(openUserDrawer()),
     clearScreen: () => dispatch(clearScreen()),
+    clearResults: () => dispatch(clearResults()),
   };
 };
 

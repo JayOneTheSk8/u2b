@@ -62,5 +62,7 @@
 }
 
 .result-list-item:hover {
+  cursor: pointer;
   background: #cbcbcb;
+  border-left: 1px solid black;
 }
