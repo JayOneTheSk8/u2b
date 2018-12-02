@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    queryResults: state.search,
+    queryResults: state.search.resultList,
   };
 };
 
@@ -29,14 +29,6 @@ class SearchBar extends React.Component {
     this.prepToClick = this.prepToClick.bind(this);
     this.unprepToClick = this.unprepToClick.bind(this);
   }
-
-  // componentDidUpdate() {
-  //   debugger
-  //   if (this.state.lastSearch !== this.props.location.search) {
-  //     this.setState({ lastSearch: this.props.location.search });
-  //     this.props.clearResults();
-  //   }
-  // }
 
   queryText(e) {
     this.setState({ query: e.target.value });

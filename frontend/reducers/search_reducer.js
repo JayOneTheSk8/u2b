@@ -3,17 +3,26 @@ import {
   CLEAR_RESULTS,
   RECEIVE_FULL_RESULTS,
 } from '../actions/search_actions';
+import { merge } from 'lodash';
 
-export default (state = [], action) => {
+const defaultState = { resultList: [] };
+
+export default (state = defaultState, action) => {
+  Object.freeze(state);
   switch (action.type) {
     case RECEIVE_RESULTS:
+      let newState = merge({}, state);
+      newState.resultList = [];
       if (action.resultList.length === 0) {
-        return [];
+        return newState;
       } else {
-        return action.resultList;
+        newState.resultList = action.resultList;
+        return newState;
       }
     case CLEAR_RESULTS:
-      return [];
+      newState = merge({}, state);
+      newState.resultList = [];
+      return newState;
     case RECEIVE_FULL_RESULTS:
       return action.results;
     default:

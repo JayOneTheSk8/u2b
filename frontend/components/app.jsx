@@ -7,6 +7,7 @@ import VideoUploadContainer from './video/upload/upload_container';
 import EditVideoContainer from './video/upload/edit_video';
 import VideoShowContainer from './video/show/show_container';
 import UserVideoIndexContainer from './video/user_videos/user_video_index_container';
+import SearchPage from './navbar/search/search_page';
 import NavBar from './navbar/navbar_container';
 import Modal from './modal/modal_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -23,7 +24,7 @@ const App = () => {
           path="/users/:userId/videos"
           component={UserVideoIndexContainer}
         />
-        <Route path="/results?search_query=" />
+        <Route path="/results?search_query=" component={SearchPage} />
         <ProtectedRoute path="/upload" component={VideoUploadContainer} />
         <ProtectedRoute
           path="/videos/:videoId/edit"
