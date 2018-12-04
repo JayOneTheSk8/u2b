@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link, Redirect } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteVideo } from '../../../actions/video_actions';
 

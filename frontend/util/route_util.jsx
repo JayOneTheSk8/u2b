@@ -26,9 +26,25 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
   );
 };
 
-const mapStateToProps = state => {
+const Secured = ({ component: Component, path, matched, exact }) => {
+  debugger
+  return (
+    <Route
+      path={path}
+      exact={exact}
+      render={props =>
+        matched ? <Component {...props} /> : <Redirect to="/" />
+      }
+    />
+  );
+};
+
+const mapStateToProps = (state, ownProps) => {
+  const userFromPath = ownProps.match.params.userId;
+  const matched = userFromPath === state.session.currentUserId;
   return {
     loggedIn: Boolean(state.session.currentUserId),
+    matched,
   };
 };
 
@@ -38,9 +54,17 @@ export const AuthRoute = withRouter(
     null
   )(Auth)
 );
+
 export const ProtectedRoute = withRouter(
   connect(
     mapStateToProps,
     null
   )(Protected)
+);
+
+export const SecuredRoute = withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Secured)
 );

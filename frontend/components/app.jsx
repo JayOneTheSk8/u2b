@@ -10,7 +10,7 @@ import UserVideoIndexContainer from './video/user_videos/user_video_index_contai
 import SearchPage from './navbar/search/search_page';
 import NavBar from './navbar/navbar_container';
 import Modal from './modal/modal_container';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute, SecuredRoute } from '../util/route_util';
 
 const App = () => {
   return (
@@ -24,13 +24,13 @@ const App = () => {
           <Route
             path="/users/:userId/videos"
             component={UserVideoIndexContainer}
-            />
+          />
           <Route path="/results" component={SearchPage} />
           <ProtectedRoute path="/upload" component={VideoUploadContainer} />
           <ProtectedRoute
             path="/videos/:videoId/edit"
             component={EditVideoContainer}
-            />
+          />
           <AuthRoute path="/signup" component={SigninFormContainer} />
           <AuthRoute path="/login" component={LoginFormContainer} />
         </Switch>
@@ -38,5 +38,6 @@ const App = () => {
     </>
   );
 };
+// <Route path="users/:userId/edit" component={UserEditContainer}/>
 
 export default App;

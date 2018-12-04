@@ -103,8 +103,8 @@ class SearchBar extends React.Component {
             placeholder="Search U2B..."
             onChange={this.queryText}
             value={this.state.query}
-            onBlur={this.hideList}
             onFocus={this.showList}
+            onBlur={this.hideList}
           />
           <SearchIcon />
         </form>
