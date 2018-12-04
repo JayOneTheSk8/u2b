@@ -24,7 +24,8 @@ export default (state = defaultState, action) => {
       newState.resultList = [];
       return newState;
     case RECEIVE_FULL_RESULTS:
-      return action.results;
+      debugger
+      return merge({}, action.results, { resultList: [] });
     default:
       return state;
   }

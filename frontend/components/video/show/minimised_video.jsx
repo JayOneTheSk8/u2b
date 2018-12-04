@@ -77,9 +77,7 @@ class MinimisedVideo extends React.Component {
     return (
       <li className="minimised-video">
         <Link to={`/videos/${this.video.id}`}>
-          <video height="84" width="150">
-            <source src={this.video.videoUrl} />
-          </video>
+          <img src={this.video.imageUrl} />
           <p className="mini-title">{this.video.title}</p>
         </Link>
         {this.toProfileButton()}

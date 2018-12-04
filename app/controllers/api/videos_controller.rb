@@ -46,7 +46,7 @@ class Api::VideosController < ApplicationController
     @user = User.find(params[:user_id])
     render 'api/videos/video_list'
   end
-  # 
+  #
   # def liked_videos
   #   @user = User.find(params[:user_id])
   #   user_likes = @user.ratings.select(:id).where(name: 'like')
@@ -55,7 +55,7 @@ class Api::VideosController < ApplicationController
   # end
 
   def latest
-    @videos = Video.order(created_at: :desc).limit(10)
+    @videos = Video.order(created_at: :desc).limit(15)
     render :index
   end
 

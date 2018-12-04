@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import LoginFormContainer from './session/login_container';
 import SigninFormContainer from './session/signup_container';
 import VideoIndexContainer from './video/video_index_container';
@@ -18,20 +18,22 @@ const App = () => {
       <NavBar />
       <div id="main-content">
         <Modal />
-        <Route exact path="/" component={VideoIndexContainer} />
-        <Route exact path="/videos/:videoId" component={VideoShowContainer} />
-        <Route
-          path="/users/:userId/videos"
-          component={UserVideoIndexContainer}
-        />
-        <Route path="/results?search_query=" component={SearchPage} />
-        <ProtectedRoute path="/upload" component={VideoUploadContainer} />
-        <ProtectedRoute
-          path="/videos/:videoId/edit"
-          component={EditVideoContainer}
-        />
-        <AuthRoute path="/signup" component={SigninFormContainer} />
-        <AuthRoute path="/login" component={LoginFormContainer} />
+        <Switch>
+          <Route exact path="/" component={VideoIndexContainer} />
+          <Route exact path="/videos/:videoId" component={VideoShowContainer} />
+          <Route
+            path="/users/:userId/videos"
+            component={UserVideoIndexContainer}
+            />
+          <Route path="/results" component={SearchPage} />
+          <ProtectedRoute path="/upload" component={VideoUploadContainer} />
+          <ProtectedRoute
+            path="/videos/:videoId/edit"
+            component={EditVideoContainer}
+            />
+          <AuthRoute path="/signup" component={SigninFormContainer} />
+          <AuthRoute path="/login" component={LoginFormContainer} />
+        </Switch>
       </div>
     </>
   );
