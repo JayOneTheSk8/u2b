@@ -45,7 +45,7 @@ class UserDropdown extends React.Component {
         <li className={`user-dropdown-li`}>
           <button className={`user-dropdown-text`} onClick={this.toUserVideos}>
             <AccountIcon />
-            Your Videos
+            Your Account
           </button>
         </li>
         <li className={`user-dropdown-li`}>

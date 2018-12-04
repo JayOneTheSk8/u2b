@@ -1,5 +1,5 @@
 .hamburger-line-original {
-  border: 2px solid #b9b9b9;
+  border: 1px solid #b9b9b9;
   width: 25px;
   border-radius: 5px;
   margin: 5px 0px;
@@ -7,7 +7,7 @@
 }
 
 .hamburger-line-darkened {
-  border: 2px solid #807f7f;
+  border: 1px solid #807f7f;
   width: 25px;
   border-radius: 5px;
   margin: 5px 0px;
@@ -16,7 +16,7 @@
 
 .hamburger-button {
   position: relative;
-  top: -16px;
+  top: -12px;
   left: -40px;
 }
 
@@ -31,5 +31,5 @@
 }
 
 .clickable-area:active {
-  
+// animation ideas
 }

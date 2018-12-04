@@ -34,7 +34,6 @@ export const fetchResults = search => dispatch => {
 
 export const fetchFullResults = search => dispatch => {
   return SearchAPIUtil.fetchFullResults(search).then(results => {
-    debugger
     return dispatch(receiveFullResults(results));
   });
 };

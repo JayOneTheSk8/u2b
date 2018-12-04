@@ -24,18 +24,14 @@ const mapDispatchToProps = dispatch => {
 };
 
 class SearchPage extends React.Component {
+
   componentDidMount() {
-    debugger
-    const search = this.props.location.search.split('=')[1];
-    this.props.fetchFullResults(search).then(
-      (action) => {
-        debugger
-      }
-    );
+    const searchKey = this.props.location.search.split('=')[1];
+    const search = decodeURIComponent(searchKey);
+    this.props.fetchFullResults(search);
   }
 
   render() {
-
     return (
       <div>
         <h1>This is the search page</h1>
@@ -45,5 +41,4 @@ class SearchPage extends React.Component {
 
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
-export default connect(null, mapDispatchToProps)(SearchPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

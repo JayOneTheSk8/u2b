@@ -4,7 +4,7 @@ import MinimisedVideo from '../show/minimised_video';
 class UserVideoIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lastPage: null, removedVideo: false, videoCount: 0 };
+    this.state = { lastPage: null, videoCount: 0 };
   }
 
   componentDidMount() {

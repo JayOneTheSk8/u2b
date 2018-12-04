@@ -5,7 +5,7 @@ import {
 } from '../actions/search_actions';
 import { merge } from 'lodash';
 
-const defaultState = { resultList: [] };
+const defaultState = { users: {}, videos: {}, resultList: [] };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
@@ -24,8 +24,7 @@ export default (state = defaultState, action) => {
       newState.resultList = [];
       return newState;
     case RECEIVE_FULL_RESULTS:
-      debugger
-      return merge({}, action.results, { resultList: [] });
+      return merge({}, defaultState, action.results);
     default:
       return state;
   }
