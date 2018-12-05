@@ -2,7 +2,6 @@ import React from 'react';
 import Comment from './comments/comment';
 import CreateCommentForm from './comments/create_comment_form';
 import TitleArea from './title_area_container';
-import { addView } from 
 
 class Show extends React.Component {
   componentDidMount() {
@@ -10,7 +9,9 @@ class Show extends React.Component {
   }
 
   componentWillUnmount() {
-
+    if (this.props.video.uploader_id !== this.props.currentUserId) {
+      this.props.addView(this.props.video.id);
+    }
   }
 
   commentList() {
@@ -33,6 +34,7 @@ class Show extends React.Component {
           <TitleArea
             videoId={this.props.video.id}
             title={this.props.video.title}
+            views={this.props.video.views}
           />
           <div className="divider">
             <p className="uploader">{this.props.uploader.username}</p>

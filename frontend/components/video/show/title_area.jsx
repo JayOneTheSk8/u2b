@@ -82,17 +82,22 @@ class TitleArea extends React.Component {
           <p className="title">{this.props.title}</p>
         </div>
         <div className="likes-and-views">
-          <div className="like-area">
-            <figure className="add-like" onClick={this.rate('like')}>
-              <LikeIcon color={this.state.likeStatus} />
-            </figure>
-            <p className="like-count">{this.props.likeCount}</p>
+          <div className="views">
+            {this.props.views === 1 ? `${this.props.views} view` : `${this.props.views} views`}
           </div>
-          <div className="dislike-area">
-            <figure className="add-dislike" onClick={this.rate('dislike')}>
-              <DislikeIcon color={this.state.dislikeStatus} />
-            </figure>
-            <p className="dislike-count">{this.props.dislikeCount}</p>
+          <div className="ratings">
+            <div className="like-area">
+              <figure className="add-like" onClick={this.rate('like')}>
+                <LikeIcon color={this.state.likeStatus} />
+              </figure>
+              <p className="like-count">{this.props.likeCount}</p>
+            </div>
+            <div className="dislike-area">
+              <figure className="add-dislike" onClick={this.rate('dislike')}>
+                <DislikeIcon color={this.state.dislikeStatus} />
+              </figure>
+              <p className="dislike-count">{this.props.dislikeCount}</p>
+            </div>
           </div>
         </div>
       </div>
