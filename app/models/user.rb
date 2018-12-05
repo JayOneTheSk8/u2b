@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   has_many :ratings,
     primary_key: :id,
-    foreign_key: :video_id,
+    foreign_key: :user_id,
     class_name: :Rating
 
   has_many :rated_videos,
@@ -58,14 +58,6 @@ class User < ApplicationRecord
 
   def is_password?(passed_word)
     BCrypt::Password.new(self.password_digest).is_password?(passed_word)
-  end
-
-  def favorites
-    all_favorites = []
-    self.likes.each do |like|
-      all_favorites << like.video_id
-    end
-    all_favorites
   end
 
   private

@@ -2,14 +2,14 @@ export const addRating = (videoId, rating) => {
   return $.ajax({
     method: 'POST',
     url: `/api/videos/${videoId}/ratings`,
-    data: { rating }
+    data: { rating },
   });
 };
 
 export const removeRating = (videoId, rating) => {
   return $.ajax({
     method: 'DELETE',
-    url: `/api/videos/${videoId}/ratings/${rating.id}`
+    url: `/api/videos/${videoId}/ratings/${rating.id}`,
   });
 };
 
@@ -17,13 +17,13 @@ export const updateRating = (videoId, rating) => {
   return $.ajax({
     method: 'PATCH',
     url: `/api/videos/${videoId}/ratings/${rating.id}`,
-    data: { rating }
+    data: { rating },
   });
 };
 
-export const fetchRatings = (videoId) => {
+export const fetchRatings = videoId => {
   return $.ajax({
     method: 'GET',
-    url: `/api/videos/${videoId}/ratings`
+    url: `/api/videos/${videoId}/ratings`,
   });
 };

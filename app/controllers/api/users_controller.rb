@@ -9,6 +9,20 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def search
+    query = params[:search]
+    @videos = Video.select(:title).where("title iLIKE :query", query: "#{query}%").distinct.limit(7)
+    @users = User.where("username iLIKE :query", query: "#{query}%").limit(7)
+    render 'api/videos/search_list'
+  end
+
+  def full_search
+    query = params[:search]
+    @videos = Video.includes(:uploader).joins('INNER JOIN users ON videos.uploader_id = users.id').where("title iLIKE :query OR users.username iLike :query", query: "#{query}%").order('created_at DESC')
+    @users = User.where("username iLIKE :query", query: "#{query}%")
+    render 'api/videos/full_search'
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password)

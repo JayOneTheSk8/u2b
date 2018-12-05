@@ -1,4 +1,9 @@
-import { ADD_RATING, REMOVE_RATING, RECEIVE_RATINGS, UPDATE_RATING } from '../actions/rating_actions';
+import {
+  ADD_RATING,
+  REMOVE_RATING,
+  RECEIVE_RATINGS,
+  UPDATE_RATING,
+} from '../actions/rating_actions';
 import { RECEIVE_VIDEO } from '../actions/video_actions';
 import { merge } from 'lodash';
 import { size } from 'underscore';
@@ -16,17 +21,27 @@ export default (state = defaultState, action) => {
       } else if (!action.dislikes) {
         return { likeCount: _.size(action.likes), dislikeCount: 0 };
       }
-      return { likeCount: _.size(action.likes), dislikeCount: _.size(action.dislikes) };
+      return {
+        likeCount: _.size(action.likes),
+        dislikeCount: _.size(action.dislikes),
+      };
     case UPDATE_RATING:
-      const otherRating = (action.rating.name === 'like' ? 'dislikeCount' : 'likeCount');
+      const otherRating =
+        action.rating.name === 'like' ? 'dislikeCount' : 'likeCount';
       if (action.rating.name === 'like') {
         const newCount = state.likeCount + 1;
         const otherRatingCount = state[otherRating] - 1;
-        return merge({}, state, { likeCount: newCount, [otherRating]: otherRatingCount });
+        return merge({}, state, {
+          likeCount: newCount,
+          [otherRating]: otherRatingCount,
+        });
       } else if (action.rating.name === 'dislike') {
         const newCount = state.dislikeCount + 1;
         const otherRatingCount = state[otherRating] - 1;
-        return merge({}, state, { dislikeCount: newCount, [otherRating]: otherRatingCount });
+        return merge({}, state, {
+          dislikeCount: newCount,
+          [otherRating]: otherRatingCount,
+        });
       }
 
     case ADD_RATING:

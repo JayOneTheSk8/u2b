@@ -31,16 +31,43 @@
   color: #1A73E8;
 }
 
-.logout-text {
+.user-dropdown-text {
   font-weight: 600;
   display: flex;
   width: 100%;
 }
 
-.logout-li:hover {
+.user-dropdown-li:hover {
   background: lightgrey;
 }
 
-.logout-li {
+.user-dropdown-li {
   padding: 5px;
+}
+
+.user-box {
+  border: 2px solid gray;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 11px;
+  background: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-head {
+  border: 1px solid white;
+  width: 6px;
+  height: 6px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.user-body {
+  border: 2.6px solid white;
+  border-radius: 8px 8px 0px 0px;
+  width: 15px;
 }

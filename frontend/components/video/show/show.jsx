@@ -8,24 +8,34 @@ class Show extends React.Component {
     this.props.fetchVideo(this.props.match.params.videoId);
   }
 
-  commentList(){
+  componentWillUnmount() {
+    if (this.props.video.uploader_id !== this.props.currentUserId) {
+      this.props.addView(this.props.video.id);
+    }
+  }
+
+  commentList() {
     const comments = this.props.comments.map(comment => {
-      return (
-        <Comment key={comment.id} comment={comment}/>
-      );
+      return <Comment key={comment.id} comment={comment} />;
     });
     return comments.reverse();
   }
 
   render() {
-    if (!this.props.video.videoUrl) { return null; }
+    if (!this.props.video.videoUrl) {
+      return null;
+    }
     return (
       <div className="video">
         <video className="playing-video" controls>
-          <source src={this.props.video.videoUrl}/>
+          <source src={this.props.video.videoUrl} />
         </video>
         <div className="video-info">
-          <TitleArea videoId={this.props.video.id} title={this.props.video.title} />
+          <TitleArea
+            videoId={this.props.video.id}
+            title={this.props.video.title}
+            views={this.props.video.views}
+          />
           <div className="divider">
             <p className="uploader">{this.props.uploader.username}</p>
             <p className="date">Published on: {this.props.video.upload_date}</p>
@@ -33,9 +43,7 @@ class Show extends React.Component {
           </div>
         </div>
         <CreateCommentForm />
-        <ul className="comment-list">
-          { this.commentList() }
-        </ul>
+        <ul className="comment-list">{this.commentList()}</ul>
       </div>
     );
   }

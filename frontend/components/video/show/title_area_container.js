@@ -10,17 +10,25 @@ const mapStateToProps = (state, ownProps) => {
     currentUser,
     loggedIn: Boolean(state.session.currentUserId),
     likeCount: state.entities.ratingsCount.likeCount,
-    dislikeCount: state.entities.ratingsCount.dislikeCount
+    dislikeCount: state.entities.ratingsCount.dislikeCount,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRatings: (videoId) => dispatch(RatingActions.fetchRatings(videoId)),
-    addRating: (videoId, rating) => dispatch(RatingActions.addRating(videoId, rating)),
-    updateRating: (videoId, rating) => dispatch(RatingActions.updateRating(videoId, rating)),
-    removeRating: (videoId, rating) => dispatch(RatingActions.removeRating(videoId, rating))
+    fetchRatings: videoId => dispatch(RatingActions.fetchRatings(videoId)),
+    addRating: (videoId, rating) =>
+      dispatch(RatingActions.addRating(videoId, rating)),
+    updateRating: (videoId, rating) =>
+      dispatch(RatingActions.updateRating(videoId, rating)),
+    removeRating: (videoId, rating) =>
+      dispatch(RatingActions.removeRating(videoId, rating)),
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TitleArea));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TitleArea)
+);

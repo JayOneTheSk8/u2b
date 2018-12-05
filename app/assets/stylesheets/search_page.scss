@@ -1,0 +1,78 @@
+.search-result-video {
+
+}
+
+.searchlink-to-video {
+  display: flex;
+  margin-bottom: 30px;
+  width: 70%;
+}
+
+.search-thumbnail {
+  width: 250px;
+  height: 135px;
+  margin-right: 20px;
+}
+
+.search-info {
+  width: 75%;
+}
+
+.search-title {
+  font-weight: 700;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-description {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 6em;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+}
+.search-description:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.search-description:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+
+.uploader-views-age {
+  display: flex;
+}
+
+.point-divider {
+  margin: 0px 7px;
+  position: relative;
+  top: 3px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 0;
+}
+
+.search-age {
+}
+
+.search-age {
+}
+
+.search-to-profile {
+}
+
+.search-uploader {
+
+}

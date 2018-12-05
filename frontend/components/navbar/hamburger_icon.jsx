@@ -1,13 +1,13 @@
 import React from 'react';
 
-const HamburgerIcon = (props) => {
+const HamburgerIcon = props => {
   return (
     <figure className="hamburger-button">
-      <div className={"hamburger-line-" + props.color}></div>
-      <div className={"hamburger-line-" + props.color}></div>
-      <div className={"hamburger-line-" + props.color}></div>
+      <div className={'hamburger-line-' + props.color} />
+      <div className={'hamburger-line-' + props.color} />
+      <div className={'hamburger-line-' + props.color} />
     </figure>
   );
-}
+};
 
 export default HamburgerIcon;

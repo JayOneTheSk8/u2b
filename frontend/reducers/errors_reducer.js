@@ -6,5 +6,5 @@ import CommentErrorsReducer from './comment_errors_reducer';
 export default combineReducers({
   session: SessionErrorsReducer,
   videos: VideoErrorsReducer,
-  comments: CommentErrorsReducer
+  comments: CommentErrorsReducer,
 });
