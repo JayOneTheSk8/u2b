@@ -46,6 +46,13 @@ class Api::VideosController < ApplicationController
     @user = User.find(params[:user_id])
     render 'api/videos/video_list'
   end
+
+  def add_view
+    @video = Video.find(params[:video_id])
+    @video.views += 1
+    @video.save
+  end
+  
   #
   # def liked_videos
   #   @user = User.find(params[:user_id])

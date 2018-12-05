@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'full_search', to: 'users#full_search'
     resource :session, only: [:create, :destroy]
     resources :videos, except: [:new, :edit]  do
+      post 'add_view', to: 'videos#add_view'
       resources :comments, only: [:show, :create, :update, :destroy]
       resources :ratings, only: [:index, :show, :update, :create, :destroy]
     end

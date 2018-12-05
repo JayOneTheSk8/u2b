@@ -43,3 +43,10 @@ export const fetchUserVideos = userId => {
     url: `/api/users/${userId}/videos`,
   });
 };
+
+export const addView = videoId => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/videos/${videoId}/add_view`,
+  });
+};

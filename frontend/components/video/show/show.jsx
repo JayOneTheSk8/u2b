@@ -2,10 +2,15 @@ import React from 'react';
 import Comment from './comments/comment';
 import CreateCommentForm from './comments/create_comment_form';
 import TitleArea from './title_area_container';
+import { addView } from 
 
 class Show extends React.Component {
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId);
+  }
+
+  componentWillUnmount() {
+
   }
 
   commentList() {
