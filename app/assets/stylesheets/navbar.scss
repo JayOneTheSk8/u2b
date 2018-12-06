@@ -32,3 +32,12 @@
   background-size: 65px 43px;
   background-repeat: no-repeat;
 }
+
+.mini-modal {
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 60px;
+  width: 100%;
+  right: 0px;
+}

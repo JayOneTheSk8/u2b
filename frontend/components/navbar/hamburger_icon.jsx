@@ -2,7 +2,7 @@ import React from 'react';
 
 const HamburgerIcon = props => {
   return (
-    <figure className="hamburger-button">
+    <figure className={`${props.comp}-hamburger-button`}>
       <div className={'hamburger-line-' + props.color} />
       <div className={'hamburger-line-' + props.color} />
       <div className={'hamburger-line-' + props.color} />

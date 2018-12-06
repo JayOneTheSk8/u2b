@@ -79,10 +79,12 @@
   max-width: 991px;
   max-height: 136px;
   position: absolute;
+  z-index: 1;
 }
 
 .to-profile {
   position: relative;
+  z-index: 2;
 }
 
 .search-uploader:hover {

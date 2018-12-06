@@ -14,10 +14,16 @@
   position: relative;
 }
 
-.hamburger-button {
+.navbar-hamburger-button {
   position: relative;
   top: -12px;
   left: -40px;
+}
+
+.dropdown-hamburger-button {
+  position: relative;
+  right: 39px;
+  bottom: 12px;
 }
 
 .clickable-area {

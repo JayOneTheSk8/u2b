@@ -84,6 +84,17 @@ class NavBar extends React.Component {
     }
   }
 
+  modal() {
+    if (this.props.dropdownStatus === "open") {
+      return (
+        <div onClick={this.props.clearScreen} className="mini-modal">
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     if (
       this.props.location.pathname === '/signup' ||
@@ -100,7 +111,7 @@ class NavBar extends React.Component {
             className="clickable-area"
             onClick={this.changeStatus}
           >
-            <HamburgerIcon color={this.state.burgerColor} />
+            <HamburgerIcon comp="navbar" color={this.state.burgerColor} />
           </figure>
           <DropdownMenuContainer sideDrawer={this.props.dropdownStatus} />
           <Link to="/">
@@ -108,7 +119,8 @@ class NavBar extends React.Component {
           </Link>
         </div>
         <SearchBarContainer />
-        {this.userButton()}
+        { this.modal() }
+        { this.userButton() }
       </nav>
     );
   }
