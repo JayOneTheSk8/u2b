@@ -5,13 +5,15 @@
 .searchlink-to-video {
   display: flex;
   margin-bottom: 30px;
-  width: 70%;
+  width: 990px;
 }
 
 .search-thumbnail {
-  width: 250px;
-  height: 135px;
+  min-width: 236px;
+  min-height: 135px;
   margin-right: 20px;
+  max-width: 235px;
+  max-height: 135px;
 }
 
 .search-info {
@@ -34,12 +36,14 @@
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em;
+  color: #777777;
 }
 .search-description:before {
   content: '...';
   position: absolute;
   right: 0;
   bottom: 0;
+  color: #777777;
 }
 .search-description:after {
   content: '';
@@ -48,11 +52,12 @@
   width: 1em;
   height: 1em;
   margin-top: 0.2em;
-  background: white;
+  background: #F1F1F1;
 }
 
 .uploader-views-age {
   display: flex;
+  color: #5F5E5E;
 }
 
 .point-divider {
@@ -64,15 +69,22 @@
   line-height: 0;
 }
 
-.search-age {
+.views-age {
+  display: flex;
 }
 
-.search-age {
+.to-video {
+  min-width: 991px;
+  min-height: 136px;
+  max-width: 991px;
+  max-height: 136px;
+  position: absolute;
 }
 
-.search-to-profile {
+.to-profile {
+  position: relative;
 }
 
-.search-uploader {
-
+.search-uploader:hover {
+  color: black;
 }

@@ -16,24 +16,28 @@ class MinimisedVideoResult extends React.Component {
 
   render() {
     return (
-      <li className="search-result-video">
+      <li>
+        <Link to={`/videos/${this.video.id}`}>
+          <div className="to-video"></div>
+        </Link>
         <div className="searchlink-to-video">
-          <Link to={`/videos/${this.video.id}`}><img className="search-thumbnail" src={this.video.imageUrl} /></Link>
+          <img className="search-thumbnail" src={this.video.imageUrl} />
           <div className="search-info">
-            <Link to={`/videos/${this.video.id}`}><p className="search-title">{this.video.title}</p></Link>
+            <p className="search-title">{this.video.title}</p>
             <div className="uploader-views-age">
-              <Link
-                to={`/users/${this.video.uploader_id}/videos`}
-                className="search-to-profile"
-                >
+              <Link className="to-profile" to={`/users/${this.video.uploader_id}/videos`}>
                 <p className="search-uploader">{this.video.uploaderName}</p>
               </Link>
               <p className="point-divider">.</p>
-              <Link to={`/videos/${this.video.id}`}>
-                <p className="search-age">{this.video.age}</p>
-              </Link>
+              <p>
+                {this.video.views === 1 ? `${this.video.views} view` : `${this.video.views} views`}
+              </p>
+              <p className="point-divider">.</p>
+              <p className="search-age">{this.video.age}</p>
             </div>
-            <Link to={`/videos/${this.video.id}`}><p className="search-description">{this.video.description}</p></Link>
+              <p className="search-description">
+                {this.video.description}
+              </p>
           </div>
         </div>
       </li>

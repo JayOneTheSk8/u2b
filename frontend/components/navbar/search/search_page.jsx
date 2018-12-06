@@ -50,7 +50,6 @@ class SearchPage extends React.Component {
     });
     return (
       <div>
-        <h1>This is the search page</h1>
         <ul>
           {videos}
         </ul>
