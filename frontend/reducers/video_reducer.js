@@ -10,7 +10,10 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_VIDEOS:
-      return merge({}, state, action.videos);
+      const recommended = action.recommended;
+      const latest = action.latest;
+      const trending = action.trending;
+      return { recommended, latest, trending};
     case RECEIVE_VIDEO:
       return { [action.video.id]: action.video };
     case CLEAR_VIDEOS:

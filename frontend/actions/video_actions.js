@@ -28,11 +28,13 @@ const receiveVideo = ({
   };
 };
 
-const receiveVideos = ({ videos, uploaders }) => {
+const receiveVideos = (payload) => {
   return {
     type: RECEIVE_VIDEOS,
-    videos,
-    uploaders,
+    recommended: payload.recommended.videos,
+    latest: payload.latest.videos,
+    trending: payload.trending.videos,
+    uploaders: Object.assign({}, payload.latest.uploaders, payload.recommended.uploaders, payload.trending.uploaders),
   };
 };
 

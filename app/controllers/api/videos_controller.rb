@@ -1,6 +1,6 @@
 class Api::VideosController < ApplicationController
   def index
-    @videos = Video.all
+    @videos = Video.includes(:uploader)
     render :index
   end
 
@@ -62,7 +62,7 @@ class Api::VideosController < ApplicationController
   # end
 
   # change index instead with jbuilder
-  # 
+  #
   # def latest
   #   @videos = Video.order(created_at: :desc).limit(15)
   #   render :index

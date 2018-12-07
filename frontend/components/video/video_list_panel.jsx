@@ -1,5 +1,4 @@
 import React from 'react';
-import MinimisedVideo from './show/minimised_video';
 
 const VideoListPanel = (props) => {
   return (
