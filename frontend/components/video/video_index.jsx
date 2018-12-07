@@ -12,9 +12,11 @@ class VideoIndex extends React.Component {
     const videos = this.props.videos.map(video => {
       return <MinimisedVideo key={video.id} video={video} />;
     });
+    const username = this.props.currentUser.username;
+    const recommendedTitle = (username ? `Recommended for ${username}` : "Recommended")
     return (
       <>
-        <VideoListPanel videos={videos} title={`Recommended for ${this.props.currentUser.username}`} />
+        <VideoListPanel videos={videos} title={recommendedTitle} />
       </>
     );
   }
