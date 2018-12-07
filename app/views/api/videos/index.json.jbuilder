@@ -17,7 +17,7 @@
 
 recommended = @videos.shuffle[0..9]
 latest = @videos.sort_by { |video| video.created_at }.reverse[0..9]
-trending = @videos.sort_by { |video| video.views }.reverse[0..15]
+trending = @videos.sort_by { |video| video.views }.reverse[0..14]
 
 json.recommended do
   recommended.each do |recommend|
