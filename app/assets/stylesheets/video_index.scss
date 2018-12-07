@@ -1,13 +1,3 @@
-.greeting {
-  font-weight: 600;
-  font-size: 60px;
-}
-
-.video-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .mini-title {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -54,4 +44,27 @@
 .video-thumbnail {
   width: 210px;
   height: 118px;
+}
+
+.videos-list {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid lightgrey;
+  padding-top: 15px;
+}
+
+.group-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 14px 0px;
+}
+
+.list-panel {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 64%;
+  margin-left: 15%;
 }

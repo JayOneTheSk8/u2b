@@ -1,5 +1,6 @@
 import React from 'react';
 import MinimisedVideo from './show/minimised_video';
+import VideoListPanel from './video_list_panel';
 
 class VideoIndex extends React.Component {
   componentDidMount() {
@@ -13,10 +14,7 @@ class VideoIndex extends React.Component {
     });
     return (
       <>
-        <h1 className="greeting">
-          Welcome to U2B! {this.props.currentUser.username}
-        </h1>
-        <ul className="video-list">{videos}</ul>
+        <VideoListPanel videos={videos} title={`Recommended for ${this.props.currentUser.username}`} />
       </>
     );
   }
