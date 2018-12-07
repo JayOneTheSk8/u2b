@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchIcon from './search_icon';
 import { fetchResults, clearResults } from '../../../actions/search_actions';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {

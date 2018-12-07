@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
 
   def search
     query = params[:search]
-    @videos = Video.select(:title).where("title iLIKE :query", query: "#{query}%").distinct.limit(7)
+    @videos = Video.where("title iLIKE :query", query: "#{query}%").distinct.limit(7)
     @users = User.where("username iLIKE :query", query: "#{query}%").limit(7)
     render 'api/videos/search_list'
   end
