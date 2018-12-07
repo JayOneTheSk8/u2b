@@ -68,3 +68,15 @@
   width: 64%;
   margin-left: 15%;
 }
+
+.user-video-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.uploader-name {
+  font-size: 20px;
+  padding: 10px 17px;
+  font-weight: 600;
+}

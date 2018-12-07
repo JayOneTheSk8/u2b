@@ -1,5 +1,5 @@
 import { RECEIVE_USER } from '../actions/session_actions';
-import { RECEIVE_VIDEO, RECEIVE_VIDEOS } from '../actions/video_actions';
+import { RECEIVE_VIDEO, RECEIVE_VIDEOS, RECEIVE_USER_VIDEOS } from '../actions/video_actions';
 import { merge } from 'lodash';
 
 export default (state = {}, action) => {
@@ -15,6 +15,7 @@ export default (state = {}, action) => {
         { [action.uploader.id]: action.uploader },
         authors
       );
+    case RECEIVE_USER_VIDEOS:
     case RECEIVE_VIDEOS:
       return merge({}, state, action.uploaders);
     default:

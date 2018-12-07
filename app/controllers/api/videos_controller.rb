@@ -42,8 +42,8 @@ class Api::VideosController < ApplicationController
   end
 
   def user_videos
-    @videos = Video.where(uploader_id: params[:user_id])
     @user = User.find(params[:user_id])
+    @videos = Video.where(uploader_id: @user.id)
     render 'api/videos/video_list'
   end
 
@@ -59,13 +59,6 @@ class Api::VideosController < ApplicationController
   #   user_likes = @user.ratings.select(:id).where(name: 'like')
   #   @videos = Video.where('id IN :user_likes', user_likes: user_likes)
   #   render 'api/videos/video_list'
-  # end
-
-  # change index instead with jbuilder
-  #
-  # def latest
-  #   @videos = Video.order(created_at: :desc).limit(15)
-  #   render :index
   # end
 
   private

@@ -6,6 +6,7 @@ export const REMOVE_VIDEO = 'REMOVE_VIDEO';
 export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 export const REMOVE_VIDEO_ERRORS = 'REMOVE_VIDEO_ERRORS';
 export const CLEAR_VIDEOS = 'CLEAR_VIDEOS';
+export const RECEIVE_USER_VIDEOS = 'RECEIVE_USER_VIDEOS';
 
 const receiveVideo = ({
   video,
@@ -25,6 +26,14 @@ const receiveVideo = ({
     ratings,
     likes,
     dislikes,
+  };
+};
+
+const receiveUserVideos = ({ videos, uploaders }) => {
+  return {
+    type: RECEIVE_USER_VIDEOS,
+    videos,
+    uploaders,
   };
 };
 
@@ -92,7 +101,7 @@ export const deleteVideo = id => dispatch => {
 
 export const fetchUserVideos = userId => dispatch => {
   return VideoApiUtil.fetchUserVideos(userId).then(videos =>
-    dispatch(receiveVideos(videos))
+    dispatch(receiveUserVideos(videos))
   );
 };
 

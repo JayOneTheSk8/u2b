@@ -24,7 +24,6 @@ class UserVideoIndex extends React.Component {
     const videos = this.props.videos.map(video => {
       return (
         <MinimisedVideo
-          parent={this}
           editable={this.props.editSession}
           key={video.id}
           video={video}
@@ -33,8 +32,8 @@ class UserVideoIndex extends React.Component {
     });
     return (
       <>
-        <h1>{this.props.videoUploader.username} Uploads</h1>
-        <ul className="video-list">{videos}</ul>
+        <h1 className="uploader-name">{this.props.videoUploader.username} Uploads</h1>
+        <ul className="user-video-list">{videos.reverse()}</ul>
       </>
     );
   }
