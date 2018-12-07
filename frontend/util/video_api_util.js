@@ -50,3 +50,10 @@ export const addView = videoId => {
     url: `/api/videos/${videoId}/add_view`,
   });
 };
+
+export const fetchLatest = () => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/latest`,
+  });
+}

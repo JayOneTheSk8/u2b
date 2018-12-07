@@ -52,7 +52,7 @@ class Api::VideosController < ApplicationController
     @video.views += 1
     @video.save
   end
-  
+
   #
   # def liked_videos
   #   @user = User.find(params[:user_id])
@@ -61,10 +61,12 @@ class Api::VideosController < ApplicationController
   #   render 'api/videos/video_list'
   # end
 
-  def latest
-    @videos = Video.order(created_at: :desc).limit(15)
-    render :index
-  end
+  # change index instead with jbuilder
+  # 
+  # def latest
+  #   @videos = Video.order(created_at: :desc).limit(15)
+  #   render :index
+  # end
 
   private
 

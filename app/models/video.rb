@@ -52,6 +52,6 @@ class Video < ApplicationRecord
 
   private
   def initialize_views!
-    @views ||= 0
+    self.views ||= 0
   end
 end

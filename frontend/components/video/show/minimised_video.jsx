@@ -81,7 +81,11 @@ class MinimisedVideo extends React.Component {
           <p className="mini-title">{this.video.title}</p>
         </Link>
         {this.toProfileButton()}
-        <Link to={`/videos/${this.video.id}`}>
+        <Link className="views-age" to={`/videos/${this.video.id}`}>
+          <p className="mini-views">
+            {this.video.views === 1 ? `${this.video.views} view` : `${this.video.views} views`}
+          </p>
+          <p className="mini-divider">.</p>
           <p className="mini-age">{this.video.age}</p>
         </Link>
         {updateVideoButtons}

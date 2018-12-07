@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       get 'videos', to: 'videos#user_videos'
       get 'likes', to: 'videos#liked_videos'
     end
-    get 'latest', to: 'videos#latest'
     get 'search', to: 'users#search'
     get 'full_search', to: 'users#full_search'
     resource :session, only: [:create, :destroy]
