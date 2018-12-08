@@ -10,11 +10,17 @@
 #  updated_at      :datetime         not null
 #
 
+COLORS = %w(red orange yellow green blue purple white black pink brown)
+
 class User < ApplicationRecord
 
   validates :username, :session_token, :password_digest, presence: true
   validates :username, :session_token, uniqueness: true
+  validates :username, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validates_inclusion_of :thumbnail_border, in: COLORS, allow_nil: true
+  validates_inclusion_of :thumbnail_letter, in: COLORS, allow_nil: true
+  validates_inclusion_of :thumbnail_background, in: COLORS, allow_nil: true
 
   has_many :videos,
     primary_key: :id,
@@ -39,7 +45,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   def self.find_by_credentials(passed_username, passed_word)
-    user = User.find_by(username: passed_username)
+    user = User.where('username iLIKE :passed_username', passed_username: passed_username).take
     return nil unless user && user.is_password?(passed_word)
     user
   end

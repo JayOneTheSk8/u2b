@@ -20,6 +20,18 @@ class UserVideoIndex extends React.Component {
     }
   }
 
+  customizeUser() {
+    if (this.props.videoUploader.id === this.props.currentUserId) {
+      return (
+        <>
+          <div>CUSTOMIZE BUTTON HERE</div>
+        </>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const videos = this.props.videos.map(video => {
       return (
@@ -32,7 +44,10 @@ class UserVideoIndex extends React.Component {
     });
     return (
       <>
-        <h1 className="uploader-name">{this.props.videoUploader.username} Uploads</h1>
+        <section className="uploader-edit">
+          <h1 className="uploader-name">{this.props.videoUploader.username} Uploads</h1>
+          { this.customizeUser() }
+        </section>
         <ul className="user-video-list">{videos.reverse()}</ul>
       </>
     );
