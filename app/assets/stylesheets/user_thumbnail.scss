@@ -1,16 +1,247 @@
+// COLORS = %w(red orange yellow green blue purple white black pink brown)
+.default-user-border {
+  border: 3px solid black;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
+}
+
 .default-user-circle {
-  border: 2px solid black;
-  width: 30px;
-  border-radius: 22px;
-  height: 30px;
-  text-align: center;
-  background-color: green;
+  background: green;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .default-first-letter {
-  position: relative;
-  top: 2px;
+  font-size: 23px;
   color: white;
   font-weight: 600;
-  font-size: 17px;
+}
+
+// ========RED=========
+.user-border-red {
+  font-size: 23px;
+  color: red;
+  font-weight: 600;
+}
+
+.user-circle-red {
+  background: red;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-red {
+  font-size: 23px;
+  color: red;
+  font-weight: 600;
+}
+
+// ========ORANGE=========
+.user-border-orange {
+  font-size: 23px;
+  color: orange;
+  font-weight: 600;
+}
+
+.user-circle-orange {
+  background: orange;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-orange {
+  font-size: 23px;
+  color: orange;
+  font-weight: 600;
+}
+
+// ========YELLOW=========
+.user-border-yellow {
+  font-size: 23px;
+  color: yellow;
+  font-weight: 600;
+}
+
+.user-circle-yellow {
+  background: yellow;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-yellow {
+  font-size: 23px;
+  color: yellow;
+  font-weight: 600;
+}
+
+// ========GREEN=========
+.user-border-green {
+  font-size: 23px;
+  color: green;
+  font-weight: 600;
+}
+
+.user-circle-green {
+  background: green;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-green {
+  font-size: 23px;
+  color: green;
+  font-weight: 600;
+}
+
+// ========BLUE=========
+.user-border-blue {
+  font-size: 23px;
+  color: blue;
+  font-weight: 600;
+}
+
+.user-circle-blue {
+  background: blue;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-blue {
+  font-size: 23px;
+  color: blue;
+  font-weight: 600;
+}
+
+// ========PURPLE=========
+.user-border-purple {
+  font-size: 23px;
+  color: purple;
+  font-weight: 600;
+}
+
+.user-circle-purple {
+  background: purple;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-purple {
+  font-size: 23px;
+  color: purple;
+  font-weight: 600;
+}
+
+// ========WHITE=========
+.user-circle-white {
+  background: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-white {
+  font-size: 23px;
+  color: white;
+  font-weight: 600;
+}
+
+// ========BLACK=========
+.user-border-black {
+  font-size: 23px;
+  color: black;
+  font-weight: 600;
+}
+
+.user-circle-black {
+  background: black;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-black {
+  font-size: 23px;
+  color: black;
+  font-weight: 600;
+}
+
+// ========PINK=========
+.user-border-pink {
+  font-size: 23px;
+  color: pink;
+  font-weight: 600;
+}
+
+.user-circle-pink {
+  background: pink;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-pink {
+  font-size: 23px;
+  color: pink;
+  font-weight: 600;
+}
+
+// ========BROWN=========
+.user-border-brown {
+  font-size: 23px;
+  color: brown;
+  font-weight: 600;
+}
+
+.user-circle-brown {
+  background: brown;
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-brown {
+  font-size: 23px;
+  color: brown;
+  font-weight: 600;
 }
