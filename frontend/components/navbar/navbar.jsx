@@ -61,7 +61,7 @@ class NavBar extends React.Component {
       <div className="user-menu">
         <VideoUploadIcon />
         <figure onClick={this.toggleUserDrawer} className="user-button">
-          <DefaultUserThumbnail username={this.props.currentUser.username} />
+          <DefaultUserThumbnail thumbnailInfo={this.props.thumbnailInfo} username={this.props.currentUser.username} />
         </figure>
         <UserDropdown />
       </div>

@@ -1,11 +1,15 @@
 import React from 'react';
 
 const DefaultUserThumbnail = props => {
-  return (
-    <div className="user-circle">
-      <p className="first-letter">{props.username[0].toUpperCase()}</p>
-    </div>
-  );
+  if (Object.values(props.thumbnailInfo).indexOf(null) > -1) {
+    return (
+      <div className="default-user-circle">
+        <p className="default-first-letter">{props.username[0].toUpperCase()}</p>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default DefaultUserThumbnail;

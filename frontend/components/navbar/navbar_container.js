@@ -10,11 +10,13 @@ import {
 
 const mapStateToProps = state => {
   const currentUser = state.entities.users[state.session.currentUserId];
+  const thumbnailInfo = state.session.thumbnailInfo;
   return {
     modalStatus: state.ui.modal,
     dropdownStatus: state.ui.dropdown,
     userMenuStatus: state.ui.userMenu,
     currentUser: currentUser || {},
+    thumbnailInfo: thumbnailInfo || {},
   };
 };
 

@@ -5,7 +5,13 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_USER:
-      return { currentUserId: action.currentUser.id };
+      return { currentUserId: action.currentUser.id,
+        thumbnailInfo: {
+          background: action.currentUser.thumbnail_background,
+          letter: action.currentUser.thumbnail_letter,
+          border: action.currentUser.thumbnail_border
+        }
+      };
     case LOGOUT_USER:
       return defaultState;
     default:
