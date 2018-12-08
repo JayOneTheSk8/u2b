@@ -27,7 +27,6 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
 };
 
 const Secured = ({ component: Component, path, matched, exact }) => {
-  debugger
   return (
     <Route
       path={path}
