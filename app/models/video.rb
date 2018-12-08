@@ -26,11 +26,13 @@ class Video < ApplicationRecord
   has_many :comments,
     primary_key: :id,
     foreign_key: :video_id,
+    dependent: :destroy,
     class_name: :Comment
 
   has_many :ratings,
     primary_key: :id,
     foreign_key: :video_id,
+    dependent: :destroy,
     class_name: :Rating
 
   has_many :raters,
