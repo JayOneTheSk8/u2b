@@ -39,8 +39,8 @@ const Secured = ({ component: Component, path, matched, exact }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const userFromPath = ownProps.match.params.userId;
-  const matched = userFromPath === state.session.currentUserId;
+  const userFromPath = ownProps.computedMatch.params.userId;
+  const matched = userFromPath === `${state.session.currentUserId}`;
   return {
     loggedIn: Boolean(state.session.currentUserId),
     matched,

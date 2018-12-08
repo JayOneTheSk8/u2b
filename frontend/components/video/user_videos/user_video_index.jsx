@@ -1,5 +1,6 @@
 import React from 'react';
 import MinimisedVideo from '../show/minimised_video';
+import { Link } from 'react-router-dom';
 
 class UserVideoIndex extends React.Component {
   constructor(props) {
@@ -23,9 +24,9 @@ class UserVideoIndex extends React.Component {
   customizeUser() {
     if (this.props.videoUploader.id === this.props.currentUserId) {
       return (
-        <>
+        <Link to={`/users/${this.props.currentUserId}/edit`}>
           <div>CUSTOMIZE BUTTON HERE</div>
-        </>
+        </Link>
       );
     } else {
       return null;

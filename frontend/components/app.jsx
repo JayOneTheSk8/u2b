@@ -7,6 +7,7 @@ import VideoUploadContainer from './video/upload/upload_container';
 import EditVideoContainer from './video/upload/edit_video';
 import VideoShowContainer from './video/show/show_container';
 import UserVideoIndexContainer from './video/user_videos/user_video_index_container';
+import UserEditForm from './video/user_videos/user_edit';
 import SearchPage from './navbar/search/search_page';
 import NavBar from './navbar/navbar_container';
 import Modal from './modal/modal_container';
@@ -25,6 +26,7 @@ const App = () => {
             path="/users/:userId/videos"
             component={UserVideoIndexContainer}
           />
+          <SecuredRoute path="/users/:userId/edit" component={UserEditForm} />
           <Route path="/results" component={SearchPage} />
           <ProtectedRoute path="/upload" component={VideoUploadContainer} />
           <ProtectedRoute
@@ -38,6 +40,5 @@ const App = () => {
     </>
   );
 };
-// <Route path="users/:userId/edit" component={UserEditContainer}/>
 
 export default App;
