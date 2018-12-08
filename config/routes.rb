@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:create, :show] do
+    resources :users, only: [:create, :show, :update] do
       get 'videos', to: 'videos#user_videos'
       get 'likes', to: 'videos#liked_videos'
     end
