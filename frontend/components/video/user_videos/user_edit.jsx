@@ -4,17 +4,44 @@ import { merge } from 'lodash';
 class UserEditForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = merge({}, this.props.currentUser);
+    this.state = merge({}, this.props.currentUser, { disableSumbit: false});
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.restoreDefaults = this.restoreDefaults.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({ disableSumbit: true });
+    const user = {
+      id: this.state.id,
+      username: this.state.username,
+      thumbnail_border: this.state.thumbnailBorder,
+      thumbnail_background: this.state.thumbnailBackground,
+      thumbnail_letter: this.state.thumbnailLetter,
+    };
+    this.props.updateUser(user).then(
+      (action) => this.props.history.push('/'),
+      (error) => this.setState({ disableSumbit: false })
+    );
+  }
+
+  restoreDefaults(e) {
+    e.preventDefault();
+    this.props.updateUser(this.props.defaultSettings).then(
+      (action) => this.props.history.push('/'),
+      (error) => this.setState({ disableSumbit: false })
+    );
   }
 
   update(field) {
     return (e) => {
-      this.setState({ [field]: e.target.value });
+      let changeSubmit;
+      if (e.target.value) {
+        changeSubmit = false;
+      } else {
+        changeSubmit = true;
+      }
+      this.setState({ [field]: e.target.value, disableSumbit: changeSubmit });
     };
   }
 
@@ -77,7 +104,9 @@ class UserEditForm extends React.Component {
             <option disabled={this.props.letterColors.pink} value="pink">Pink</option>
             <option disabled={this.props.letterColors.brown} value="brown">Brown</option>
           </select>
+          <input disabled={this.state.disableSumbit} type="submit" className="edit-user-submit" value="CUSTOMIZE"/>
         </form>
+        <button onClick={this.restoreDefaults}>Restore Default Colors</button>
       </div>
     );
   }

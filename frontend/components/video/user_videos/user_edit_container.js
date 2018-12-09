@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { updateUser } from '../../../actions/session_actions';
 import UserEditForm from './user_edit';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
   const border = state.session.thumbnailInfo.border || 'black';
@@ -9,9 +10,9 @@ const mapStateToProps = state => {
   const defaultSettings = {
     id: state.session.currentUserId,
     username: state.entities.users[state.session.currentUserId].username,
-    thumbnailBorder: 'black',
-    thumbnailBackground: 'green',
-    thumbnailLetter: 'white',
+    thumbnail_border: 'black',
+    thumbnail_background: 'green',
+    thumbnail_letter: 'white',
   };
   const currentUser = {
     id: state.session.currentUserId,
@@ -70,4 +71,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserEditForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserEditForm));
