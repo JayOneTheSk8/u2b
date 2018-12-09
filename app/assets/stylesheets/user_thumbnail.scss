@@ -20,13 +20,17 @@
   font-size: 23px;
   color: white;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========RED=========
 .user-border-red {
-  font-size: 23px;
-  color: red;
-  font-weight: 600;
+  border: 3px solid red;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-red {
@@ -43,13 +47,17 @@
   font-size: 23px;
   color: red;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========ORANGE=========
 .user-border-orange {
-  font-size: 23px;
-  color: orange;
-  font-weight: 600;
+  border: 3px solid orange;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-orange {
@@ -66,13 +74,17 @@
   font-size: 23px;
   color: orange;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========YELLOW=========
 .user-border-yellow {
-  font-size: 23px;
-  color: yellow;
-  font-weight: 600;
+  border: 3px solid yellow;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-yellow {
@@ -89,13 +101,17 @@
   font-size: 23px;
   color: yellow;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========GREEN=========
 .user-border-green {
-  font-size: 23px;
-  color: green;
-  font-weight: 600;
+  border: 3px solid green;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-green {
@@ -112,13 +128,17 @@
   font-size: 23px;
   color: green;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========BLUE=========
 .user-border-blue {
-  font-size: 23px;
-  color: blue;
-  font-weight: 600;
+  border: 3px solid blue;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-blue {
@@ -135,13 +155,17 @@
   font-size: 23px;
   color: blue;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========PURPLE=========
 .user-border-purple {
-  font-size: 23px;
-  color: purple;
-  font-weight: 600;
+  border: 3px solid purple;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-purple {
@@ -158,6 +182,9 @@
   font-size: 23px;
   color: purple;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========WHITE=========
@@ -175,13 +202,17 @@
   font-size: 23px;
   color: white;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========BLACK=========
 .user-border-black {
-  font-size: 23px;
-  color: black;
-  font-weight: 600;
+  border: 3px solid black;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-black {
@@ -198,13 +229,17 @@
   font-size: 23px;
   color: black;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========PINK=========
 .user-border-pink {
-  font-size: 23px;
-  color: pink;
-  font-weight: 600;
+  border: 3px solid pink;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-pink {
@@ -221,13 +256,17 @@
   font-size: 23px;
   color: pink;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 // ========BROWN=========
 .user-border-brown {
-  font-size: 23px;
-  color: brown;
-  font-weight: 600;
+  border: 3px solid brown;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
 }
 
 .user-circle-brown {
@@ -244,4 +283,7 @@
   font-size: 23px;
   color: brown;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
