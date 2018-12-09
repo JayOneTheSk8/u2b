@@ -90,6 +90,11 @@ class NavBar extends React.Component {
         <div onClick={this.props.clearScreen} className="mini-modal">
         </div>
       );
+    } else if (this.props.userMenuStatus === "show") {
+      return (
+        <div onClick={this.props.clearScreen} className="mini-clear-modal">
+        </div>
+      );
     } else {
       return null;
     }

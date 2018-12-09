@@ -48,7 +48,7 @@ class UserEditForm extends React.Component {
   letterDecal() {
     if (this.state.username) {
       return (
-        <p className={`first-letter-${this.state.thumbnailLetter}`}>{this.state.username[0].toUpperCase()}</p>
+        <p className={`preview-first-letter-${this.state.thumbnailLetter}`}>{this.state.username[0].toUpperCase()}</p>
       );
     } else {
       return null;
@@ -59,54 +59,77 @@ class UserEditForm extends React.Component {
     return (
       <div className="user-edit-area">
 
-        <div className="thumbnail-preview">
-          <div className={`user-border-${this.state.thumbnailBorder}`}>
-            <div className={`user-circle-${this.state.thumbnailBackground}`}>
-              { this.letterDecal() }
+        <figure className="preview-area">
+          <p className="thumb-preview-sign">Preview:</p>
+          <div className="thumbnail-preview">
+            <div className={`preview-user-border-${this.state.thumbnailBorder}`}>
+              <div className={`preview-user-circle-${this.state.thumbnailBackground}`}>
+                { this.letterDecal() }
+              </div>
             </div>
           </div>
-        </div>
+        </figure>
 
-        <form className="user-edit-form" onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.update('username')} value={this.state.username} />
-          <select value={this.state.thumbnailBorder} className="border-selection" onChange={this.update('thumbnailBorder')}>
-            <option disabled={this.props.borderColors.red} value="red">Red</option>
-            <option disabled={this.props.borderColors.orange} value="orange">Orange</option>
-            <option disabled={this.props.borderColors.yellow} value="yellow">Yellow</option>
-            <option disabled={this.props.borderColors.green} value="green">Green</option>
-            <option disabled={this.props.borderColors.blue} value="blue">Blue</option>
-            <option disabled={this.props.borderColors.purple} value="purple">Purple</option>
-            <option disabled={this.props.borderColors.black} value="black">Black</option>
-            <option disabled={this.props.borderColors.pink} value="pink">Pink</option>
-            <option disabled={this.props.borderColors.brown} value="brown">Brown</option>
-          </select>
-          <select value={this.state.thumbnailBackground} className="circle-selection" onChange={this.update('thumbnailBackground')}>
-            <option disabled={this.props.circleColors.red} value="red">Red</option>
-            <option disabled={this.props.circleColors.orange} value="orange">Orange</option>
-            <option disabled={this.props.circleColors.yellow} value="yellow">Yellow</option>
-            <option disabled={this.props.circleColors.green} value="green">Green</option>
-            <option disabled={this.props.circleColors.blue} value="blue">Blue</option>
-            <option disabled={this.props.circleColors.purple} value="purple">Purple</option>
-            <option disabled={this.props.circleColors.black} value="black">Black</option>
-            <option disabled={this.props.circleColors.white} value="white">White</option>
-            <option disabled={this.props.circleColors.pink} value="pink">Pink</option>
-            <option disabled={this.props.circleColors.brown} value="brown">Brown</option>
-          </select>
-          <select value={this.state.thumbnailLetter} className="letter-selection" onChange={this.update('thumbnailLetter')}>
-            <option disabled={this.props.letterColors.red} value="red">Red</option>
-            <option disabled={this.props.letterColors.orange} value="orange">Orange</option>
-            <option disabled={this.props.letterColors.yellow} value="yellow">Yellow</option>
-            <option disabled={this.props.letterColors.green} value="green">Green</option>
-            <option disabled={this.props.letterColors.blue} value="blue">Blue</option>
-            <option disabled={this.props.letterColors.purple} value="purple">Purple</option>
-            <option disabled={this.props.letterColors.black} value="black">Black</option>
-            <option disabled={this.props.letterColors.white} value="white">White</option>
-            <option disabled={this.props.letterColors.pink} value="pink">Pink</option>
-            <option disabled={this.props.letterColors.brown} value="brown">Brown</option>
-          </select>
-          <input disabled={this.state.disableSumbit} type="submit" className="edit-user-submit" value="CUSTOMIZE"/>
-        </form>
-        <button onClick={this.restoreDefaults}>Restore Default Colors</button>
+        <section className="user-edit-form-area">
+          <form className="user-edit-form" onSubmit={this.handleSubmit}>
+            <article className="username-edit">
+              <label htmlFor="username" className="username-edit-label">Username</label>
+              <input id="username" className="username-edit-input" type="text" onChange={this.update('username')} value={this.state.username} />
+            </article>
+
+            <article className="thumbnail-edit">
+              <label className="thumbnail-dropdown">
+                Border
+                <select value={this.state.thumbnailBorder} className="thumbnail-selection" onChange={this.update('thumbnailBorder')}>
+                  <option className="thumbnail-option" value="red">Red</option>
+                  <option className="thumbnail-option" value="orange">Orange</option>
+                  <option className="thumbnail-option" value="yellow">Yellow</option>
+                  <option className="thumbnail-option" value="green">Green</option>
+                  <option className="thumbnail-option" value="blue">Blue</option>
+                  <option className="thumbnail-option" value="purple">Purple</option>
+                  <option className="thumbnail-option" value="black">Black</option>
+                  <option className="thumbnail-option" value="pink">Pink</option>
+                  <option className="thumbnail-option" value="brown">Brown</option>
+                </select>
+              </label>
+
+              <label className="thumbnail-dropdown">
+                Background
+                <select value={this.state.thumbnailBackground} className="thumbnail-selection" onChange={this.update('thumbnailBackground')}>
+                  <option className="thumbnail-option" value="red">Red</option>
+                  <option className="thumbnail-option" value="orange">Orange</option>
+                  <option className="thumbnail-option" value="yellow">Yellow</option>
+                  <option className="thumbnail-option" value="green">Green</option>
+                  <option className="thumbnail-option" value="blue">Blue</option>
+                  <option className="thumbnail-option" value="purple">Purple</option>
+                  <option className="thumbnail-option" value="black">Black</option>
+                  <option className="thumbnail-option" value="white">White</option>
+                  <option className="thumbnail-option" value="pink">Pink</option>
+                  <option className="thumbnail-option" value="brown">Brown</option>
+                </select>
+              </label>
+
+              <label className="thumbnail-dropdown">
+                Letter
+                <select value={this.state.thumbnailLetter} className="thumbnail-selection" onChange={this.update('thumbnailLetter')}>
+                  <option className="thumbnail-option" value="red">Red</option>
+                  <option className="thumbnail-option" value="orange">Orange</option>
+                  <option className="thumbnail-option" value="yellow">Yellow</option>
+                  <option className="thumbnail-option" value="green">Green</option>
+                  <option className="thumbnail-option" value="blue">Blue</option>
+                  <option className="thumbnail-option" value="purple">Purple</option>
+                  <option className="thumbnail-option" value="black">Black</option>
+                  <option className="thumbnail-option" value="white">White</option>
+                  <option className="thumbnail-option" value="pink">Pink</option>
+                  <option className="thumbnail-option" value="brown">Brown</option>
+                </select>
+              </label>
+            </article>
+
+            <input disabled={this.state.disableSumbit} type="submit" className="edit-user-submit" value="UPDATE INFO"/>
+          </form>
+          <button className="restore-defaults" onClick={this.restoreDefaults}>Restore Default Colors</button>
+        </section>
       </div>
     );
   }

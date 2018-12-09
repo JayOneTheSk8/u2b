@@ -24,8 +24,8 @@ class UserVideoIndex extends React.Component {
   customizeUser() {
     if (this.props.videoUploader.id === this.props.currentUserId) {
       return (
-        <Link to={`/users/${this.props.currentUserId}/edit`}>
-          <div>CUSTOMIZE BUTTON HERE</div>
+        <Link className="to-edit-user" to={`/users/${this.props.currentUserId}/edit`}>
+          <div>CUSTOMIZE</div>
         </Link>
       );
     } else {
