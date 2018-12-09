@@ -1,9 +1,10 @@
-import { RECEIVE_USER, LOGOUT_USER } from '../actions/session_actions';
+import { RECEIVE_USER, LOGOUT_USER, RECEIVE_CURRENT_USER } from '../actions/session_actions';
 const defaultState = { currentUserId: null };
 
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
     case RECEIVE_USER:
       return { currentUserId: action.currentUser.id,
         thumbnailInfo: {
