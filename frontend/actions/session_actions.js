@@ -32,10 +32,10 @@ export const removeErrors = () => {
   };
 };
 
-export const receiveCurrentUser = (user) => {
+export const receiveCurrentUser = (currentUser) => {
   return {
     type: RECEIVE_CURRENT_USER,
-    user,
+    currentUser,
   };
 };
 
