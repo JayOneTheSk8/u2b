@@ -33,3 +33,19 @@ end
     end
   end
 end
+
+json.related do
+  @related.each do |related_video|
+    json.videos do
+      json.set! related_video.id do
+        json.partial! 'api/videos/video', video: related_video
+      end
+    end
+
+    json.uploaders do
+      json.set! related_video.uploader_id do
+        json.partial! 'api/videos/uploader', video: related_video
+      end
+    end
+  end
+end

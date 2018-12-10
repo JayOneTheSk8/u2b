@@ -19,6 +19,7 @@ class Api::VideosController < ApplicationController
 
   def show
     @video = Video.includes(:uploader, :ratings, comments: [:author]).find(params[:id])
+    @related = Video.includes(:uploader).order(created_at: :desc).limit(10)
     render :show
   end
 
