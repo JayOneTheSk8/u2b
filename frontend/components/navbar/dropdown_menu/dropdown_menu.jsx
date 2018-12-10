@@ -3,6 +3,7 @@ import HamburgerIcon from '../hamburger_icon';
 import { Link } from 'react-router-dom';
 import { clearScreen } from '../../../actions/ui_actions';
 import { connect } from 'react-redux';
+import SubIcon from './icons/sub_icon';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -13,7 +14,7 @@ const mapDispatchToProps = dispatch => {
 class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { burgerColor: 'original' }
+    this.state = { burgerColor: 'original', sub_icon: 'grey' }
     this.darkenColor = this.darkenColor.bind(this);
     this.lightenColor = this.lightenColor.bind(this);
   }
@@ -26,12 +27,27 @@ class DropdownMenu extends React.Component {
     this.setState({ burgerColor: 'original' });
   }
 
+  reddenLi(field) {
+    return (e) => {
+      this.setState({ [field]: "red" });
+    }
+  }
+
+  greyLi(field) {
+    return (e) => {
+      this.setState({ [field]: "grey" });
+    }
+  }
+
   subscriptions() {
     if (this.props.loggedIn) {
       return (
-        <li key={this.props.currentUserId} className="dropdown-li">
-          <Link to={`/users/${this.props.currentUserId}/subscriptions`}>Subscriptions</Link>
-        </li>
+        <Link onMouseEnter={this.reddenLi('sub_icon')} onMouseLeave={this.greyLi('sub_icon')} className="dropdown-link" to={`/users/${this.props.currentUserId}/subscriptions`}>
+          <li key={this.props.currentUserId} className="dropdown-li">
+            <SubIcon color={this.state.sub_icon}/>
+            Subscriptions
+          </li>
+        </Link>
       );
     } else {
       return null;

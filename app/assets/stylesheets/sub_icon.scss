@@ -1,0 +1,81 @@
+.sub-icon {
+  width: 25px;
+  margin-right: 6px;
+  margin-left: 15px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.first-row-grey {
+  border: 1px solid #7E7E7E;
+  width: 8px;
+  position: relative;
+  top: 4px;
+}
+
+.second-row-grey {
+  border: 1px solid #7E7E7E;
+  width: 12px;
+  position: relative;
+  top: 6px;
+}
+
+.play-box-grey {
+  border: 1px solid #7E7E7E;
+  width: 18px;
+  height: 9px;
+  position: relative;
+  top: 8px;
+  border-radius: 2px;
+  background: #7E7E7E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-triangle {
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid white;
+  position: relative;
+  left: 1px;
+  top: 0.5px;
+}
+
+.first-row-red {
+  border: 1px solid #FF0000;
+  width: 8px;
+  position: relative;
+  top: 4px;
+}
+
+.second-row-red {
+  border: 1px solid #FF0000;
+  width: 12px;
+  position: relative;
+  top: 6px;
+}
+
+.play-box-red {
+  border: 1px solid #FF0000;
+  width: 18px;
+  height: 9px;
+  position: relative;
+  top: 8px;
+  border-radius: 2px;
+  background: #FF0000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-triangle-darken {
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid lightgrey;
+  position: relative;
+  left: 1px;
+  top: 0.5px;
+}
