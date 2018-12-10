@@ -41,6 +41,32 @@ class User < ApplicationRecord
     through: :ratings,
     source: :video
 
+  # As a user
+  has_many :subscriptions,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Subscription
+
+  has_many :subscribed_channels,
+    through: :subscriptions,
+    source: :channel
+
+  has_many :subscribed_videos,
+    through: :subscribed_channels,
+    source: :videos
+  # As a user
+
+  # As a channel
+  has_many :subscription_ids,
+    primary_key: :id,
+    foreign_key: :channel_id,
+    class_name: :Subscription
+
+  has_many :subscribers,
+    through: :subscription_ids,
+    source: :subscriber
+  # As a channel
+
   after_initialize :ensure_session_token!
   attr_reader :password
 
