@@ -8,20 +8,6 @@ import {
   openUserDrawer,
 } from '../../actions/ui_actions';
 
-Array.prototype.shuffle = function() {
-  const toShuffle = [];
-  for (let i = 0; i < this.length; i++) {
-    toShuffle.push(this[i]);
-  }
-  for (let i = toShuffle.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = toShuffle[i];
-    toShuffle[i] = toShuffle[j];
-    toShuffle[j] = temp;
-  }
-  return toShuffle;
-};
-
 const mapStateToProps = state => {
   const currentUser = state.entities.users[state.session.currentUserId];
   const thumbnailInfo = state.session.thumbnailInfo;

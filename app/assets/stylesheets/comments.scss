@@ -3,8 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .comment-form {
   display: flex;
-  width: 70%;
-  flex-direction: column;
+  flex-direction: row;
   margin: 15px 0px;
 }
 
@@ -130,4 +129,16 @@
   background-color: red;
   color: white;
   transition: background-color 0.3s, color 0.3s;
+}
+
+.comment-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.comment-icon {
+  margin: 0 20px 0 0;
+  position: relative;
+  top: 15px;
 }

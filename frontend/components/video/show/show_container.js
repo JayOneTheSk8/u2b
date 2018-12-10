@@ -9,7 +9,7 @@ function parseRelatedVideos(state, relatedVideos) {
   for (let i = 0; i < videos.length; i++) {
     videos[i].uploaderName = state.entities.users[videos[i].uploader_id].username;
   }
-  return videos.shuffle();
+  return videos;
 }
 
 const mapStateToProps = (state, ownProps) => {

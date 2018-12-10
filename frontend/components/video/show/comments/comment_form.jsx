@@ -1,5 +1,6 @@
 import React from 'react';
 import { merge } from 'lodash';
+import DefaultUserThumbnail from '../../../session/default_user_thumbnail';
 
 class CommentForm extends React.Component {
   constructor(props) {
@@ -71,29 +72,44 @@ class CommentForm extends React.Component {
     this.setState({ bodyError: null, redden: '', body: '' });
   }
 
+  displayIcon() {
+    if (this.props.buttonText === 'COMMENT') {
+      return (
+        <figure className="comment-icon">
+          <DefaultUserThumbnail username={this.props.username} thumbnailInfo={this.props.thumbnailInfo} />
+        </figure>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <>
         <form className="comment-form" onSubmit={this.handleSubmit}>
-          <input
-            onFocus={this.checkLoggedIn}
-            className={`comment-input${this.state.redden}`}
-            type="text"
-            value={this.state.body}
-            onChange={this.update}
-            placeholder="Add a public comment..."
-          />
-          <div className="control-buttons">
+          { this.displayIcon() }
+          <div className="comment-area">
             <input
-              disabled={this.state.disableSubmit}
-              className="submit-comment"
-              type="submit"
-              value={this.props.buttonText}
-            />
-            {this.state.bodyError}
-            <button className="cancel-comment" onClick={this.clearEdits}>
-              CANCEL
-            </button>
+              onFocus={this.checkLoggedIn}
+              className={`comment-input${this.state.redden}`}
+              type="text"
+              value={this.state.body}
+              onChange={this.update}
+              placeholder="Add a public comment..."
+              />
+            <div className="control-buttons">
+              <input
+                disabled={this.state.disableSubmit}
+                className="submit-comment"
+                type="submit"
+                value={this.props.buttonText}
+                />
+              {this.state.bodyError}
+              <button className="cancel-comment" onClick={this.clearEdits}>
+                CANCEL
+              </button>
+            </div>
           </div>
         </form>
       </>
