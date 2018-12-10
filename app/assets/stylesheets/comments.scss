@@ -36,6 +36,8 @@
 
 .comment {
   margin: 15px 0px;
+  display: flex;
+  flex-direction: row;
 }
 
 .author-age {
@@ -43,7 +45,7 @@
 }
 
 .comment-author {
-  margin-right: 15px;
+  margin-right: 8px;
   font-weight: 600;
 }
 
@@ -142,3 +144,8 @@
   position: relative;
   top: 15px;
 }
+
+.author-thumbnail {
+  margin: 0;
+  margin-right: 15px;
+  }

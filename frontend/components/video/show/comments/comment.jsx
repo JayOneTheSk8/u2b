@@ -6,11 +6,22 @@ import {
   clearEdits,
 } from '../../../../actions/comment_ui_actions';
 import { deleteComment } from '../../../../actions/comment_actions';
+import DefaultUserThumbnail from '../../../session/default_user_thumbnail';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const author = state.entities.users[ownProps.comment.author_id];
+  const username = author.username || "";
+  const thumbnailInfo = {
+    border: author.thumbnail_border,
+    background: author.thumbnail_background,
+    letter: author.thumbnail_letter,
+  } || {};
+  const test = state;
   return {
     currentUserId: state.session.currentUserId,
     editableComment: state.commentUI.editableComment,
+    username,
+    thumbnailInfo,
   };
 };
 
@@ -80,12 +91,17 @@ class Comment extends React.Component {
     const comment = this.props.comment;
     return (
       <li className="comment">
-        <div className="author-age">
-          <p className="comment-author">{comment.authorName}</p>
-          <p className="comment-age">{comment.age}</p>
-        </div>
-        <p className="comment-body">{comment.body}</p>
-        {this.renderEditButton()}
+        <figure className="author-thumbnail">
+          <DefaultUserThumbnail username={this.props.username} thumbnailInfo={this.props.thumbnailInfo} />
+        </figure>
+        <section className="comment-info">
+          <div className="author-age">
+            <p className="comment-author">{comment.authorName}</p>
+            <p className="comment-age">{comment.age}</p>
+          </div>
+          <p className="comment-body">{comment.body}</p>
+          {this.renderEditButton()}
+        </section>
       </li>
     );
   }
