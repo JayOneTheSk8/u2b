@@ -13,6 +13,8 @@ function parseVideos(state, videoList, listName) {
     videos = videos.sort((a, b) => b.id - a.id);
   } else if (listName === "trending") {
     videos = videos.sort((a, b) => b.views - a.views);
+  } else if (listName === "recommended") {
+    videos = videos.shuffle();
   }
   return videos;
 }

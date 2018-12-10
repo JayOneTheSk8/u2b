@@ -13,7 +13,8 @@ export default (state = {}, action) => {
         {},
         state,
         { [action.uploader.id]: action.uploader },
-        authors
+        authors,
+        action.related.uploaders
       );
     case RECEIVE_USER_VIDEOS:
     case RECEIVE_VIDEOS:

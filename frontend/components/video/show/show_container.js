@@ -3,9 +3,20 @@ import { fetchVideo } from '../../../actions/video_actions';
 import { addView } from '../../../util/video_api_util';
 import Show from './show';
 
+function parseRelatedVideos(state, relatedVideos) {
+  if (!relatedVideos) { return null; }
+  const videos = Object.keys(relatedVideos).map(id => relatedVideos[id]);
+  for (let i = 0; i < videos.length; i++) {
+    videos[i].uploaderName = state.entities.users[videos[i].uploader_id].username;
+  }
+  return videos.shuffle();
+}
+
 const mapStateToProps = (state, ownProps) => {
   const currentUserId = state.session.currentUserId || "" ;
   const defaultState = {};
+  let relatedVideos = state.entities.videos.related;
+  relatedVideos = parseRelatedVideos(state, relatedVideos) || [];
   const video =
     state.entities.videos[ownProps.match.params.videoId] || defaultState;
   const uploader = state.entities.users[video.uploader_id] || {};
@@ -16,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
     comments[i].authorName =
       state.entities.users[comments[i].author_id].username;
   }
-  return { video, uploader, comments, currentUserId };
+  return { video, uploader, comments, currentUserId, relatedVideos };
 };
 
 const mapDispatchToProps = dispatch => {
