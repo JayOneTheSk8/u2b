@@ -1,7 +1,14 @@
 import React from 'react';
 
 const DefaultUserThumbnail = props => {
-  if (Object.values(props.thumbnailInfo).indexOf(null) > -1) {
+  if (!props.username) {
+    return (
+      <div className="empty-account-background">
+        <div className="empty-account-head"></div>
+        <div className="empty-account-body"></div>
+      </div>
+    );
+  } else if (Object.values(props.thumbnailInfo).indexOf(null) > -1) {
     return (
       <div className="default-user-border">
         <div className="default-user-circle">

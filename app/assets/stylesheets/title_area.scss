@@ -2,6 +2,10 @@
   font-size: 30px;
   font-weight: 600;
   margin-top: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 101%;
 }
 
 .title-area {

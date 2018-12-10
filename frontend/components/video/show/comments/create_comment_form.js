@@ -8,14 +8,14 @@ import { withRouter } from 'react-router-dom';
 import { clearEdits } from '../../../../actions/comment_ui_actions';
 
 const mapStateToProps = state => {
-  const username = state.entities.users[state.session.currentUserId].username || "";
+  const currentUser = state.entities.users[state.session.currentUserId] || { username: "" };
   const thumbnailInfo = state.session.thumbnailInfo || [];
   return {
     comment: { body: '' },
     errors: state.errors.comments,
     buttonText: 'COMMENT',
     loggedIn: Boolean(state.session.currentUserId),
-    username,
+    username: currentUser.username,
     thumbnailInfo,
   };
 };

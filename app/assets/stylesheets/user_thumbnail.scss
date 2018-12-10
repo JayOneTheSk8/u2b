@@ -25,6 +25,35 @@
   align-self: flex-start;
 }
 
+.empty-account-background {
+  background: #A9D6F2;
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.empty-account-head {
+  background: #0076D2;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  border-radius: 7px;
+}
+
+.empty-account-body {
+  background: #0076D2;
+  width: 25px;
+  height: 15px;
+  border-radius: 20px;
+  position: relative;
+  top: 5px;
+}
+
 // ========RED=========
 .user-border-red {
   border: 3px solid red;
