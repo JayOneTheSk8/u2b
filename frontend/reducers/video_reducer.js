@@ -18,7 +18,7 @@ export default (state = {}, action) => {
     case RECEIVE_USER_VIDEOS:
       return merge({}, state, action.videos)
     case RECEIVE_VIDEO:
-      return { [action.video.id]: action.video };
+      return merge({}, { related: action.related.videos }, { [action.video.id]: action.video });
     case CLEAR_VIDEOS:
       return {};
     case REMOVE_VIDEO:
