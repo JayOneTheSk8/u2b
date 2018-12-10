@@ -26,6 +26,18 @@ class DropdownMenu extends React.Component {
     this.setState({ burgerColor: 'original' });
   }
 
+  subscriptions() {
+    if (this.props.loggedIn) {
+      return (
+        <li key={this.props.currentUserId} className="dropdown-li">
+          <Link to={`/users/${this.props.currentUserId}/subscriptions`}>Subscriptions</Link>
+        </li>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <aside className={'dropdown-menu-' + this.props.sideDrawer}>
@@ -41,6 +53,7 @@ class DropdownMenu extends React.Component {
           <li className="dropdown-li">
             <Link to="/upload">Upload</Link>
           </li>
+          { this.subscriptions() }
         </ul>
       </aside>
     );
