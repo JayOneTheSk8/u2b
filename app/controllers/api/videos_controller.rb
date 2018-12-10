@@ -50,6 +50,11 @@ class Api::VideosController < ApplicationController
     @video.save
   end
 
+  def subscriptions
+    user = User.find(params[:user_id])
+    @subscriptions = user.subscribed_videos
+  end
+
   #
   # def liked_videos
   #   @user = User.find(params[:user_id])

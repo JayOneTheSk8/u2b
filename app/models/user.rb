@@ -54,7 +54,7 @@ class User < ApplicationRecord
   has_many :subscribed_videos,
     through: :subscribed_channels,
     source: :videos
-  # As a user
+  # ================
 
   # As a channel
   has_many :subscription_ids,
@@ -65,7 +65,7 @@ class User < ApplicationRecord
   has_many :subscribers,
     through: :subscription_ids,
     source: :subscriber
-  # As a channel
+  #  ==================
 
   after_initialize :ensure_session_token!
   attr_reader :password

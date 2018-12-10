@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :update] do
       get 'videos', to: 'videos#user_videos'
       get 'likes', to: 'videos#liked_videos'
+      get 'subscriptions', to: 'videos#subscriptions'
     end
     get 'search', to: 'users#search'
     get 'full_search', to: 'users#full_search'
