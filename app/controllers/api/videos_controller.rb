@@ -26,6 +26,7 @@ class Api::VideosController < ApplicationController
 
   def update
     @video = Video.find(params[:id])
+    @related = Video.includes(:uploader).order(created_at: :desc).limit(15)
     if @video.update(video_params)
       render :show
     else
@@ -55,6 +56,7 @@ class Api::VideosController < ApplicationController
   def subscriptions
     user = User.find(params[:user_id])
     @subscriptions = user.subscribed_videos
+    render 'api/videos/subscriptions'
   end
 
   #
