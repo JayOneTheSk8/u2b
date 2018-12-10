@@ -1,4 +1,5 @@
 import * as VideoApiUtil from '../util/video_api_util';
+import * as SubscriptionsApiUtil from '../util/subscriptions_api_util';
 
 export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
@@ -7,6 +8,7 @@ export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 export const REMOVE_VIDEO_ERRORS = 'REMOVE_VIDEO_ERRORS';
 export const CLEAR_VIDEOS = 'CLEAR_VIDEOS';
 export const RECEIVE_USER_VIDEOS = 'RECEIVE_USER_VIDEOS';
+export const RECEIVE_SUBSCRIPTIONS = 'RECEIVE_SUBSCRIPTIONS';
 
 const receiveVideo = ({
   video,
@@ -69,6 +71,14 @@ export const removeVideoErrors = () => {
   };
 };
 
+export const receiveSubscriptions = ({ subscribed_videos, uploaders }) => {
+  return {
+    type: RECEIVE_SUBSCRIPTIONS,
+    subscribed_videos,
+    uploaders,
+  };
+};
+
 export const fetchVideos = () => dispatch => {
   return VideoApiUtil.fetchVideos().then(payload =>
     dispatch(receiveVideos(payload))
@@ -109,4 +119,8 @@ export const fetchUserVideos = userId => dispatch => {
 
 export const clearVideos = () => dispatch => {
   return dispatch({ type: CLEAR_VIDEOS });
+};
+
+export const fetchSubscriptions = (userId) => dispatch => {
+  return SubscriptionsApiUtil.fetchSubscriptions(userId).then((subs) => dispatch(receiveSubscriptions(subs)));
 };

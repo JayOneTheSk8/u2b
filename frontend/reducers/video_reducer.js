@@ -4,6 +4,7 @@ import {
   REMOVE_VIDEO,
   CLEAR_VIDEOS,
   RECEIVE_USER_VIDEOS,
+  RECEIVE_SUBSCRIPTIONS,
 } from '../actions/video_actions';
 import { merge } from 'lodash';
 
@@ -21,6 +22,8 @@ export default (state = {}, action) => {
       return merge({}, { related: action.related.videos }, { [action.video.id]: action.video });
     case CLEAR_VIDEOS:
       return {};
+    case RECEIVE_SUBSCRIPTIONS:
+      return { subscriptions: action.subscribed_videos };
     case REMOVE_VIDEO:
       let newState = merge({}, state);
       delete newState[action.videoId];
