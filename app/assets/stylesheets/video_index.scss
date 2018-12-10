@@ -2,7 +2,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  width: 150px;
+  width: 210px;
   font-weight: 600;
   font-size: 15px;
 }
@@ -44,6 +44,14 @@
 .video-thumbnail {
   width: 210px;
   height: 118px;
+}
+
+.views-age {
+  display: flex;
+  width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .videos-list {

@@ -33,9 +33,7 @@ class MinimisedVideo extends React.Component {
       'Are you sure you want to delete your video? (Y/N)'
     );
     if (confirmDelete.toUpperCase()[0] === 'Y') {
-      this.props
-        .deleteVideo(this.video.id)
-        .then(action => this.props.history.push('/'));
+      this.props.deleteVideo(this.video.id).then(action => this.props.history.push('/'));
     } else {
       return null;
     }
@@ -83,7 +81,9 @@ class MinimisedVideo extends React.Component {
         {this.toProfileButton()}
         <Link className="views-age" to={`/videos/${this.video.id}`}>
           <p className="mini-views">
-            {this.video.views === 1 ? `${this.video.views} view` : `${this.video.views} views`}
+            {this.video.views === 1
+              ? `${this.video.views} view`
+              : `${this.video.views} views`}
           </p>
           <p className="mini-divider">.</p>
           <p className="mini-age">{this.video.age}</p>

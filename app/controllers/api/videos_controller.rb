@@ -10,6 +10,7 @@ class Api::VideosController < ApplicationController
     end
     @video = Video.new(video_params)
     @video.uploader_id = current_user.id
+    @related = Video.includes(:uploader).order(created_at: :desc).limit(15)
     if @video.save
       render :show
     else
@@ -35,6 +36,7 @@ class Api::VideosController < ApplicationController
   def destroy
     @video = Video.find(params[:id])
     @video.destroy
+    @related = [];
     render :show
   end
 
