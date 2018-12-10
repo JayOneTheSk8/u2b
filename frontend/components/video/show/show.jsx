@@ -3,6 +3,7 @@ import Comment from './comments/comment';
 import CreateCommentForm from './comments/create_comment_form';
 import TitleArea from './title_area_container';
 import RelatedVideoItem from './related_video';
+import DefaultUserThumbnail from '../../session/default_user_thumbnail';
 
 class Show extends React.Component {
   constructor(props) {
@@ -55,10 +56,17 @@ class Show extends React.Component {
               videoId={this.props.video.id}
               title={this.props.video.title}
               views={this.props.video.views}
-              />
+            />
             <div className="divider">
-              <p className="uploader">{this.props.uploader.username}</p>
-              <p className="date">Published on: {this.props.video.upload_date}</p>
+              <div className="uploader-thumbnail-date">
+                <figure className="uploader-thumbnail">
+                  <DefaultUserThumbnail username={this.props.uploader.username} thumbnailInfo={this.props.thumbnailInfo}/>
+                </figure>
+                <article className="uploader-date">
+                  <p className="uploader">{this.props.uploader.username}</p>
+                  <p className="date">Published on: {this.props.video.upload_date}</p>
+                </article>
+              </div>
               <p className="description">{this.props.video.description}</p>
             </div>
           </div>

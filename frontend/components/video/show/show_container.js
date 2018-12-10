@@ -20,6 +20,11 @@ const mapStateToProps = (state, ownProps) => {
   const video =
     state.entities.videos[ownProps.match.params.videoId] || defaultState;
   const uploader = state.entities.users[video.uploader_id] || {};
+  const thumbnailInfo = {
+    border: uploader.thumbnail_border,
+    background: uploader.thumbnail_background,
+    letter: uploader.thumbnail_letter,
+  } || {};
   const comments = Object.keys(state.entities.comments).map(
     id => state.entities.comments[id]
   );
@@ -27,7 +32,7 @@ const mapStateToProps = (state, ownProps) => {
     comments[i].authorName =
       state.entities.users[comments[i].author_id].username;
   }
-  return { video, uploader, comments, currentUserId, relatedVideos };
+  return { video, uploader, comments, currentUserId, relatedVideos, thumbnailInfo };
 };
 
 const mapDispatchToProps = dispatch => {

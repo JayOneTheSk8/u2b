@@ -64,3 +64,18 @@
 .related-views {
   color: #757575;
 }
+
+.uploader-thumbnail-date {
+  display: flex;
+  flex-direction: row;
+}
+
+.uploader-thumbnail {
+  margin: 0;
+  margin-right: 20px;
+}
+
+.uploader-date {
+  display: flex;
+  flex-direction: column;
+}
