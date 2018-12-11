@@ -4,18 +4,19 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: { format: :json } do
+    resource :session, only: [:create, :destroy]
     resources :users, only: [:create, :show, :update] do
+      resources :subscriptions, only: [:index, :create, :show, :destroy]
       get 'videos', to: 'videos#user_videos'
       get 'likes', to: 'videos#liked_videos'
       get 'subscriptions', to: 'videos#subscriptions'
     end
-    get 'search', to: 'users#search'
-    get 'full_search', to: 'users#full_search'
-    resource :session, only: [:create, :destroy]
     resources :videos, except: [:new, :edit]  do
       post 'add_view', to: 'videos#add_view'
       resources :comments, only: [:show, :create, :update, :destroy]
       resources :ratings, only: [:index, :show, :update, :create, :destroy]
     end
+    get 'search', to: 'users#search'
+    get 'full_search', to: 'users#full_search'
   end
 end

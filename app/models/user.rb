@@ -87,9 +87,12 @@ class User < ApplicationRecord
     self.session_token
   end
 
-
   def is_password?(passed_word)
     BCrypt::Password.new(self.password_digest).is_password?(passed_word)
+  end
+
+  def subscriber_count
+    self.subscription_ids.count
   end
 
   private

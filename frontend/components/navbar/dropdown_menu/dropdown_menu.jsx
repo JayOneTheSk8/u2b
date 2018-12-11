@@ -66,9 +66,6 @@ class DropdownMenu extends React.Component {
           </Link>
         </div>
         <ul>
-          <li className="dropdown-li">
-            <Link to="/upload">Upload</Link>
-          </li>
           { this.subscriptions() }
         </ul>
       </aside>
