@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:create, :show, :update] do
-      resources :subscriptions, only: [:index, :create, :show, :destroy]
+      resources :subscriptions, only: [:create, :show, :destroy]
       get 'videos', to: 'videos#user_videos'
       get 'likes', to: 'videos#liked_videos'
       get 'subscription_videos', to: 'videos#subscriptions'

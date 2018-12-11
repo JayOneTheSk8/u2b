@@ -6,6 +6,7 @@ import {
   RECEIVE_USER_VIDEOS,
   RECEIVE_SUBSCRIPTIONS,
 } from '../actions/video_actions';
+import { ADD_SUBSCRIPTION, REMOVE_SUBSCRIPTION } from '../actions/subscription_actions';
 import { merge } from 'lodash';
 
 export default (state = {}, action) => {
@@ -19,7 +20,19 @@ export default (state = {}, action) => {
     case RECEIVE_USER_VIDEOS:
       return merge({}, state, action.videos)
     case RECEIVE_VIDEO:
-      return merge({}, { related: action.related.videos }, { [action.video.id]: action.video });
+      let subscribers = action.subscribers;
+      if (!subscribers) {
+        subscribers = {}
+      }
+      return merge({}, { related: action.related.videos }, { [action.video.id]: action.video }, { subscribers: subscribers });
+    case ADD_SUBSCRIPTION:
+      const subscription = { [action.subscription.user_id]: action.subscription };
+      const newSubscribers = merge(state.subscribers, subscription);
+      return merge({}, state, { subscribers: newSubscribers });
+    case REMOVE_SUBSCRIPTION:
+      let nextState = merge({}, state);
+      delete nextState.subscribers[action.subscription.user_id];
+      return nextState;
     case CLEAR_VIDEOS:
       return {};
     case RECEIVE_SUBSCRIPTIONS:

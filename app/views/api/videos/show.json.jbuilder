@@ -49,3 +49,7 @@ json.related do
     end
   end
 end
+
+json.subscribers do
+  json.partial! 'api/subscriptions/subscriptions', subscriptions: @video.uploader.subscription_ids
+end

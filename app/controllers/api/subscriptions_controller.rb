@@ -1,9 +1,4 @@
 class Api::SubscriptionsController < ApplicationController
-  def index
-    channel = User.find(params[:user_id])
-    @subscriptions = channel.subscription_ids
-    render :index
-  end
 
   def create
     @subscription = Subscription.new

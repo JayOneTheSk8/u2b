@@ -19,6 +19,7 @@ const receiveVideo = ({
   dislikes,
   ratings,
   related,
+  subscribers,
 }) => {
   return {
     type: RECEIVE_VIDEO,
@@ -30,6 +31,7 @@ const receiveVideo = ({
     likes,
     dislikes,
     related,
+    subscribers,
   };
 };
 
