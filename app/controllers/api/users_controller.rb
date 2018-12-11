@@ -28,7 +28,7 @@ class Api::UsersController < ApplicationController
   def full_search
     query = params[:search]
     @videos = Video.includes(:uploader).joins('INNER JOIN users ON videos.uploader_id = users.id').where("title iLIKE :query OR users.username iLike :query", query: "#{query}%").order('created_at DESC')
-    @users = User.where("username iLIKE :query", query: "#{query}%")
+    @users = User.includes(:subscription_ids).where("username iLIKE :query", query: "#{query}%")
     render 'api/videos/full_search'
   end
 

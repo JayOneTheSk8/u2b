@@ -1,0 +1,59 @@
+.found-username {
+  font-size: 45px;
+  font-weight: 600;
+}
+
+.subscriber-video-count {
+  display: flex;
+  flex-direction: row;
+}
+
+.to-user-profile {
+  width: 904px;
+  height: 110px;
+  position: absolute;
+  left: 0px;
+}
+
+.user-subs-videos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.found-user {
+  display: flex;
+  justify-content: space-between;
+  width: 999px;
+  margin: 20px 0px;
+}
+
+.found-user-border-black {
+  margin: 0;
+  border: 5px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-green {
+  background: green;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-white {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: white;
+  left: 1px;
+}

@@ -59,7 +59,11 @@ class SubscribeButton extends React.Component {
   }
 
   editVideo(e) {
-    this.props.history.push(`/videos/${this.props.videoId}/edit`)
+    this.props.history.push(`/videos/${this.props.videoId}/edit`);
+  }
+
+  directToChannel(e) {
+    this.props.history.push(`/users/${this.props.channelId}/videos`);
   }
 
   render() {
@@ -71,9 +75,13 @@ class SubscribeButton extends React.Component {
       return (
         <button className="subscribed-button" onClick={this.unsubscribe}>{`SUBSCRIBED ${this.state.subCount}`}</button>
       );
-    } else if (this.state.channelId === this.state.userId) {
+    } else if (this.state.channelId === this.state.userId && this.props.videoId) {
       return (
         <button className="edit-video-button" onClick={this.editVideo}>EDIT VIDEO</button>
+      );
+    } else if (this.state.channelId === this.state.userId) {
+      return (
+        <button className="edit-video-button" onClick={this.directToChannel}>{`CHANNEL`}</button>
       );
     } else {
       return (

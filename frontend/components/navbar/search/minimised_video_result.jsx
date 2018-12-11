@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 class MinimisedVideoResult extends React.Component {
   constructor(props) {

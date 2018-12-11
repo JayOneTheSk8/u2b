@@ -23,11 +23,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={VideoIndexContainer} />
           <Route exact path="/videos/:videoId" component={VideoShowContainer} />
-          <Route
-            path="/users/:userId/videos"
-            component={UserVideoIndexContainer}
-          />
-        <SecuredRoute path="/users/:userId/subscriptions" component={SubscriptionsPageContainer} />  
+          <Route path="/users/:userId/videos" component={UserVideoIndexContainer} />
+          <SecuredRoute path="/users/:userId/subscriptions" component={SubscriptionsPageContainer} />
           <SecuredRoute path="/users/:userId/edit" component={UserEditFormContainer} />
           <Route path="/results" component={SearchPage} />
           <ProtectedRoute path="/upload" component={VideoUploadContainer} />

@@ -86,3 +86,17 @@
 .search-uploader:hover {
   color: black;
 }
+
+.search-divider {
+  border: 0.5px solid lightgrey;
+  margin: 40px 0px;
+  width: 999px;
+}
+
+.results {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
