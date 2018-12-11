@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :subscriptions, only: [:index, :create, :show, :destroy]
       get 'videos', to: 'videos#user_videos'
       get 'likes', to: 'videos#liked_videos'
-      get 'subscriptions', to: 'videos#subscriptions'
+      get 'subscription_videos', to: 'videos#subscriptions'
     end
     resources :videos, except: [:new, :edit]  do
       post 'add_view', to: 'videos#add_view'

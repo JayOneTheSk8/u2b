@@ -122,5 +122,10 @@ export const clearVideos = () => dispatch => {
 };
 
 export const fetchSubscriptions = (userId) => dispatch => {
-  return SubscriptionsApiUtil.fetchSubscriptions(userId).then((subs) => dispatch(receiveSubscriptions(subs)));
+  return SubscriptionsApiUtil.fetchSubscriptions(userId).then(
+    (subs) => {
+      debugger
+      return dispatch(receiveSubscriptions(subs))
+    }
+  );
 };
