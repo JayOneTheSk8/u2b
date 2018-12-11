@@ -32,7 +32,8 @@ const mapStateToProps = (state, ownProps) => {
     comments[i].authorName =
       state.entities.users[comments[i].author_id].username;
   }
-  return { video, uploader, comments, currentUserId, relatedVideos, thumbnailInfo };
+  const subscriptions = state.entities.videos.subscribers || {};
+  return { video, uploader, comments, currentUserId, relatedVideos, thumbnailInfo, subscriptions };
 };
 
 const mapDispatchToProps = dispatch => {

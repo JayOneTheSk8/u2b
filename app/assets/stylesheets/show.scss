@@ -68,6 +68,12 @@
 .uploader-thumbnail-date {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.upload-info {
+  display: flex;
+  flex-direction: row;
 }
 
 .uploader-thumbnail {
@@ -78,4 +84,31 @@
 .uploader-date {
   display: flex;
   flex-direction: column;
+}
+
+.subscribe-button {
+  padding: 10px 12px;
+  background: #FF0000;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+.subscribed-button {
+  padding: 10px 12px;
+  background: #EDEDEE;
+  color: #7E7E7E;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+.edit-video-button {
+  padding: 10px 12px;
+  background: #1A73E8;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 3px;
 }

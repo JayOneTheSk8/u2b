@@ -4,6 +4,7 @@ import CreateCommentForm from './comments/create_comment_form';
 import TitleArea from './title_area_container';
 import RelatedVideoItem from './related_video';
 import DefaultUserThumbnail from '../../session/default_user_thumbnail';
+import SubscribeButton from '../../session/subscribe_button';
 
 class Show extends React.Component {
   constructor(props) {
@@ -59,13 +60,16 @@ class Show extends React.Component {
             />
             <div className="divider">
               <div className="uploader-thumbnail-date">
-                <figure className="uploader-thumbnail">
-                  <DefaultUserThumbnail username={this.props.uploader.username} thumbnailInfo={this.props.thumbnailInfo}/>
-                </figure>
-                <article className="uploader-date">
-                  <p className="uploader">{this.props.uploader.username}</p>
-                  <p className="date">Published on: {this.props.video.upload_date}</p>
-                </article>
+                <section className="upload-info">
+                  <figure className="uploader-thumbnail">
+                    <DefaultUserThumbnail username={this.props.uploader.username} thumbnailInfo={this.props.thumbnailInfo}/>
+                  </figure>
+                  <article className="uploader-date">
+                    <p className="uploader">{this.props.uploader.username}</p>
+                    <p className="date">Published on: {this.props.video.upload_date}</p>
+                  </article>
+                </section>
+                <SubscribeButton videoId={this.props.match.params.videoId} subscriptions={this.props.subscriptions} channelId={this.props.uploader.id} />
               </div>
               <p className="description">{this.props.video.description}</p>
             </div>
