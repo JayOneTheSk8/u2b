@@ -18,7 +18,9 @@ export default (state = {}, action) => {
       const trending = action.trending;
       return { recommended, latest, trending};
     case RECEIVE_USER_VIDEOS:
-      return merge({}, state, action.videos)
+      const videoSlice = action.videos || {};
+      videoSlice['subscribers'] = action.subscribers || {};
+      return merge({}, state, videoSlice)
     case RECEIVE_VIDEO:
       let subscribers = action.subscribers;
       if (!subscribers) {

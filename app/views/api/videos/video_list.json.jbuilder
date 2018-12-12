@@ -11,3 +11,7 @@ json.uploaders do
     json.partial! 'api/users/user', user: @user
   end
 end
+
+json.subscribers do
+  json.partial! 'api/subscriptions/subscriptions', subscriptions: @user.subscription_ids
+end

@@ -43,32 +43,47 @@ class SubscribeButton extends React.Component {
     this.unsubscribe = this.unsubscribe.bind(this);
     this.redirectToLogin = this.redirectToLogin.bind(this);
     this.editVideo = this.editVideo.bind(this);
+    this.directToChannel = this.directToChannel.bind(this);
   }
 
   subscribe(e) {
     if (this.props.found) {
-      this.props.attachSubscription(this.state.channelId);
-      const nextCount = this.state.subCount + 1;
-      this.setState({ subscribed: true, subCount: nextCount });
+      this.props.attachSubscription(this.props.channelId).then(
+        (action) => {
+          const nextCount = this.state.subCount + 1;
+          this.setState({ subscribed: true, subCount: nextCount });
+        }
+      );
       return;
     }
-    this.props.addSubscription(this.state.channelId);
-    const newCount = this.state.subCount + 1;
-    this.setState({ subscribed: true, subCount: newCount });
+    this.props.addSubscription(this.props.channelId).then(
+      (action) => {
+        const newCount = this.state.subCount + 1;
+        this.setState({ subscribed: true, subCount: newCount });
+        return;
+      }
+    );
   }
 
   unsubscribe(e) {
     if (this.props.found) {
       const subscriptionId = this.props.subscriptions[this.state.userId].id;
-      this.props.detachSubscription(this.state.channelId, subscriptionId);
-      const nextCount = this.state.subCount - 1;
-      this.setState({ subscribed: false, subCount: nextCount });
+      this.props.detachSubscription(this.props.channelId, subscriptionId).then(
+        (action) => {
+          const nextCount = this.state.subCount - 1;
+          this.setState({ subscribed: false, subCount: nextCount });
+        }
+      );
       return;
     }
     const subId = this.props.subscriptions[this.state.userId].id;
-    this.props.removeSubscription(this.state.channelId, subId);
-    const newCount = this.state.subCount - 1;
-    this.setState({ subscribed: false, subCount: newCount });
+    this.props.removeSubscription(this.props.channelId, subId).then(
+      (action) => {
+        const newCount = this.state.subCount - 1;
+        this.setState({ subscribed: false, subCount: newCount });
+        return;
+      }
+    );
   }
 
   redirectToLogin(e) {
@@ -92,11 +107,11 @@ class SubscribeButton extends React.Component {
       return (
         <button className="subscribed-button" onClick={this.unsubscribe}>{`SUBSCRIBED ${this.state.subCount}`}</button>
       );
-    } else if (this.state.channelId === this.state.userId && this.props.videoId) {
+    } else if (this.props.channelId === this.state.userId && this.props.videoId) {
       return (
         <button className="edit-video-button" onClick={this.editVideo}>EDIT VIDEO</button>
       );
-    } else if (this.state.channelId === this.state.userId) {
+    } else if (this.props.channelId === this.state.userId) {
       return (
         <button className="edit-video-button" onClick={this.directToChannel}>{`CHANNEL`}</button>
       );

@@ -7,6 +7,17 @@ import {
 } from '../../../actions/video_actions';
 import { withRouter } from 'react-router-dom';
 
+function parseKeys(object) {
+  const originalKeys = Object.keys(object);
+  const resultKeys = [];
+  for (let i = 0; i < originalKeys.length; i++) {
+    if (originalKeys[i] !== 'subscribers') {
+      resultKeys.push(originalKeys[i]);
+    }
+  }
+  return resultKeys;
+}
+
 const mapStateToProps = (state, ownProps) => {
   const currentUserId = state.session.currentUserId;
   const currentUser = state.entities.users[currentUserId];
@@ -15,10 +26,11 @@ const mapStateToProps = (state, ownProps) => {
     username: '',
   };
   const editSession = currentUserId == videoUploaderId;
-  const videos = Object.keys(state.entities.videos).map(
+  const videos = parseKeys(state.entities.videos).map(
     id => state.entities.videos[id]
   );
   const loggedIn = Boolean(state.session.currentUserId);
+  const subscriptions = state.entities.videos.subscribers || {};
   return {
     currentUserId,
     videoUploader,
@@ -27,6 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     currentUser,
     loggedIn,
     videoUploaderId,
+    subscriptions,
   };
 };
 

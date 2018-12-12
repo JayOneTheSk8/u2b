@@ -2,6 +2,7 @@ import React from 'react';
 import MinimisedVideo from '../show/minimised_video';
 import VideoGroup from '../video_group';
 import { Link } from 'react-router-dom';
+import SubscribeButton from '../../session/subscribe_button';
 
 class UserVideoIndex extends React.Component {
   constructor(props) {
@@ -30,7 +31,9 @@ class UserVideoIndex extends React.Component {
         </Link>
       );
     } else {
-      return null;
+      return (
+        <SubscribeButton subscribed={Boolean(this.props.subscriptions[this.props.currentUserId])} subscriptions={this.props.subscriptions} channelId={this.props.videoUploaderId}/>
+      );
     }
   }
 
@@ -44,6 +47,16 @@ class UserVideoIndex extends React.Component {
         />
       );
     });
+    if (videos.length === 0) {
+      return (
+        <div className="user-index">
+          <section className="uploader-edit">
+            <h1 className="uploader-name">{this.props.videoUploader.username} Channel</h1>
+            { this.customizeUser() }
+          </section>
+        </div>
+      );
+    }
     return (
       <div className="user-index">
         <section className="uploader-edit">

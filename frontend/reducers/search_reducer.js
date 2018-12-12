@@ -40,7 +40,7 @@ export default (state = defaultState, action) => {
       const pickedChannel = action.subscription.channel_id;
       const pickedUser = action.subscription.user_id;
       let secondState = merge({}, state);
-      delete secondState[pickedChannel];
+      delete secondState.users.subscribers[pickedChannel][pickedUser];
       return secondState;
     case RECEIVE_FULL_RESULTS:
       return merge({}, defaultState, action.results);

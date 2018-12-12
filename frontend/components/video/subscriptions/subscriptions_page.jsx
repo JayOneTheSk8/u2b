@@ -53,7 +53,7 @@ class SubscriptionsPage extends React.Component {
     if (this.props.videos.length === 0) {
       return (
         <div className="null-area">
-          <p className="no-results">No Subscriptions Yet :(</p>
+          <p className="no-results">No Videos Yet :(</p>
         </div>
       );
     }
