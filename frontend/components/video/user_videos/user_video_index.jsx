@@ -11,14 +11,12 @@ class UserVideoIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.clearVideos();
     this.props.fetchUserVideos(this.props.videoUploaderId);
   }
 
   componentDidUpdate() {
     if (this.state.lastPage !== this.props.location.pathname) {
       this.setState({ lastPage: this.props.location.pathname });
-      this.props.clearVideos();
       this.props.fetchUserVideos(this.props.match.params.userId);
     }
   }
@@ -48,11 +46,14 @@ class UserVideoIndex extends React.Component {
   }
 
   render() {
-    const videos = this.props.videos.map(video => {
+    if (this.props.videos[0] === 'empty') {
+      return null;
+    }
+    const videos = this.props.videos.map((video, idx) => {
       return (
         <MinimisedVideo
           editable={this.props.editSession}
-          key={video.id}
+          key={idx}
           video={video}
         />
       );

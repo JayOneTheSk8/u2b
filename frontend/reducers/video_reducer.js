@@ -16,11 +16,11 @@ export default (state = {}, action) => {
       const recommended = action.recommended;
       const latest = action.latest;
       const trending = action.trending;
-      return { recommended, latest, trending};
+      return { recommended, latest, trending };
     case RECEIVE_USER_VIDEOS:
       const videoSlice = action.videos || {};
       videoSlice['subscribers'] = action.subscribers || {};
-      return merge({}, state, videoSlice)
+      return merge({}, videoSlice) //no state
     case RECEIVE_VIDEO:
       let subscribers = action.subscribers;
       if (!subscribers) {

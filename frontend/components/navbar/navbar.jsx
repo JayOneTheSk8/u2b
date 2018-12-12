@@ -118,7 +118,7 @@ class NavBar extends React.Component {
           >
             <HamburgerIcon comp="navbar" color={this.state.burgerColor} />
           </figure>
-          <DropdownMenuContainer sideDrawer={this.props.dropdownStatus} />
+          <DropdownMenuContainer currentUserId={this.props.currentUser.id || {}} sideDrawer={this.props.dropdownStatus} />
           <Link to="/">
             <div className="logo" />
           </Link>

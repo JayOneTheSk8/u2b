@@ -5,7 +5,6 @@ import VideoGroup from './video_group';
 
 class VideoIndex extends React.Component {
   componentDidMount() {
-    this.props.clearVideos();
     this.props.fetchVideos();
   }
 

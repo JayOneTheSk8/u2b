@@ -4,7 +4,6 @@ import {
   postVideo,
   removeVideoErrors,
   receiveVideoErrors,
-  clearVideos,
 } from '../../../actions/video_actions';
 
 const mapStateToProps = state => {
@@ -20,7 +19,6 @@ const mapDispatchToProps = dispatch => {
     postVideo: video => dispatch(postVideo(video)),
     removeVideoErrors: () => dispatch(removeVideoErrors()),
     receiveVideoErrors: errors => dispatch(receiveVideoErrors(errors)),
-    clearVideos: () => dispatch(clearVideos()),
   };
 };
 

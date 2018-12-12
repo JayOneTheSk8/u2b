@@ -3,12 +3,21 @@ import UserVideoIndex from './user_video_index';
 import {
   fetchUserVideos,
   deleteVideo,
-  clearVideos,
 } from '../../../actions/video_actions';
 import { withRouter } from 'react-router-dom';
 
 function parseKeys(object) {
   const originalKeys = Object.keys(object);
+  if (
+    originalKeys.includes('recommended') ||
+    originalKeys.includes('latest') ||
+    originalKeys.includes('trending') ||
+    originalKeys.includes('subscriptions') ||
+    (originalKeys.includes('related') && originalKeys.includes('subscribers')) ||
+    originalKeys.includes('related')
+  ) {
+    return ['empty'];
+  }
   const resultKeys = [];
   for (let i = 0; i < originalKeys.length; i++) {
     if (originalKeys[i] !== 'subscribers') {
@@ -26,9 +35,12 @@ const mapStateToProps = (state, ownProps) => {
     username: '',
   };
   const editSession = currentUserId == videoUploaderId;
-  const videos = parseKeys(state.entities.videos).map(
-    id => state.entities.videos[id]
-  );
+  const videos = parseKeys(state.entities.videos).map(id => {
+    if (!state.entities.videos[id]) {
+      return id;
+    }
+    return state.entities.videos[id];
+  });
   const loggedIn = Boolean(state.session.currentUserId);
   const subscriptions = state.entities.videos.subscribers || {};
   return {
@@ -47,7 +59,6 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchUserVideos: userId => dispatch(fetchUserVideos(userId)),
     deleteVideo: id => dispatch(deleteVideo(id)),
-    clearVideos: () => dispatch(clearVideos()),
   };
 };
 

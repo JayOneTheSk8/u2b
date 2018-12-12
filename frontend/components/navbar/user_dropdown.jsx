@@ -2,6 +2,7 @@ import React from 'react';
 import SignoutIcon from './signout_icon';
 import { connect } from 'react-redux';
 import * as SessionActions from '../../actions/session_actions';
+import { fetchUserVideos } from '../../actions/video_actions';
 import AccountIcon from './account_icon';
 import { withRouter } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: e => dispatch(SessionActions.logout()),
+    fetchUserVideos: userId => dispatch(fetchUserVideos(userId)),
   };
 };
 
@@ -36,7 +38,10 @@ class UserDropdown extends React.Component {
   }
 
   toUserVideos(e) {
-    this.props.history.push(`/users/${this.props.currentUserId}/videos`);
+    const userId = this.props.currentUserId;
+    this.props.fetchUserVideos(userId).then(
+      (action) => this.props.history.push(`/users/${userId}/videos`)
+    );
   }
 
   render() {

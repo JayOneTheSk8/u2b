@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import VideoIndex from './video_index';
 import { logout } from '../../actions/session_actions';
-import { fetchVideos, clearVideos } from '../../actions/video_actions';
+import { fetchVideos } from '../../actions/video_actions';
 
 function parseVideos(state, videoList, listName) {
   if (!videoList) { return null; }
@@ -37,7 +37,6 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchVideos: () => dispatch(fetchVideos()),
     logout: () => dispatch(logout()),
-    clearVideos: () => dispatch(clearVideos()),
   };
 };
 export default connect(

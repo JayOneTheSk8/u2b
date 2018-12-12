@@ -6,7 +6,6 @@ import {
   fetchVideo,
   removeVideoErrors,
   receiveVideoErrors,
-  clearVideos,
 } from '../../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -31,7 +30,6 @@ const mapDispatchToProps = dispatch => {
     fetchVideo: id => dispatch(fetchVideo(id)),
     removeVideoErrors: () => dispatch(removeVideoErrors()),
     receiveVideoErrors: errors => dispatch(receiveVideoErrors(errors)),
-    clearVideos: () => dispatch(clearVideos()),
   };
 };
 
