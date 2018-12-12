@@ -1,5 +1,6 @@
 import React from 'react';
 import MinimisedVideo from '../show/minimised_video';
+import VideoGroup from '../video_group';
 import { Link } from 'react-router-dom';
 
 class UserVideoIndex extends React.Component {
@@ -44,13 +45,13 @@ class UserVideoIndex extends React.Component {
       );
     });
     return (
-      <>
+      <div className="user-index">
         <section className="uploader-edit">
-          <h1 className="uploader-name">{this.props.videoUploader.username} Uploads</h1>
+          <h1 className="uploader-name">{this.props.videoUploader.username} Channel</h1>
           { this.customizeUser() }
         </section>
-        <ul className="user-video-list">{videos.reverse()}</ul>
-      </>
+        <VideoGroup videos={videos} title="Uploads"/>
+      </div>
     );
   }
 }

@@ -50,6 +50,13 @@ class SubscriptionsPage extends React.Component {
       .map(video => {
         return <MinimisedVideo key={video.id} video={video} />;
       });
+    if (this.props.videos.length === 0) {
+      return (
+        <div className="null-area">
+          <p className="no-results">No Subscriptions Yet :(</p>
+        </div>
+      );
+    }
     return (
       <div className="subscriptions">
         <VideoGroup title="Today" videos={todayVideos} />
