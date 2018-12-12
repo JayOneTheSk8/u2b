@@ -28,9 +28,103 @@
   margin: 20px 0px;
 }
 
-.found-user-border-black {
+// ===========RED==========
+.found-user-border-red {
   margin: 0;
-  border: 5px solid black;
+  border: 5px solid red;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-red {
+  background: red;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-red {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: red;
+  left: 1px;
+}
+
+// ===========ORANGE==========
+.found-user-border-orange {
+  margin: 0;
+  border: 5px solid orange;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-orange {
+  background: orange;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-orange {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: orange;
+  left: 1px;
+}
+
+// ===========YELLOW==========
+.found-user-border-yellow {
+  margin: 0;
+  border: 5px solid yellow;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-yellow {
+  background: yellow;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-yellow {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: yellow;
+  left: 1px;
+}
+
+// ===========GREEN==========
+.found-user-border-green {
+  margin: 0;
+  border: 5px solid green;
   width: 100px;
   height: 100px;
   border-radius: 55px;
@@ -50,10 +144,188 @@
   justify-content: center;
 }
 
+.found-user-letter-green {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: green;
+  left: 1px;
+}
+
+// ===========BLUE==========
+.found-user-border-blue {
+  margin: 0;
+  border: 5px solid blue;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-blue {
+  background: blue;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-blue {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: blue;
+  left: 1px;
+}
+
+// ===========PURPLE==========
+.found-user-border-purple {
+  margin: 0;
+  border: 5px solid purple;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-purple {
+  background: purple;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-purple {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: purple;
+  left: 1px;
+}
+
+// ===========BLACK==========
+.found-user-border-black {
+  margin: 0;
+  border: 5px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-black {
+  background: black;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-black {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: black;
+  left: 1px;
+}
+
+// ===========WHITE==========
+
+.found-user-circle-white {
+  background: white;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .found-user-letter-white {
   font-size: 65px;
   position: relative;
   top: -1px;
   color: white;
+  left: 1px;
+}
+
+// ===========PINK==========
+.found-user-border-pink {
+  margin: 0;
+  border: 5px solid pink;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-pink {
+  background: pink;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-pink {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: pink;
+  left: 1px;
+}
+
+// ===========BROWN==========
+.found-user-border-brown {
+  margin: 0;
+  border: 5px solid brown;
+  width: 100px;
+  height: 100px;
+  border-radius: 55px;
+  margin-left: 60px;
+}
+
+.found-user-circle-brown {
+  background: brown;
+  width: 102px;
+  height: 101px;
+  border-radius: 55px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.found-user-letter-brown {
+  font-size: 65px;
+  position: relative;
+  top: -1px;
+  color: brown;
   left: 1px;
 }

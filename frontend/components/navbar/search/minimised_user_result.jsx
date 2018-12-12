@@ -5,7 +5,6 @@ import SubscribeButton from '../../session/subscribe_button';
 class MinimsedUserResult extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { subs: Object.keys(this.props.subscriptions).length }
   }
 
   render() {
@@ -22,13 +21,13 @@ class MinimsedUserResult extends React.Component {
           </Link>
           <p className="found-username">{this.props.username}</p>
           <div className="subscriber-video-count">
-            <p>{this.state.subs === 1 ? `${this.state.subs} subscriber` : `${this.state.subs} subscribers`}</p>
+            <p>{this.props.subCount === 1 ? `${this.props.subCount} subscriber` : `${this.props.subCount} subscribers`}</p>
             <p className="point-divider">.</p>
             <p>{this.props.videoCount === 1 ? `${this.props.videoCount} video` : `${this.props.videoCount} videos`}</p>
           </div>
         </section>
         <figure className="found-sub-button">
-          <SubscribeButton subscriptions={this.props.subscriptions} channelId={this.props.userId}/>
+          <SubscribeButton found={true} subscriptions={this.props.subscriptions} channelId={this.props.userId}/>
         </figure>
       </li>
     );

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {
   addSubscription,
   removeSubscription,
+  attachSubscription,
+  detachSubscription,
 } from '../../actions/subscription_actions';
 import { withRouter } from 'react-router-dom';
 
@@ -22,6 +24,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addSubscription: channelId => dispatch(addSubscription(channelId)),
     removeSubscription: (channelId, subId) => dispatch(removeSubscription(channelId, subId)),
+    attachSubscription: channelId => dispatch(attachSubscription(channelId)),
+    detachSubscription: (channelId, subId) => dispatch(detachSubscription(channelId, subId)),
   };
 };
 
@@ -42,12 +46,25 @@ class SubscribeButton extends React.Component {
   }
 
   subscribe(e) {
+    if (this.props.found) {
+      this.props.attachSubscription(this.state.channelId);
+      const nextCount = this.state.subCount + 1;
+      this.setState({ subscribed: true, subCount: nextCount });
+      return;
+    }
     this.props.addSubscription(this.state.channelId);
     const newCount = this.state.subCount + 1;
     this.setState({ subscribed: true, subCount: newCount });
   }
 
   unsubscribe(e) {
+    if (this.props.found) {
+      const subscriptionId = this.props.subscriptions[this.state.userId].id;
+      this.props.detachSubscription(this.state.channelId, subscriptionId);
+      const nextCount = this.state.subCount - 1;
+      this.setState({ subscribed: false, subCount: nextCount });
+      return;
+    }
     const subId = this.props.subscriptions[this.state.userId].id;
     this.props.removeSubscription(this.state.channelId, subId);
     const newCount = this.state.subCount - 1;
