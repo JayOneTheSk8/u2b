@@ -66,7 +66,9 @@ class Show extends React.Component {
                     />
                   </figure>
                   <article className="uploader-date">
-                    <p className="uploader">{this.props.uploader.username}</p>
+                    <div className="to-uploader-profile">
+                      <p className="uploader">{this.props.uploader.username}</p>
+                    </div>
                     <p className="date">
                       Published on: {this.props.video.upload_date}
                     </p>
