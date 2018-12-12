@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchVideo } from '../../../actions/video_actions';
+import { fetchVideo, fetchUserVideos } from '../../../actions/video_actions';
 import { addView } from '../../../util/video_api_util';
 import Show from './show';
 
@@ -40,6 +40,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchVideo: id => dispatch(fetchVideo(id)),
     addView: (videoId) => addView(videoId),
+    fetchUserVideos: (userId) => dispatch(fetchUserVideos(userId)),
   };
 };
 

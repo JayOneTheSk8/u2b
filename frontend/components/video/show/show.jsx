@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Comment from './comments/comment';
 import CreateCommentForm from './comments/create_comment_form';
 import TitleArea from './title_area_container';
@@ -10,6 +11,7 @@ class Show extends React.Component {
   constructor(props) {
     super(props);
     this.state = { location: null };
+    this.directToProfile = this.directToProfile.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +37,13 @@ class Show extends React.Component {
       return <Comment key={comment.id} comment={comment} />;
     });
     return comments.reverse();
+  }
+
+  directToProfile(e) {
+    const userId = this.props.video.uploader_id;
+    this.props.fetchUserVideos(userId).then(
+      (action) => this.props.history.push(`/users/${userId}/videos`)
+    );
   }
 
   render() {
@@ -66,7 +75,7 @@ class Show extends React.Component {
                     />
                   </figure>
                   <article className="uploader-date">
-                    <div className="to-uploader-profile">
+                    <div className="to-uploader-profile" onClick={this.directToProfile}>
                       <p className="uploader">{this.props.uploader.username}</p>
                     </div>
                     <p className="date">
@@ -100,4 +109,4 @@ class Show extends React.Component {
   }
 }
 
-export default Show;
+export default withRouter(Show);
