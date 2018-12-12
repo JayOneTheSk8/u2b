@@ -33,17 +33,21 @@ class SubscribeButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      subscribed: Boolean(this.props.subscriptions[this.props.currentUser.id]),
-      subscriptions: this.props.subscriptions,
-      subCount: Object.keys(this.props.subscriptions).length,
-      channelId: this.props.channelId,
-      userId: this.props.currentUser.id,
+      subscribed: null,
+      subCount: null,
     };
     this.subscribe = this.subscribe.bind(this);
     this.unsubscribe = this.unsubscribe.bind(this);
     this.redirectToLogin = this.redirectToLogin.bind(this);
     this.editVideo = this.editVideo.bind(this);
     this.directToChannel = this.directToChannel.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      subscribed: this.props.subscribed,
+      subCount: this.props.subCount,
+    });
   }
 
   subscribe(e) {
@@ -67,7 +71,7 @@ class SubscribeButton extends React.Component {
 
   unsubscribe(e) {
     if (this.props.found) {
-      const subscriptionId = this.props.subscriptions[this.state.userId].id;
+      const subscriptionId = this.props.subscriptions[this.props.userId].id;
       this.props.detachSubscription(this.props.channelId, subscriptionId).then(
         (action) => {
           const nextCount = this.state.subCount - 1;
@@ -76,7 +80,7 @@ class SubscribeButton extends React.Component {
       );
       return;
     }
-    const subId = this.props.subscriptions[this.state.userId].id;
+    const subId = this.props.subscriptions[this.props.userId].id;
     this.props.removeSubscription(this.props.channelId, subId).then(
       (action) => {
         const newCount = this.state.subCount - 1;
@@ -107,11 +111,11 @@ class SubscribeButton extends React.Component {
       return (
         <button className="subscribed-button" onClick={this.unsubscribe}>{`SUBSCRIBED ${this.state.subCount}`}</button>
       );
-    } else if (this.props.channelId === this.state.userId && this.props.videoId) {
+    } else if (this.props.channelId === this.props.userId && this.props.videoId) {
       return (
         <button className="edit-video-button" onClick={this.editVideo}>EDIT VIDEO</button>
       );
-    } else if (this.props.channelId === this.state.userId) {
+    } else if (this.props.channelId === this.props.userId) {
       return (
         <button className="edit-video-button" onClick={this.directToChannel}>{`CHANNEL`}</button>
       );

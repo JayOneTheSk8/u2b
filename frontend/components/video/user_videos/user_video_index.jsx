@@ -32,7 +32,17 @@ class UserVideoIndex extends React.Component {
       );
     } else {
       return (
-        <SubscribeButton subscribed={Boolean(this.props.subscriptions[this.props.currentUserId])} subscriptions={this.props.subscriptions} channelId={this.props.videoUploaderId}/>
+        <SubscribeButton
+          channelId={this.props.videoUploaderId}
+          subscribed={Boolean(this.props.subscriptions[this.props.currentUserId])}
+          subscriptions={this.props.subscriptions}
+          userId={this.props.currentUserId}
+          subCount={
+            this.props.subscriptions
+            ? Object.keys(this.props.subscriptions).length
+            : 0
+          }
+        />
       );
     }
   }
@@ -54,6 +64,7 @@ class UserVideoIndex extends React.Component {
             <h1 className="uploader-name">{this.props.videoUploader.username} Channel</h1>
             { this.customizeUser() }
           </section>
+          <VideoGroup message="No Uploads Yet :(" videos={videos} title="Uploads"/>
         </div>
       );
     }

@@ -52,8 +52,8 @@ class SubscriptionsPage extends React.Component {
       });
     if (this.props.videos.length === 0) {
       return (
-        <div className="null-area">
-          <p className="no-results">No Videos Yet :(</p>
+        <div className="subscriptions">
+          <VideoGroup message="No Subscribed Videos Yet :(" title="" videos={this.props.videos} />
         </div>
       );
     }

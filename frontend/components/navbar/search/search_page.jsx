@@ -22,6 +22,7 @@ function parseKeys(usersObject) {
 const mapStateToProps = state => {
   const userKeys = parseKeys(state.search.users);
   const users = userKeys.map(id => state.search.users[id]);
+  const currentUserId = state.session.currentUserId || {};
   const videos = Object.keys(state.search.videos).map(
     id => state.search.videos[id]
   );
@@ -37,6 +38,7 @@ const mapStateToProps = state => {
     }
   }
   return {
+    currentUserId,
     users,
     videos: videos.reverse(),
   };
@@ -81,6 +83,7 @@ class SearchPage extends React.Component {
       return (
         <MinimisedUserResult
           key={key}
+          currentUserId={this.props.currentUserId}
           userId={user.id}
           border={user.thumbnail_border}
           circle={user.thumbnail_background}
@@ -98,12 +101,28 @@ class SearchPage extends React.Component {
           <p className="no-results">No Results :(</p>
         </div>
       );
+    } else if (videos.length === 0 && users.length !== 0) {
+      return (
+        <div className="results">
+          <ul>
+            {users}
+          </ul>
+        </div>
+      );
+    } else if (videos.length !== 0 && users.length === 0) {
+      return (
+        <div className="results">
+          <ul>
+            {videos}
+          </ul>
+        </div>
+      );
     }
     return (
       <div className="results">
         <ul>
           {users}
-          <div className="search-divider" />
+            <div className="search-divider" />
           {videos}
         </ul>
       </div>

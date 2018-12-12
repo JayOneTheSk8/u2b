@@ -41,10 +41,8 @@ class Show extends React.Component {
     if (!this.props.video.videoUrl) {
       return null;
     }
-    const relatedVideos = this.props.relatedVideos.map((video) => {
-      return (
-        <RelatedVideoItem key={video.id} video={video}/>
-      );
+    const relatedVideos = this.props.relatedVideos.map(video => {
+      return <RelatedVideoItem key={video.id} video={video} />;
     });
     return (
       <div className="video-and-related">
@@ -62,14 +60,30 @@ class Show extends React.Component {
               <div className="uploader-thumbnail-date">
                 <section className="upload-info">
                   <figure className="uploader-thumbnail">
-                    <DefaultUserThumbnail username={this.props.uploader.username} thumbnailInfo={this.props.thumbnailInfo}/>
+                    <DefaultUserThumbnail
+                      username={this.props.uploader.username}
+                      thumbnailInfo={this.props.thumbnailInfo}
+                    />
                   </figure>
                   <article className="uploader-date">
                     <p className="uploader">{this.props.uploader.username}</p>
-                    <p className="date">Published on: {this.props.video.upload_date}</p>
+                    <p className="date">
+                      Published on: {this.props.video.upload_date}
+                    </p>
                   </article>
                 </section>
-                <SubscribeButton videoId={this.props.match.params.videoId} subscriptions={this.props.subscriptions} channelId={this.props.uploader.id} />
+                <SubscribeButton
+                  channelId={this.props.uploader.id}
+                  subscribed={Boolean(this.props.subscriptions[this.props.currentUserId])}
+                  subscriptions={this.props.subscriptions}
+                  userId={this.props.currentUserId}
+                  videoId={this.props.match.params.videoId}
+                  subCount={
+                    this.props.subscriptions
+                    ? Object.keys(this.props.subscriptions).length
+                    : 0
+                  }
+                />
               </div>
               <p className="description">{this.props.video.description}</p>
             </div>
@@ -78,9 +92,7 @@ class Show extends React.Component {
           <ul className="comment-list">{this.commentList()}</ul>
         </div>
 
-        <ul className="related-video-list">
-          {relatedVideos}
-        </ul>
+        <ul className="related-video-list">{relatedVideos}</ul>
       </div>
     );
   }
