@@ -4,7 +4,7 @@ import VideoListPanel from './video_list_panel';
 import VideoGroup from './video_group';
 
 class VideoIndex extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchVideos();
   }
 

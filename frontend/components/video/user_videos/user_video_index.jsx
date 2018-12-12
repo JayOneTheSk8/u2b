@@ -10,7 +10,7 @@ class UserVideoIndex extends React.Component {
     this.state = { lastPage: null, videoCount: 0 };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchUserVideos(this.props.videoUploaderId);
   }
 

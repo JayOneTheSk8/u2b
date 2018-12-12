@@ -66,7 +66,7 @@ class SearchPage extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const searchKey = this.props.location.search.split('=')[1];
     const search = decodeURIComponent(searchKey);
     this.props.fetchFullResults(search);
