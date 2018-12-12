@@ -9,7 +9,7 @@ import {
 } from '../actions/subscription_actions';
 import { merge } from 'lodash';
 
-const defaultState = { users: {}, videos: {}, resultList: [] };
+const defaultState = { users: { subscribers: {} }, videos: {}, resultList: [] };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
@@ -28,9 +28,13 @@ export default (state = defaultState, action) => {
       nextState.resultList = [];
       return nextState;
     case ATTACH_SUBSCRIPTION:
-      // const newSub = { [action.subscription.user_id]: action.subscription };
       let laterState = merge({}, state);
-      laterState.users.subscribers[action.subscription.channel_id][action.subscription.user_id] = action.subscription;
+      if (laterState.users.subscribers[action.subscription.channel_id]) {
+        laterState.users.subscribers[action.subscription.channel_id][action.subscription.user_id] = action.subscription;
+      } else {
+        laterState.users.subscribers[action.subscription.channel_id] = {};
+        laterState.users.subscribers[action.subscription.channel_id][action.subscription.user_id] = action.subscription;
+      }
       return laterState;
     case DETATCH_SUBSCRIPTION:
       const pickedChannel = action.subscription.channel_id;
