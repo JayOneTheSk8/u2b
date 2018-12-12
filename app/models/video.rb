@@ -10,6 +10,15 @@
 #  updated_at  :datetime         not null
 #  views       :integer          not null
 #
+TODAY = Date.today.strftime('%b %d %Y')
+YESTERDAY = (Date.today - 1).strftime('%b %d %Y')
+THIS_WEEK = [
+  (Date.today - 2).strftime('%b %d %Y'),
+  (Date.today - 3).strftime('%b %d %Y'),
+  (Date.today - 4).strftime('%b %d %Y'),
+  (Date.today - 5).strftime('%b %d %Y'),
+  (Date.today - 6).strftime('%b %d %Y')
+]
 
 class Video < ApplicationRecord
   validates :title, :description, :uploader_id, :views, presence: true
@@ -49,5 +58,18 @@ class Video < ApplicationRecord
     date_array = date.split
     date_array[1] += ","
     date_array.join(' ')
+  end
+
+  def time_ago
+    date = self.created_at.to_date.strftime('%b %d %Y')
+    if TODAY == date
+      return 'today'
+    elsif YESTERDAY == date
+      return 'yesterday'
+    elsif THIS_WEEK.include?(date)
+      return 'this week'
+    else
+      return 'earlier'
+    end
   end
 end

@@ -9,51 +9,36 @@ class SubscriptionsPage extends React.Component {
 
   render() {
     const todayVideos = this.props.videos
-      .filter(
-        video => video.age.includes('minute') || video.age.includes('hour')
-      )
+      .filter(video => video.time_ago === 'today')
       .map(video => {
         return <MinimisedVideo key={video.id} video={video} />;
       });
 
     const yesterdayVideos = this.props.videos
-      .filter(video => video.age.startsWith('1 day'))
+      .filter(video => video.time_ago === 'yesterday')
       .map(video => {
         return <MinimisedVideo key={video.id} video={video} />;
       });
 
     const weekVideos = this.props.videos
-      .filter(
-        video =>
-          video.age.startsWith('2 day') ||
-          video.age.startsWith('3 day') ||
-          video.age.startsWith('4 day') ||
-          video.age.startsWith('5 day') ||
-          video.age.startsWith('6 day')
-      )
+      .filter(video => video.time_ago === 'this week')
       .map(video => {
         return <MinimisedVideo key={video.id} video={video} />;
       });
 
     const earlierVideos = this.props.videos
-      .filter(
-        video =>
-          !video.age.startsWith('1 day') &&
-          !video.age.includes('minute') &&
-          !video.age.includes('hour') &&
-          !video.age.startsWith('2 day') &&
-          !video.age.startsWith('3 day') &&
-          !video.age.startsWith('4 day') &&
-          !video.age.startsWith('5 day') &&
-          !video.age.startsWith('6 day')
-      )
+      .filter(video => video.time_ago == 'earlier')
       .map(video => {
         return <MinimisedVideo key={video.id} video={video} />;
       });
     if (this.props.videos.length === 0) {
       return (
         <div className="subscriptions">
-          <VideoGroup message="No Subscribed Videos Yet :(" title="" videos={this.props.videos} />
+          <VideoGroup
+            message="No Subscribed Videos Yet :("
+            title=""
+            videos={this.props.videos}
+          />
         </div>
       );
     }
