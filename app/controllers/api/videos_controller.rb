@@ -59,13 +59,13 @@ class Api::VideosController < ApplicationController
     render 'api/videos/subscriptions'
   end
 
-  #
-  # def liked_videos
-  #   @user = User.find(params[:user_id])
-  #   user_likes = @user.ratings.select(:id).where(name: 'like')
-  #   @videos = Video.where('id IN :user_likes', user_likes: user_likes)
-  #   render 'api/videos/video_list'
-  # end
+
+  def liked_videos
+    user = User.find(params[:user_id])
+    debugger
+    @videos = Video.where('id IN :user_likes', user_likes: user_likes)
+    render 'api/videos/video_list'
+  end
 
   private
 

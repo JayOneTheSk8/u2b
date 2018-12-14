@@ -1,31 +1,32 @@
-![alt text](app/assets/images/u2bicon.png)
-
 # U2B
 
-U2B is a video sharing website. A user can sign up/login to their account and watch the videos others have uploaded
-![alt text](gifs/signUpPage.gif "Sign Up Demo")
+[U2B](https://aa-u2b.herokuapp.com/#/) is a video sharing and uploading websites. Users can upload, watch, comment on, and like videos. Users can also subscribe to each other and get an aggregated list of videos only from those they have subscribed to.
 
-![alt text](gifs/commentEdit.gif "Edit Comment Demo")
+![alt text](app/assets/images/u2bicon.png "U2B")
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+U2B is built using React.js and Redux to manage the frontend and Rails and PostgreSQL to manage the backend. JBuilder is used to create JSON objects readable by the store. It implements full CRUD of `videos`, `comments`, `subscriptions`, and `ratings`. All videos are stored using AWS cloud service. Previews are images created using [FFmpeg](https://www.ffmpeg.org/) to take an initial snapshot of the sotred video and [mini-magick](https://github.com/minimagick/minimagick) gem to adjust the size.
 
-Things you may want to cover:
+# Features to Note
 
-* Ruby version
+## Sorts Data by User IDs
 
-* System dependencies
+Every video show page needs to know if the `current_user` has interacted with it before. Because there can potentially be millions of `ratings` or `subscriptions` to sift though, there must be a way to do this quickly to ease loading time. How I accomplished this was to load the incoming information by `user_id` into the state.
 
-* Configuration
+```ruby
+@ratings.each do |rating|
+  json.set! rating.user_id do
+    json.partial! 'api/ratings/rating', rating: rating
+  end
+end
+```
+results in
 
-* Database creation
+![alt text](gifs/Ratings.png "Rating JSON")
 
-* Database initialization
+Because the state is a javascript object, the only thing that the show page needs to look for is a `rating` under that username. This reduces time complexity O(n) linear to O(1) constant time.
 
-* How to run the test suite
+### Thumbnail Editing
 
-* Services (job queues, cache servers, search engines, etc.)
+Upon creating a username, a user can edit their primary avatar. A preview shows up for better UX.
 
-* Deployment instructions
-
-* ...
+![alt text](gifs/thumbnail_update.gif "Sign Up Demo")
