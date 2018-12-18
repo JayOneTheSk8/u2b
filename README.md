@@ -4,7 +4,7 @@
 
 ![alt text](app/assets/images/u2bicon.png "U2B")
 
-U2B is built using React.js and Redux to manage the frontend and Rails and PostgreSQL to manage the backend. JBuilder is used to create JSON objects readable by the store. It implements full CRUD of `videos`, `comments`, `subscriptions`, and `ratings`. All videos are stored using AWS cloud service. Previews are images created using [FFmpeg](https://www.ffmpeg.org/) to take an initial snapshot of the sotred video and [mini-magick](https://github.com/minimagick/minimagick) gem to adjust the size.
+U2B is built using React.js and Redux to manage the frontend and Rails and PostgreSQL to manage the backend. JBuilder is used to create JSON objects readable by the store. It implements full CRUD of `videos`, `comments`, `subscriptions`, and `ratings`. All videos are stored using AWS cloud service. Previews are images created using [FFmpeg](https://www.ffmpeg.org/) to take an initial snapshot of the sorted video and [mini-magick](https://github.com/minimagick/minimagick) gem to adjust the size.
 
 # Features to Note
 
@@ -27,6 +27,6 @@ Because the state is a javascript object, the only thing that the show page need
 
 ### Thumbnail Editing
 
-Upon creating a username, a user can edit their primary avatar adn username. A preview shows up for better UX.
+Upon creating a username, a user can edit their primary avatar and username. A preview shows up for better UX.
 
 ![alt text](gifs/thumbnail_edit.gif "Sign Up Demo")
