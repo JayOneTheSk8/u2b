@@ -27,6 +27,6 @@ Because the state is a javascript object, the only thing that the show page need
 
 ### Thumbnail Editing
 
-Upon creating a username, a user can edit their primary avatar. A preview shows up for better UX.
+Upon creating a username, a user can edit their primary avatar adn username. A preview shows up for better UX.
 
-![alt text](gifs/thumbnail_update.gif "Sign Up Demo")
+![alt text](gifs/thumbnail_edit.gif "Sign Up Demo")

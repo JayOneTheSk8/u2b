@@ -54,7 +54,7 @@ class Api::VideosController < ApplicationController
   end
 
   def subscriptions
-    user = User.includes(:subscription_ids).find(params[:user_id])
+    user = User.find(params[:user_id])
     @subscriptions = user.subscribed_videos
     render 'api/videos/subscriptions'
   end
