@@ -1,5 +1,6 @@
 import * as VideoApiUtil from '../util/video_api_util';
 import * as SubscriptionsApiUtil from '../util/subscriptions_api_util';
+import * as PlaylistApiUtil from '../util/playlist_api_util';
 
 export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
@@ -9,6 +10,7 @@ export const REMOVE_VIDEO_ERRORS = 'REMOVE_VIDEO_ERRORS';
 export const CLEAR_VIDEOS = 'CLEAR_VIDEOS';
 export const RECEIVE_USER_VIDEOS = 'RECEIVE_USER_VIDEOS';
 export const RECEIVE_SUBSCRIPTIONS = 'RECEIVE_SUBSCRIPTIONS';
+export const RECEIVE_PLAYLIST = 'RECEIVE_PLAYLIST';
 
 const receiveVideo = ({
   video,
@@ -82,6 +84,15 @@ export const receiveSubscriptions = ({ subscribed_videos, uploaders }) => {
   };
 };
 
+export const receivePlaylist = (listName, playlist) => {
+  return {
+    type: RECEIVE_PLAYLIST,
+    uploaders: playlist.uploaders,
+    videos: playlist.videos,
+    listName,
+  };
+};
+
 export const fetchVideos = () => dispatch => {
   return VideoApiUtil.fetchVideos().then(payload =>
     dispatch(receiveVideos(payload))
@@ -128,6 +139,14 @@ export const fetchSubscriptions = (userId) => dispatch => {
   return SubscriptionsApiUtil.fetchSubscriptions(userId).then(
     (subs) => {
       return dispatch(receiveSubscriptions(subs))
+    }
+  );
+};
+
+export const fetchLikedVideos = (userId) => dispatch => {
+  return PlaylistApiUtil.fetchLikedVideos(userId).then(
+    (likes) => {
+      return dispatch(receivePlaylist('likes', likes))
     }
   );
 };

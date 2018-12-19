@@ -5,6 +5,7 @@ import {
   CLEAR_VIDEOS,
   RECEIVE_USER_VIDEOS,
   RECEIVE_SUBSCRIPTIONS,
+  RECEIVE_PLAYLIST,
 } from '../actions/video_actions';
 import { ADD_SUBSCRIPTION, REMOVE_SUBSCRIPTION } from '../actions/subscription_actions';
 import { merge } from 'lodash';
@@ -12,6 +13,8 @@ import { merge } from 'lodash';
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
+    case RECEIVE_PLAYLIST:
+      return { [action.listName]: action.videos }
     case RECEIVE_VIDEOS:
       const recommended = action.recommended;
       const latest = action.latest;
