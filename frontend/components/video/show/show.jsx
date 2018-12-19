@@ -19,12 +19,6 @@ class Show extends React.Component {
     this.setState({ location: this.props.location.pathname });
   }
 
-  componentWillUnmount() {
-    if (this.props.video.uploader_id !== this.props.currentUserId) {
-      this.props.addView(this.props.video.id);
-    }
-  }
-
   componentDidUpdate() {
     if (this.props.location.pathname !== this.state.location) {
       this.props.fetchVideo(this.props.match.params.videoId);

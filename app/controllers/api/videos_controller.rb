@@ -21,6 +21,10 @@ class Api::VideosController < ApplicationController
   def show
     @video = Video.includes(:ratings, uploader: [:subscription_ids], comments: [:author]).find(params[:id])
     @related = Video.includes(:uploader).order(created_at: :desc).limit(15)
+    if @video.uploader_id != current_user.id
+      @video.views += 1
+      @video.save!
+    end
     render :show
   end
 
@@ -45,12 +49,6 @@ class Api::VideosController < ApplicationController
     @user = User.find(params[:user_id])
     @videos = Video.where(uploader_id: @user.id)
     render 'api/videos/video_list'
-  end
-
-  def add_view
-    @video = Video.find(params[:video_id])
-    @video.views += 1
-    @video.save
   end
 
   def subscriptions

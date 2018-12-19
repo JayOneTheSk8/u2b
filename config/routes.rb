@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       get 'subscription_videos', to: 'videos#subscriptions'
     end
     resources :videos, except: [:new, :edit]  do
-      post 'add_view', to: 'videos#add_view'
       resources :comments, only: [:show, :create, :update, :destroy]
       resources :ratings, only: [:index, :show, :update, :create, :destroy]
     end
