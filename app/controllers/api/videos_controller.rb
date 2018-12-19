@@ -63,9 +63,9 @@ class Api::VideosController < ApplicationController
 
   def liked_videos
     user = User.find(params[:user_id])
-    debugger
-    @videos = Video.where('id IN :user_likes', user_likes: user_likes)
-    render 'api/videos/video_list'
+    user_likes = user.playlists['likes']
+    @videos = Video.includes(:uploader).where(id: user_likes)
+    render 'api/videos/playlist'
   end
 
   private
