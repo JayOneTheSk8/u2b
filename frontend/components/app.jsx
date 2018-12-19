@@ -9,6 +9,7 @@ import VideoShowContainer from './video/show/show_container';
 import UserVideoIndexContainer from './video/user_videos/user_video_index_container';
 import UserEditFormContainer from './video/user_videos/user_edit_container';
 import SubscriptionsPageContainer from './video/subscriptions/subscriptions_page_container';
+import LikedVideosContainer from './video/playlists/liked_videos_container';
 import SearchPage from './navbar/search/search_page';
 import NavBar from './navbar/navbar_container';
 import Modal from './modal/modal_container';
@@ -24,6 +25,7 @@ const App = () => {
           <Route exact path="/" component={VideoIndexContainer} />
           <Route exact path="/videos/:videoId" component={VideoShowContainer} />
           <Route path="/users/:userId/videos" component={UserVideoIndexContainer} />
+          <Route path="/users/:userId/likes" component={LikedVideosContainer} />
           <SecuredRoute path="/users/:userId/subscriptions" component={SubscriptionsPageContainer} />
           <SecuredRoute path="/users/:userId/edit" component={UserEditFormContainer} />
           <Route path="/results" component={SearchPage} />
