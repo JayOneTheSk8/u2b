@@ -25,6 +25,9 @@ class Api::VideosController < ApplicationController
       @video.views += 1
       @video.save!
     end
+    if logged_in?
+      current_user.playlist_add('watched', params[:id])
+    end
     render :show
   end
 

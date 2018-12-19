@@ -16,7 +16,7 @@ class Api::RatingsController < ApplicationController
     @rating = Rating.new(video_id: video_id, name: name)
     @rating.user_id = current_user.id
     if @rating.save
-      if logged_in? && name == 'like'
+      if name == 'like'
         current_user.playlist_add('likes', video_id)
       end
       render :show

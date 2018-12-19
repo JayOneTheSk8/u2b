@@ -100,6 +100,7 @@ class User < ApplicationRecord
   end
 
   def playlist_add(list_name, video_id)
+    self.playlists[list_name].delete(video_id)
     self.playlists[list_name].unshift(video_id)
     self.save!
   end
