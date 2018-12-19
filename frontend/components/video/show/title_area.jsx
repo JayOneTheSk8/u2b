@@ -48,19 +48,21 @@ class TitleArea extends React.Component {
       if (that.state.currentRating) {
         let currentRating = that.state.currentRating;
         if (currentRating.name === rating) {
-          that.props.removeRating(videoId, currentRating);
-          that.setState({
-            currentRating: null,
-            [rating + 'Status']: 'grey',
-            [otherRating + 'Status']: 'grey',
+          that.props.removeRating(videoId, currentRating).then(action => {
+            that.setState({
+              currentRating: null,
+              [rating + 'Status']: 'grey',
+              [otherRating + 'Status']: 'grey',
+            });
           });
         } else {
           currentRating.name = rating;
-          that.props.updateRating(videoId, currentRating);
-          that.setState({
-            currentRating,
-            [rating + 'Status']: 'blue',
-            [otherRating + 'Status']: 'grey',
+          that.props.updateRating(videoId, currentRating).then(action => {
+            that.setState({
+              currentRating,
+              [rating + 'Status']: 'blue',
+              [otherRating + 'Status']: 'grey',
+            });
           });
         }
       } else {

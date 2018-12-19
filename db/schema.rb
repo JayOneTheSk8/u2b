@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_011148) do
+ActiveRecord::Schema.define(version: 2018_12_19_030048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_011148) do
     t.string "thumbnail_background", default: "green"
     t.string "thumbnail_letter", default: "white"
     t.string "thumbnail_border", default: "black"
+    t.jsonb "playlists", default: {"likes"=>[], "watched"=>[], "watch_later"=>[]}
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

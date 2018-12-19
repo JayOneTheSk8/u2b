@@ -2,12 +2,16 @@
 #
 # Table name: users
 #
-#  id              :bigint(8)        not null, primary key
-#  username        :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                   :bigint(8)        not null, primary key
+#  username             :string           not null
+#  password_digest      :string           not null
+#  session_token        :string           not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  thumbnail_background :string           default("green")
+#  thumbnail_letter     :string           default("white")
+#  thumbnail_border     :string           default("black")
+#  playlists            :jsonb
 #
 
 COLORS = %w(red orange yellow green blue purple white black pink brown)
@@ -93,6 +97,16 @@ class User < ApplicationRecord
 
   def subscriber_count
     self.subscription_ids.count
+  end
+
+  def playlist_add(list_name, video_id)
+    self.playlists[list_name].unshift(video_id)
+    self.save!
+  end
+
+  def playlist_remove(list_name, video_id)
+    self.playlists[list_name].delete(video_id)
+    self.save!
   end
 
   private

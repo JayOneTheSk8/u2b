@@ -8,8 +8,9 @@
 #  uploader_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  views       :integer          not null
+#  views       :integer          default(0), not null
 #
+
 TODAY = Date.today.strftime('%b %d %Y')
 YESTERDAY = (Date.today - 1).strftime('%b %d %Y')
 THIS_WEEK = [
