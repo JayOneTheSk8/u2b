@@ -92,8 +92,11 @@ class SearchBar extends React.Component {
 
   listSearch(e) {
     e.preventDefault();
+    if (!e.currentTarget.innerText) {
+      this.props.history.push(`/results?search_query=`)
+      return;
+    }
     const search_query = encodeURIComponent(e.currentTarget.innerText);
-    debugger
     this.props.fetchFullResults(e.currentTarget.innerText).then(
       (action) => this.props.history.push(`/results?search_query=${search_query}`)
     );
@@ -101,6 +104,10 @@ class SearchBar extends React.Component {
 
   fullSearch(e) {
     e.preventDefault();
+    if (!this.state.query) {
+      this.props.history.push(`/results?search_query=`)
+      return;
+    }
     const search_query = encodeURIComponent(this.state.query);
     this.props.fetchFullResults(this.state.query).then(
       (action) => this.props.history.push(`/results?search_query=${search_query}`)
