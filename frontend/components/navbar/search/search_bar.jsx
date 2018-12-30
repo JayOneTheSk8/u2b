@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { query: '', hideResults: false, lastSearch: null };
+    this.state = { query: '', hideResults: false, lastSearch: null, pickedLi: -1, cachedQuery: '' };
     this.queryText = this.queryText.bind(this);
     this.hideList = this.hideList.bind(this);
     this.showList = this.showList.bind(this);
@@ -28,10 +28,11 @@ class SearchBar extends React.Component {
     this.listSearch = this.listSearch.bind(this);
     this.prepToClick = this.prepToClick.bind(this);
     this.unprepToClick = this.unprepToClick.bind(this);
+    this.selectLi = this.selectLi.bind(this);
   }
 
   queryText(e) {
-    this.setState({ query: e.target.value });
+    this.setState({ pickedLi: -1, query: e.target.value, cachedQuery: e.target.value });
     if (e.target.value) {
       this.props.fetchResults(e.target.value);
     }
@@ -42,10 +43,36 @@ class SearchBar extends React.Component {
       this.setState({ hideResults: true });
       this.props.clearResults();
     }
+    window.removeEventListener('keydown', this.selectLi);
   }
 
   showList(e) {
     this.setState({ hideResults: false });
+    window.addEventListener('keydown', this.selectLi);
+  }
+
+  selectLi(e) {
+    let nextLi;
+    switch (e.keyCode) {
+      case 38: // up
+        nextLi = this.state.pickedLi - 1;
+        if (nextLi <= -1) {
+          this.setState({ query: this.state.cachedQuery, pickedLi: this.props.queryResults.length - 1 });
+        } else {
+          this.setState({ query: this.props.queryResults[nextLi], pickedLi: nextLi });
+        }
+        return;
+      case 40: // down
+        nextLi = this.state.pickedLi + 1;
+        if (nextLi >= this.props.queryResults.length) {
+          this.setState({ query: this.state.cachedQuery, pickedLi: -1 });
+        } else {
+          this.setState({ query: this.props.queryResults[nextLi], pickedLi: nextLi });
+        }
+        return;
+      default:
+        return null;
+    }
   }
 
   prepToClick(e) {
@@ -76,7 +103,7 @@ class SearchBar extends React.Component {
           onClick={this.listSearch}
           onMouseEnter={this.prepToClick}
           onMouseLeave={this.unprepToClick}
-          className="result-list-item"
+          className={`result-list-item ${this.state.pickedLi === idx ? 'selected' : '' }`}
         >
           {result}
         </li>
