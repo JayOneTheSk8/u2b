@@ -13,7 +13,6 @@ class Playlist extends React.Component {
 
 
   render() {
-    debugger
     const videos = this.props.videos.map(video => {
       return (
         <MinimisedVideo key={video.id} video={video} />

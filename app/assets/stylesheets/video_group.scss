@@ -22,3 +22,11 @@
 .null {
   margin-top: 120px;
 }
+
+.playlist {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
