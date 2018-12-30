@@ -34,6 +34,9 @@ const mapStateToProps = (state, ownProps) => {
   const loggedIn = Boolean(state.session.currentUserId);
   const subscriptions = state.entities.videos.subscribers || {};
   const likes = state.entities.videos.likes ? Object.keys(state.entities.videos.likes).map(id => state.entities.videos.likes[id]) : [];
+  for (let i = 0; i < likes.length; i++) {
+    likes[i].uploaderName = state.entities.users[likes[i].uploader_id].username;
+  }
   return {
     currentUserId,
     videoUploader,

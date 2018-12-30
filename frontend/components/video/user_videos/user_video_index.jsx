@@ -58,6 +58,7 @@ class UserVideoIndex extends React.Component {
     const likes = this.props.likes.map((video, idx) => {
       return (
         <MinimisedVideo
+          like={true}
           key={video.id}
           video={video}
         />

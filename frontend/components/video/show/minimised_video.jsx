@@ -1,11 +1,12 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteVideo } from '../../../actions/video_actions';
+import { deleteVideo, fetchUserVideos } from '../../../actions/video_actions';
 
 const mapDispatchToProps = dispatch => {
   return {
     deleteVideo: id => dispatch(deleteVideo(id)),
+    fetchUserVideos: (userId) => dispatch(fetchUserVideos(userId)),
   };
 };
 
@@ -19,7 +20,9 @@ class MinimisedVideo extends React.Component {
 
   directToProfile(uploaderId) {
     return e => {
-      this.props.history.push(`/users/${uploaderId}/videos`);
+      this.props.fetchUserVideos(uploaderId).then(
+        (action) => this.props.history.push(`/users/${uploaderId}/videos`)
+      );
     };
   }
 
@@ -53,18 +56,23 @@ class MinimisedVideo extends React.Component {
   }
 
   toProfileButton() {
+    if (this.props.like) { return this.profileButton(this.video.uploader_id, this.video.uploaderName); }
     const pathArray = this.props.location.pathname.split('/').slice(1);
     if (pathArray.length === 3) {
       if (pathArray[0] === 'users' && pathArray[2] === 'videos') {
         return null;
       }
     }
+    return this.profileButton(this.video.uploader_id, this.video.uploaderName);
+  }
+
+  profileButton(uploaderId, uploaderName) {
     return (
       <button
         className="video-to-profile"
-        onClick={this.directToProfile(this.video.uploader_id)}
-      >
-        <p className="mini-uploader">{this.video.uploaderName}</p>
+        onClick={this.directToProfile(uploaderId)}
+        >
+        <p className="mini-uploader">{uploaderName}</p>
       </button>
     );
   }
