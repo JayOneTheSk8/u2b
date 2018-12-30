@@ -1,18 +1,8 @@
 import React from 'react';
 import HamburgerIcon from '../hamburger_icon';
 import { Link } from 'react-router-dom';
-import { clearScreen } from '../../../actions/ui_actions';
-import { fetchSubscriptions } from '../../../actions/video_actions';
-import { connect } from 'react-redux';
 import SubIcon from './icons/sub_icon';
 import LikeIcon from '../../video/show/icons/like.jsx';
-
-const mapDispatchToProps = dispatch => {
-  return {
-    clearScreen: (e) => dispatch(clearScreen()),
-    fetchSubscriptions: (userId) => dispatch(fetchSubscriptions(userId)),
-  };
-};
 
 class DropdownMenu extends React.Component {
   constructor(props) {
@@ -21,6 +11,7 @@ class DropdownMenu extends React.Component {
     this.darkenColor = this.darkenColor.bind(this);
     this.lightenColor = this.lightenColor.bind(this);
     this.toSubscriptions = this.toSubscriptions.bind(this);
+    this.toLikedVideos = this.toLikedVideos.bind(this);
   }
 
   darkenColor(e) {
@@ -49,6 +40,10 @@ class DropdownMenu extends React.Component {
     );
   }
 
+  toLikedVideos(e) {
+    return;
+  }
+
   subscriptions() {
     if (this.props.loggedIn) {
       return (
@@ -67,7 +62,7 @@ class DropdownMenu extends React.Component {
   likedVideos() {
     if (this.props.loggedIn) {
       return (
-        <div onMouseEnter={this.reddenLi('likeIcon')} onMouseLeave={this.greyLi('likeIcon')} className='dropdown-link'>
+        <div onMouseEnter={this.reddenLi('likeIcon')} onMouseLeave={this.greyLi('likeIcon')} className='dropdown-link' onClick={this.toLikedVideos}>
           <li key="2" className="dropdown-li">
             <LikeIcon dropdown={true} color={this.state.likeIcon}/>
             Liked Videos
@@ -99,4 +94,4 @@ class DropdownMenu extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(DropdownMenu);
+export default DropdownMenu;
