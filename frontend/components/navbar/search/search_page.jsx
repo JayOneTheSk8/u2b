@@ -59,10 +59,10 @@ class SearchPage extends React.Component {
 
   componentDidUpdate() {
     if (this.props.location.search !== this.state.location) {
-      this.setState({ location: this.props.location.search });
       const searchKey = this.props.location.search.split('=')[1];
       const search = decodeURIComponent(searchKey);
       this.props.fetchFullResults(search);
+      this.setState({ location: this.props.location.search });
     }
   }
 
@@ -71,6 +71,7 @@ class SearchPage extends React.Component {
     const search = decodeURIComponent(searchKey);
     if (!search) { return; }
     this.props.fetchFullResults(search);
+    this.setState({ location: this.props.location.search });
   }
 
   render() {

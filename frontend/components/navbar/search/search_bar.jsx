@@ -40,7 +40,7 @@ class SearchBar extends React.Component {
 
   hideList(e) {
     if (!this.state.liHovered) {
-      this.setState({ hideResults: true });
+      this.setState({ cachedQuery: '', hideResults: true });
       this.props.clearResults();
     }
     window.removeEventListener('keydown', this.selectLi);
@@ -53,6 +53,9 @@ class SearchBar extends React.Component {
 
   selectLi(e) {
     let nextLi, last;
+    if (this.props.queryResults.length === 0) {
+      return;
+    }
     switch (e.keyCode) {
       case 38: // up
         nextLi = this.state.pickedLi - 1;
@@ -79,7 +82,7 @@ class SearchBar extends React.Component {
   }
 
   prepToClick(e) {
-    this.setState({ liHovered: true });
+    this.setState({ pickedLi: -1, liHovered: true });
   }
 
   unprepToClick(e) {
