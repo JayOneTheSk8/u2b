@@ -57,15 +57,6 @@ class SearchPage extends React.Component {
     this.state = { location: this.props.location.search };
   }
 
-  componentDidUpdate() {
-    if (this.props.location.search !== this.state.location) {
-      const searchKey = this.props.location.search.split('=')[1];
-      const search = decodeURIComponent(searchKey);
-      this.props.fetchFullResults(search);
-      this.setState({ location: this.props.location.search });
-    }
-  }
-
   componentWillMount() {
     const searchKey = this.props.location.search.split('=')[1];
     const search = decodeURIComponent(searchKey);
@@ -75,16 +66,13 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    let key = -1;
     const videos = this.props.videos.map(video => {
-      key++;
-      return <MinimisedVideoResult key={key} video={video} />;
+      return <MinimisedVideoResult key={`video${video.id}`} video={video} />;
     });
     const users = this.props.users.map(user => {
-      key++;
       return (
         <MinimisedUserResult
-          key={key}
+          key={`user${user.id}`}
           currentUserId={this.props.currentUserId}
           userId={user.id}
           border={user.thumbnail_border}

@@ -10,13 +10,13 @@ class VideoIndex extends React.Component {
 
   render() {
     const recommended = this.props.recommended.map(video => {
-      return <MinimisedVideo key={video.id} video={video} />;
+      return <MinimisedVideo key={`recommended${video.id}`} video={video} />;
     });
     const latest = this.props.latest.map(video => {
-      return <MinimisedVideo key={video.id} video={video} />;
+      return <MinimisedVideo key={`latest${video.id}`} video={video} />;
     });
     const trending = this.props.trending.map(video => {
-      return <MinimisedVideo key={video.id} video={video} />;
+      return <MinimisedVideo key={`trending${video.id}`} video={video} />;
     });
     const username = this.props.currentUser.username;
     const recommendedTitle = (username ? `Recommended for ${username}` : "Recommended")

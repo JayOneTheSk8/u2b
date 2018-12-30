@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchIcon from './search_icon';
-import { fetchResults, clearResults } from '../../../actions/search_actions';
+import { fetchResults, clearResults, fetchFullResults } from '../../../actions/search_actions';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -13,6 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchResults: search => dispatch(fetchResults(search)),
+    fetchFullResults: search => dispatch(fetchFullResults(search)),
     clearResults: () => dispatch(clearResults()),
   };
 };
@@ -92,13 +93,18 @@ class SearchBar extends React.Component {
   listSearch(e) {
     e.preventDefault();
     const search_query = encodeURIComponent(e.currentTarget.innerText);
-    this.props.history.push(`/results?search_query=${search_query}`);
+    debugger
+    this.props.fetchFullResults(e.currentTarget.innerText).then(
+      (action) => this.props.history.push(`/results?search_query=${search_query}`)
+    );
   }
 
   fullSearch(e) {
     e.preventDefault();
     const search_query = encodeURIComponent(this.state.query);
-    this.props.history.push(`/results?search_query=${search_query}`);
+    this.props.fetchFullResults(this.state.query).then(
+      (action) => this.props.history.push(`/results?search_query=${search_query}`)
+    );
   }
 
   render() {
