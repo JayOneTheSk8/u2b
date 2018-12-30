@@ -52,12 +52,15 @@ class SearchBar extends React.Component {
   }
 
   selectLi(e) {
-    let nextLi;
+    let nextLi, last;
     switch (e.keyCode) {
       case 38: // up
         nextLi = this.state.pickedLi - 1;
-        if (nextLi <= -1) {
-          this.setState({ query: this.state.cachedQuery, pickedLi: this.props.queryResults.length - 1 });
+        if (nextLi === -1) {
+          this.setState({ query: this.state.cachedQuery, pickedLi: nextLi });
+        } else if (nextLi < -1) {
+          last = this.props.queryResults.length - 1;
+          this.setState({ query: this.props.queryResults[last], pickedLi: last });
         } else {
           this.setState({ query: this.props.queryResults[nextLi], pickedLi: nextLi });
         }
