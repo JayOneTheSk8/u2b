@@ -41,7 +41,9 @@ class DropdownMenu extends React.Component {
   }
 
   toLikedVideos(e) {
-    return;
+    this.props.fetchLikedVideos(this.props.currentUserId).then(
+      (action) => this.props.history.push(`/users/${this.props.currentUserId}/likes`)
+    );
   }
 
   subscriptions() {
