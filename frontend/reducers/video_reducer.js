@@ -23,6 +23,7 @@ export default (state = {}, action) => {
     case RECEIVE_USER_VIDEOS:
       const videoSlice = action.videos || {};
       videoSlice['subscribers'] = action.subscribers || {};
+      videoSlice['likes'] = action.likes || {};
       return merge({}, videoSlice) //no state
     case RECEIVE_VIDEO:
       let subscribers = action.subscribers;

@@ -37,12 +37,13 @@ const receiveVideo = ({
   };
 };
 
-const receiveUserVideos = ({ videos, uploaders, subscribers }) => {
+const receiveUserVideos = ({ likes, videos, uploaders, subscribers }) => {
   return {
     type: RECEIVE_USER_VIDEOS,
     videos,
     uploaders,
     subscribers,
+    likes,
   };
 };
 

@@ -8,19 +8,9 @@ import { withRouter } from 'react-router-dom';
 
 function parseKeys(object) {
   const originalKeys = Object.keys(object);
-  if (
-    originalKeys.includes('recommended') ||
-    originalKeys.includes('latest') ||
-    originalKeys.includes('trending') ||
-    originalKeys.includes('subscriptions') ||
-    (originalKeys.includes('related') && originalKeys.includes('subscribers')) ||
-    originalKeys.includes('related')
-  ) {
-    return ['empty'];
-  }
   const resultKeys = [];
   for (let i = 0; i < originalKeys.length; i++) {
-    if (originalKeys[i] !== 'subscribers') {
+    if (originalKeys[i] !== 'subscribers' && originalKeys[i] !== 'likes') {
       resultKeys.push(originalKeys[i]);
     }
   }
@@ -43,6 +33,7 @@ const mapStateToProps = (state, ownProps) => {
   });
   const loggedIn = Boolean(state.session.currentUserId);
   const subscriptions = state.entities.videos.subscribers || {};
+  const likes = state.entities.videos.likes ? Object.keys(state.entities.videos.likes).map(id => state.entities.videos.likes[id]) : [];
   return {
     currentUserId,
     videoUploader,
@@ -52,6 +43,7 @@ const mapStateToProps = (state, ownProps) => {
     loggedIn,
     videoUploaderId,
     subscriptions,
+    likes,
   };
 };
 

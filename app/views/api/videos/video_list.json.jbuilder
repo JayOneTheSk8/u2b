@@ -6,6 +6,20 @@
   end
 end
 
+@likes.each do |like|
+  json.likes do
+    json.set! like.id do
+      json.partial! 'api/videos/video', video: like
+    end
+  end
+
+  json.uploaders do
+    json.set! like.uploader_id do
+      json.partial! 'api/videos/uploader', video: like
+    end
+  end
+end
+
 json.uploaders do
   json.set! @user.id do
     json.partial! 'api/users/user', user: @user

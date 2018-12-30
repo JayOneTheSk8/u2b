@@ -46,14 +46,19 @@ class UserVideoIndex extends React.Component {
   }
 
   render() {
-    if (this.props.videos[0] === 'empty') {
-      return null;
-    }
     const videos = this.props.videos.map((video, idx) => {
       return (
         <MinimisedVideo
           editable={this.props.editSession}
           key={idx}
+          video={video}
+        />
+      );
+    });
+    const likes = this.props.likes.map((video, idx) => {
+      return (
+        <MinimisedVideo
+          key={video.id}
           video={video}
         />
       );
@@ -66,6 +71,7 @@ class UserVideoIndex extends React.Component {
             { this.customizeUser() }
           </section>
           <VideoGroup message="No Uploads Yet :(" videos={videos} title="Uploads"/>
+          <VideoGroup message="No Likes Yet ):" videos={likes} title="Likes"/>
         </div>
       );
     }
@@ -76,6 +82,7 @@ class UserVideoIndex extends React.Component {
           { this.customizeUser() }
         </section>
         <VideoGroup videos={videos} title="Uploads"/>
+        <VideoGroup message="No Likes Yet ):" videos={likes} title="Likes"/>
       </div>
     );
   }
