@@ -57,12 +57,12 @@ class SearchPage extends React.Component {
     this.state = { loaded: false };
   }
 
-  // componentWillMount() {
-  //   const searchKey = this.props.location.search.split('=')[1];
-  //   const search = decodeURIComponent(searchKey);
-  //   if (!search) { return; }
-  //   this.props.fetchFullResults(search);
-  // }
+  componentWillMount() {
+    const searchKey = this.props.location.search.split('=')[1];
+    const search = decodeURIComponent(searchKey);
+    if (!search) { return; }
+    this.props.fetchFullResults(search);
+  }
 
   render() {
     const videos = this.props.videos.map(video => {

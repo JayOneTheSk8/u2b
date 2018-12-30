@@ -30,10 +30,14 @@ export default (state = defaultState, action) => {
     case ATTACH_SUBSCRIPTION:
       let laterState = merge({}, state);
       if (laterState.users.subscribers[action.subscription.channel_id]) {
-        laterState.users.subscribers[action.subscription.channel_id][action.subscription.user_id] = action.subscription;
+        laterState.users.subscribers[action.subscription.channel_id][
+          action.subscription.user_id
+        ] = action.subscription;
       } else {
         laterState.users.subscribers[action.subscription.channel_id] = {};
-        laterState.users.subscribers[action.subscription.channel_id][action.subscription.user_id] = action.subscription;
+        laterState.users.subscribers[action.subscription.channel_id][
+          action.subscription.user_id
+        ] = action.subscription;
       }
       return laterState;
     case DETATCH_SUBSCRIPTION:
@@ -43,7 +47,15 @@ export default (state = defaultState, action) => {
       delete secondState.users.subscribers[pickedChannel][pickedUser];
       return secondState;
     case RECEIVE_FULL_RESULTS:
-      return merge({}, defaultState, action.results);
+      let results = {
+        users: merge({}, (action.results.users || {}), {
+          subscribers: action.results.subscribers || {},
+        }),
+        videos: action.results.videos || {},
+        uploaders: action.results.uploaders || {},
+        resultList: [],
+      };
+      return results;
     default:
       return state;
   }
