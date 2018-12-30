@@ -5,6 +5,7 @@ import { clearScreen } from '../../../actions/ui_actions';
 import { fetchSubscriptions } from '../../../actions/video_actions';
 import { connect } from 'react-redux';
 import SubIcon from './icons/sub_icon';
+import LikeIcon from '../../video/show/icons/like.jsx';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -16,7 +17,7 @@ const mapDispatchToProps = dispatch => {
 class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { burgerColor: 'original', sub_icon: 'grey' }
+    this.state = { burgerColor: 'original', subIcon: 'grey' }
     this.darkenColor = this.darkenColor.bind(this);
     this.lightenColor = this.lightenColor.bind(this);
     this.toSubscriptions = this.toSubscriptions.bind(this);
@@ -51,9 +52,9 @@ class DropdownMenu extends React.Component {
   subscriptions() {
     if (this.props.loggedIn) {
       return (
-        <div onMouseEnter={this.reddenLi('sub_icon')} onMouseLeave={this.greyLi('sub_icon')} className="dropdown-link" onClick={this.toSubscriptions}>
-          <li key={this.props.currentUserId} className="dropdown-li">
-            <SubIcon color={this.state.sub_icon}/>
+        <div onMouseEnter={this.reddenLi('subIcon')} onMouseLeave={this.greyLi('subIcon')} className="dropdown-link" onClick={this.toSubscriptions}>
+          <li key="1" className="dropdown-li">
+            <SubIcon color={this.state.subIcon}/>
             Subscriptions
           </li>
         </div>
@@ -62,16 +63,21 @@ class DropdownMenu extends React.Component {
       return null;
     }
   }
-  // 
-  // likedVideos() {
-  //   if (this.props.loggedIn) {
-  //     return (
-  //       <
-  //     )
-  //   } else {
-  //     return null;
-  //   }
-  // }
+
+  likedVideos() {
+    if (this.props.loggedIn) {
+      return (
+        <div className='dropdown-link'>
+          <li key="2" className="dropdown-li">
+            <LikeIcon color="grey"/>
+            Liked Videos
+          </li>
+        </div>
+      )
+    } else {
+      return null;
+    }
+  }
 
   render() {
     return (
@@ -86,6 +92,7 @@ class DropdownMenu extends React.Component {
         </div>
         <ul>
           { this.subscriptions() }
+          { this.likedVideos() }
         </ul>
       </aside>
     );
