@@ -68,6 +68,39 @@
   border-radius: 0px 14px 0px 0px;
 }
 
+.thumb-red {
+  border-left: 6px solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 8px solid #FF0000;
+  width: 2px;
+}
+
+.cuff-red {
+  border: 1px solid #FF0000;
+  width: 1px;
+  height: 9px;
+  background-color: #FF0000;
+  position: relative;
+  left: -5px;
+}
+
+.palm-red {
+  border: 1px solid #FF0000;
+  height: 9px;
+  position: relative;
+  width: 10px;
+  left: -3px;
+  background-color: #FF0000;
+}
+
+.fingers-red {
+  position: relative;
+  left: -3px;
+  border-bottom: 10px solid transparent;
+  border-left: 3px solid #FF0000;
+  border-radius: 0px 14px 0px 0px;
+}
+
 .dislike {
   transform: rotate(180deg);
 }

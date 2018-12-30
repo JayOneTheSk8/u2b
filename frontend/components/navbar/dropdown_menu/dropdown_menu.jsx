@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
 class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { burgerColor: 'original', subIcon: 'grey' }
+    this.state = { burgerColor: 'original', subIcon: 'grey', likeIcon: 'grey' };
     this.darkenColor = this.darkenColor.bind(this);
     this.lightenColor = this.lightenColor.bind(this);
     this.toSubscriptions = this.toSubscriptions.bind(this);
@@ -67,9 +67,9 @@ class DropdownMenu extends React.Component {
   likedVideos() {
     if (this.props.loggedIn) {
       return (
-        <div className='dropdown-link'>
+        <div onMouseEnter={this.reddenLi('likeIcon')} onMouseLeave={this.greyLi('likeIcon')} className='dropdown-link'>
           <li key="2" className="dropdown-li">
-            <LikeIcon color="grey"/>
+            <LikeIcon dropdown={true} color={this.state.likeIcon}/>
             Liked Videos
           </li>
         </div>
