@@ -1,6 +1,10 @@
 .found-username {
   font-size: 45px;
   font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 500px;
+  text-align: center;
 }
 
 .subscriber-video-count {
@@ -21,6 +25,7 @@
   align-items: center;
   position: relative;
   top: 10px;
+  left: 34px;
 }
 .found-user {
   display: flex;
