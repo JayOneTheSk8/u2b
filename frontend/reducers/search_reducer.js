@@ -13,49 +13,50 @@ const defaultState = { users: { subscribers: {} }, videos: {}, resultList: [] };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
+  let nextState, pickedUser, pickedChannel;
   switch (action.type) {
     case RECEIVE_RESULTS:
-      let newState = merge({}, state);
-      newState.resultList = [];
+      nextState = merge({}, state);
+      nextState.resultList = [];
       if (action.resultList.length === 0) {
-        return newState;
+        return nextState;
       } else {
-        newState.resultList = action.resultList;
-        return newState;
+        nextState.resultList = action.resultList;
+        return nextState;
       }
     case CLEAR_RESULTS:
-      let nextState = merge({}, state);
+      nextState = merge({}, state);
       nextState.resultList = [];
       return nextState;
     case ATTACH_SUBSCRIPTION:
-      let laterState = merge({}, state);
-      if (laterState.users.subscribers[action.subscription.channel_id]) {
-        laterState.users.subscribers[action.subscription.channel_id][
+      nextState = merge({}, state);
+      if (nextState.users.subscribers[action.subscription.channel_id]) {
+        nextState.users.subscribers[action.subscription.channel_id][
           action.subscription.user_id
         ] = action.subscription;
       } else {
-        laterState.users.subscribers[action.subscription.channel_id] = {};
-        laterState.users.subscribers[action.subscription.channel_id][
+        nextState.users.subscribers[action.subscription.channel_id] = {};
+        nextState.users.subscribers[action.subscription.channel_id][
           action.subscription.user_id
         ] = action.subscription;
       }
-      return laterState;
+      return nextState;
     case DETATCH_SUBSCRIPTION:
-      const pickedChannel = action.subscription.channel_id;
-      const pickedUser = action.subscription.user_id;
-      let secondState = merge({}, state);
-      delete secondState.users.subscribers[pickedChannel][pickedUser];
-      return secondState;
+      pickedChannel = action.subscription.channel_id;
+      pickedUser = action.subscription.user_id;
+      nextState = merge({}, state);
+      delete nextState.users.subscribers[pickedChannel][pickedUser];
+      return nextState;
     case RECEIVE_FULL_RESULTS:
-      let results = {
-        users: merge({}, (action.results.users || {}), {
+      nextState = {
+        users: merge({}, action.results.users || {}, {
           subscribers: action.results.subscribers || {},
         }),
         videos: action.results.videos || {},
         uploaders: action.results.uploaders || {},
         resultList: [],
       };
-      return results;
+      return nextState;
     default:
       return state;
   }

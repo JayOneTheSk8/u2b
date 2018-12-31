@@ -32,10 +32,6 @@ const mapDispatchToProps = dispatch => {
 class SubscribeButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      subscribed: null,
-      subCount: null,
-    };
     this.subscribe = this.subscribe.bind(this);
     this.unsubscribe = this.unsubscribe.bind(this);
     this.redirectToLogin = this.redirectToLogin.bind(this);
@@ -43,19 +39,11 @@ class SubscribeButton extends React.Component {
     this.directToChannel = this.directToChannel.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      subscribed: this.props.subscribed,
-      subCount: this.props.subCount,
-    });
-  }
-
   subscribe(e) {
     if (this.props.found) {
       this.props.attachSubscription(this.props.channelId).then(
         (action) => {
           const nextCount = this.state.subCount + 1;
-          this.setState({ subscribed: true, subCount: nextCount });
         }
       );
       return;
@@ -63,7 +51,6 @@ class SubscribeButton extends React.Component {
     this.props.addSubscription(this.props.channelId).then(
       (action) => {
         const newCount = this.state.subCount + 1;
-        this.setState({ subscribed: true, subCount: newCount });
         return;
       }
     );
@@ -75,7 +62,6 @@ class SubscribeButton extends React.Component {
       this.props.detachSubscription(this.props.channelId, subscriptionId).then(
         (action) => {
           const nextCount = this.state.subCount - 1;
-          this.setState({ subscribed: false, subCount: nextCount });
         }
       );
       return;
@@ -84,7 +70,6 @@ class SubscribeButton extends React.Component {
     this.props.removeSubscription(this.props.channelId, subId).then(
       (action) => {
         const newCount = this.state.subCount - 1;
-        this.setState({ subscribed: false, subCount: newCount });
         return;
       }
     );
@@ -105,11 +90,11 @@ class SubscribeButton extends React.Component {
   render() {
     if (!this.props.loggedIn) {
       return (
-        <button className="subscribe-button" onClick={this.redirectToLogin}>{`SUBSCRIBE ${this.state.subCount}`}</button>
+        <button className="subscribe-button" onClick={this.redirectToLogin}>{`SUBSCRIBE ${this.props.subCount}`}</button>
       );
-    } else if (this.state.subscribed) {
+    } else if (this.props.subscribed) {
       return (
-        <button className="subscribed-button" onClick={this.unsubscribe}>{`SUBSCRIBED ${this.state.subCount}`}</button>
+        <button className="subscribed-button" onClick={this.unsubscribe}>{`SUBSCRIBED ${this.props.subCount}`}</button>
       );
     } else if (this.props.channelId === this.props.userId && this.props.videoId) {
       return (
@@ -121,7 +106,7 @@ class SubscribeButton extends React.Component {
       );
     } else {
       return (
-        <button className="subscribe-button" onClick={this.subscribe}>{`SUBSCRIBE ${this.state.subCount}`}</button>
+        <button className="subscribe-button" onClick={this.subscribe}>{`SUBSCRIBE ${this.props.subCount}`}</button>
       );
     }
   }
